@@ -5,6 +5,7 @@
 //  Created by Sho Amano on 2018/04/23.
 //  Copyright © 2018 Xevo Inc. All rights reserved.
 //
+//  ACVL_Modified_SDL_File
 
 #import "SDLTCPTransport.h"
 #import "SDLMutableDataQueue.h"
@@ -120,6 +121,12 @@ NSTimeInterval ConnectionTimeoutSecs = 30.0;
     [self.sendDataQueue removeAllObjects];
     self.transportErrorNotified = NO;
     self.transportConnected = NO;
+}
+
+#pragma mark SDLTransportTypeProtocol
+
+- (EAAccessory * _Nullable)accessory {
+    return nil;
 }
 
 #pragma mark - Data Transmission
