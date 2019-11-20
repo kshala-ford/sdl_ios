@@ -9,3 +9,5 @@ Change List:
 [SYNC 4](https://github.ford.com/FordMobile/sdl_ag/pull/1)
 
 [Configuration to pList](https://github.ford.com/FordMobile/sdl_ag/pull/2)
+
+[Brand Protocols](https://github.ford.com/FordMobile/sdl_ag/pull/3)
