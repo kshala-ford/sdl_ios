@@ -11,3 +11,5 @@ Change List:
 [Configuration to pList](https://github.ford.com/FordMobile/sdl_ag/pull/2)
 
 [Brand Protocols](https://github.ford.com/FordMobile/sdl_ag/pull/3)
+
+[Nil Accessory Check - Relay Requirement](https://github.ford.com/FordMobile/sdl_ag/pull/6)
