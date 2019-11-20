@@ -333,7 +333,7 @@ NSString *const Sync4String = @"SYNC 4";
     }
     
     NSString *syncName = (NSString *)self.proxy.transport.accessory.name;
-    if ([syncName isEqualToString:Sync4String] == false) {
+    if (syncName != nil && [syncName isEqualToString:Sync4String] == false) {
         [self createSync3Configuration];
     }
     
