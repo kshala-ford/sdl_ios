@@ -1,5 +1,5 @@
 //  SDLIAPTransport.h
-
+//  ACVL_Modified_SDL_File
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -224,6 +224,15 @@ int const CreateSessionRetries = 3;
     [self.dataSession destroySession];
 }
 
+- (EAAccessory * _Nullable)accessory {
+    if (self.controlSession.eaSession.accessory != nil) {
+        return self.controlSession.eaSession.accessory;
+    }
+    if (self.dataSession.eaSession.accessory != nil) {
+        return self.dataSession.eaSession.accessory;
+    }
+    return nil;
+}
 
 #pragma mark Helpers
 

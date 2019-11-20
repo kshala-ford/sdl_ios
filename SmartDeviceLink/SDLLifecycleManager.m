@@ -5,6 +5,7 @@
 //  Created by Joel Fischer on 7/19/16.
 //  Copyright © 2016 smartdevicelink. All rights reserved.
 //
+//  ACVL_Modified_SDL_File
 
 #import <Foundation/Foundation.h>
 
@@ -97,6 +98,7 @@ NSString *const BackgroundTaskTransportName = @"com.sdl.transport.backgroundTask
 
 @end
 
+NSString *const Sync4String = @"SYNC 4";
 
 @implementation SDLLifecycleManager
 
@@ -329,7 +331,12 @@ NSString *const BackgroundTaskTransportName = @"com.sdl.transport.backgroundTask
         [self sdl_transitionToState:SDLLifecycleStateStopped];
         return;
     }
-
+    
+    NSString *syncName = (NSString *)self.proxy.transport.accessory.name;
+    if ([syncName isEqualToString:Sync4String] == false) {
+        [self createSync3Configuration];
+    }
+    
     // Build a register app interface request with the configuration data
     SDLRegisterAppInterface *regRequest = [[SDLRegisterAppInterface alloc] initWithLifecycleConfiguration:self.configuration.lifecycleConfig];
 
@@ -355,6 +362,14 @@ NSString *const BackgroundTaskTransportName = @"com.sdl.transport.backgroundTask
         [SDLGlobals sharedGlobals].rpcVersion = [SDLVersion versionWithSDLMsgVersion:weakSelf.registerResponse.sdlMsgVersion];
         [weakSelf sdl_transitionToState:SDLLifecycleStateRegistered];
     }];
+}
+
+- (void)createSync3Configuration {
+    SDLLifecycleConfiguration *lifecycleConfig = self.configuration.lifecycleConfig;
+    lifecycleConfig.appType = SDLAppHMITypeDefault;
+    lifecycleConfig.additionalAppTypes = nil;
+    SDLConfiguration *configuration = [[SDLConfiguration alloc] initWithLifecycle:lifecycleConfig lockScreen:self.configuration.lockScreenConfig logging:self.configuration.loggingConfig fileManager:self.configuration.fileManagerConfig];
+    self.configuration = configuration;
 }
 
 - (void)didEnterStateRegistered {
