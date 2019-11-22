@@ -1256,7 +1256,7 @@
 		5DE372A21ACB2ED300849FAA /* SDLHMICapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE372A01ACB2ED300849FAA /* SDLHMICapabilities.m */; };
 		5DE372A41ACB336600849FAA /* SDLHMICapabilitiesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE372A31ACB336600849FAA /* SDLHMICapabilitiesSpec.m */; };
 		5DE5ABB71B0E38C90067BB02 /* SDLSystemRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D61FBD21A84238B00846EE7 /* SDLSystemRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5DE5ABB81B0E38C90067BB02 /* SDLSystemRequestResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D61FBD41A84238B00846EE7 /* SDLSystemRequestResponse.h */; };
+		5DE5ABB81B0E38C90067BB02 /* SDLSystemRequestResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D61FBD41A84238B00846EE7 /* SDLSystemRequestResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DEF695B1FD6F82D004B8C2F /* SDLStreamingAudioManagerType.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DEF695A1FD6F82D004B8C2F /* SDLStreamingAudioManagerType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DEF695D1FD6FA01004B8C2F /* testAudio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DEF695C1FD6FA01004B8C2F /* testAudio.mp3 */; };
 		5DEF69611FD6FB75004B8C2F /* SDLAudioStreamManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEF69601FD6FB75004B8C2F /* SDLAudioStreamManagerSpec.m */; };
@@ -6526,6 +6526,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DE5ABB81B0E38C90067BB02 /* SDLSystemRequestResponse.h in Headers */,
 				9F425AD222DD980200BE3245 /* SDLWindowCapability.h in Headers */,
 				9F425ADA22DD983500BE3245 /* SDLDisplayCapability.h in Headers */,
 				9F425ACE22DD97DE00BE3245 /* SDLTemplateConfiguration.h in Headers */,
@@ -6578,7 +6579,6 @@
 				5DA3F35F1BC448590026F2D0 /* SDLNotificationConstants.h in Headers */,
 				5DE5ABB71B0E38C90067BB02 /* SDLSystemRequest.h in Headers */,
 				5DA3F3701BC4489A0026F2D0 /* SDLManager.h in Headers */,
-				5DE5ABB81B0E38C90067BB02 /* SDLSystemRequestResponse.h in Headers */,
 				5D61FCA51A84238C00846EE7 /* SDLEndAudioPassThruResponse.h in Headers */,
 				5D3E48CB1D7722FE0000BFEF /* NSBundle+SDLBundle.h in Headers */,
 				5D61FD851A84238C00846EE7 /* SDLSetDisplayLayoutResponse.h in Headers */,
