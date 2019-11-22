@@ -140,6 +140,7 @@
 @class SDLSyncPData;
 @class SDLSyncPDataResponse;
 @class SDLSystemRequest;
+@class SDLSystemRequestResponse;
 @class SDLUnpublishAppService;
 @class SDLUnpublishAppServiceResponse;
 @class SDLUnregisterAppInterface;
