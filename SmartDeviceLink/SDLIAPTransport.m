@@ -1,5 +1,5 @@
 //  SDLIAPTransport.h
-
+//  ACVL_Modified_SDL_File
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -20,6 +20,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 int const CreateSessionRetries = 3;
+
+NSString *const FordProtocolString = @"com.ford.sync.ownerapp";
+NSString *const LincolnProtocolString = @"com.lincoln.sync.ownerapp";
+NSString *const protocolStrings = @"UISupportedExternalAccessoryProtocols";
 
 @interface SDLIAPTransport () <SDLIAPControlSessionDelegate, SDLIAPDataSessionDelegate>
 
@@ -224,6 +228,15 @@ int const CreateSessionRetries = 3;
     [self.dataSession destroySession];
 }
 
+- (EAAccessory * _Nullable)accessory {
+    if (self.controlSession.eaSession.accessory != nil) {
+        return self.controlSession.eaSession.accessory;
+    }
+    if (self.dataSession.eaSession.accessory != nil) {
+        return self.dataSession.eaSession.accessory;
+    }
+    return nil;
+}
 
 #pragma mark Helpers
 
@@ -501,16 +514,26 @@ int const CreateSessionRetries = 3;
     if (![self.class sdl_plistContainsAllSupportedProtocolStrings]) {
         return NO;
     }
+    NSArray *sdlProtocolArray = [[[NSBundle mainBundle] infoDictionary] objectForKey:protocolStrings];
 
-    if ([protocolString isEqualToString:MultiSessionProtocolString] && SDL_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9")) {
+
+    if ([sdlProtocolArray containsObject:FordProtocolString] && [accessory supportsProtocol:FordProtocolString]) {
+        self.dataSession = [[SDLIAPDataSession alloc] initWithAccessory:accessory delegate:self forProtocol:FordProtocolString];
+        [self.dataSession startSession];
+        return YES;
+    } else if ([sdlProtocolArray containsObject:LincolnProtocolString] && [accessory supportsProtocol:LincolnProtocolString]) {
+        self.dataSession = [[SDLIAPDataSession alloc] initWithAccessory:accessory delegate:self forProtocol:LincolnProtocolString];
+        [self.dataSession startSession];
+        return YES;
+    } else if ([sdlProtocolArray containsObject:MultiSessionProtocolString] &&  [accessory supportsProtocol:MultiSessionProtocolString] && SDL_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9")) {
         self.dataSession = [[SDLIAPDataSession alloc] initWithAccessory:accessory delegate:self forProtocol:protocolString];
         [self.dataSession startSession];
         return YES;
-    } else if ([protocolString isEqualToString:ControlProtocolString]) {
+    } else if ([sdlProtocolArray containsObject:ControlProtocolString] && [protocolString isEqualToString:ControlProtocolString]) {
         self.controlSession = [[SDLIAPControlSession alloc] initWithAccessory:accessory delegate:self];
         [self.controlSession startSession];
         return YES;
-    } else if ([protocolString isEqualToString:LegacyProtocolString]) {
+    } else if ([sdlProtocolArray containsObject:LegacyProtocolString] && [protocolString isEqualToString:LegacyProtocolString]) {
         self.dataSession = [[SDLIAPDataSession alloc] initWithAccessory:accessory delegate:self forProtocol:protocolString];
         [self.dataSession startSession];
         return YES;
