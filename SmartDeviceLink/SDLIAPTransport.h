@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nullable, weak, nonatomic) id<SDLTransportDelegate> delegate;
 
+- (instancetype)initAsMarketplaceApp:(BOOL)marketplaceApp NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)init NS_UNAVAILABLE;
+
 @end
 
 NS_ASSUME_NONNULL_END

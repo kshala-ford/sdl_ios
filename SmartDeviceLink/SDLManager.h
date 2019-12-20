@@ -122,7 +122,7 @@ typedef void (^SDLManagerReadyBlock)(BOOL success, NSError *_Nullable error);
  *
  *  @return An instance of SDLManager
  */
-- (instancetype)initWithConfiguration:(SDLConfiguration *)configuration delegate:(nullable id<SDLManagerDelegate>)delegate NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithConfiguration:(SDLConfiguration *)configuration delegate:(nullable id<SDLManagerDelegate>)delegate marketplaceApp:(BOOL)marketplaceApp NS_DESIGNATED_INITIALIZER;
 
 /**
  *  Start the manager, which will tell it to start looking for a connection. Once one does, it will automatically run the setup process and call the readyBlock when done.

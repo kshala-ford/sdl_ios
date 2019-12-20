@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param encryptionLifecycleManager  The encryption life cycle manager
  *  @return                            A SDLProxy object
  */
-+ (SDLProxy *)iapProxyWithListener:(id<SDLProxyListener>)delegate secondaryTransportManager:(nullable SDLSecondaryTransportManager *)secondaryTransportManager encryptionLifecycleManager:(SDLEncryptionLifecycleManager *)encryptionLifecycleManager;
++ (SDLProxy *)iapProxyWithListener:(id<SDLProxyListener>)delegate secondaryTransportManager:(nullable SDLSecondaryTransportManager *)secondaryTransportManager encryptionLifecycleManager:(SDLEncryptionLifecycleManager *)encryptionLifecycleManager marketplaceApp:(BOOL)marketplaceApp;
 
 /**
  *  Creates a SDLProxy object with a TCP (WiFi) transport network connection.
