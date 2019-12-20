@@ -518,7 +518,7 @@ NSString *const protocolStrings = @"UISupportedExternalAccessoryProtocols";
     }
     NSArray *sdlProtocolArray = [[[NSBundle mainBundle] infoDictionary] objectForKey:protocolStrings];
 
-    if (self.marketplaceApp == YES) {
+    if (self.marketplaceApp) {
         if ([sdlProtocolArray containsObject:ControlProtocolString] && [protocolString isEqualToString:ControlProtocolString]) {
             self.controlSession = [[SDLIAPControlSession alloc] initWithAccessory:accessory delegate:self];
             [self.controlSession startSession];
