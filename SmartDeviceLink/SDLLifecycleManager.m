@@ -95,6 +95,7 @@ NSString *const BackgroundTaskTransportName = @"com.sdl.transport.backgroundTask
 @property (assign, nonatomic) int32_t lastCorrelationId;
 @property (copy, nonatomic) SDLBackgroundTaskManager *backgroundTaskManager;
 @property (copy, nonatomic) SDLEncryptionLifecycleManager *encryptionLifecycleManager;
+@property (assign, nonatomic) BOOL marketplaceApp;
 
 @end
 
@@ -105,10 +106,10 @@ NSString *const Sync4String = @"SYNC 4";
 #pragma mark Lifecycle
 
 - (instancetype)init {
-    return [self initWithConfiguration:[SDLConfiguration configurationWithLifecycle:[SDLLifecycleConfiguration defaultConfigurationWithAppName:@"SDL APP" fullAppId:@"001"] lockScreen:[SDLLockScreenConfiguration disabledConfiguration] logging:[SDLLogConfiguration defaultConfiguration] fileManager:[SDLFileManagerConfiguration defaultConfiguration]] delegate:nil];
+    return [self initWithConfiguration:[SDLConfiguration configurationWithLifecycle:[SDLLifecycleConfiguration defaultConfigurationWithAppName:@"SDL APP" fullAppId:@"001"] lockScreen:[SDLLockScreenConfiguration disabledConfiguration] logging:[SDLLogConfiguration defaultConfiguration] fileManager:[SDLFileManagerConfiguration defaultConfiguration]] delegate:nil marketplaceApp:NO];
 }
 
-- (instancetype)initWithConfiguration:(SDLConfiguration *)configuration delegate:(nullable id<SDLManagerDelegate>)delegate {
+- (instancetype)initWithConfiguration:(SDLConfiguration *)configuration delegate:(nullable id<SDLManagerDelegate>)delegate marketplaceApp:(BOOL)marketplaceApp {
     self = [super init];
     if (!self) {
         return nil;
@@ -119,6 +120,7 @@ NSString *const Sync4String = @"SYNC 4";
     // Dependencies
     _configuration = [configuration copy];
     _delegate = delegate;
+    _marketplaceApp = marketplaceApp;
 
     // Logging
     [SDLLogManager setConfiguration:_configuration.loggingConfig];
@@ -244,11 +246,11 @@ NSString *const Sync4String = @"SYNC 4";
                           secondaryTransportManager:self.secondaryTransportManager
                          encryptionLifecycleManager:self.encryptionLifecycleManager];
     } else if (self.configuration.lifecycleConfig.allowedSecondaryTransports == SDLSecondaryTransportsNone) {
-        self.proxy = [SDLProxy iapProxyWithListener:self.notificationDispatcher secondaryTransportManager:nil encryptionLifecycleManager:self.encryptionLifecycleManager];
+        self.proxy = [SDLProxy iapProxyWithListener:self.notificationDispatcher secondaryTransportManager:nil encryptionLifecycleManager:self.encryptionLifecycleManager marketplaceApp:self.marketplaceApp];
     } else {
         // We reuse our queue to run secondary transport manager's state machine
-        self.secondaryTransportManager = [[SDLSecondaryTransportManager alloc] initWithStreamingProtocolDelegate:self serialQueue:self.lifecycleQueue];
-        self.proxy = [SDLProxy iapProxyWithListener:self.notificationDispatcher secondaryTransportManager:self.secondaryTransportManager encryptionLifecycleManager:self.encryptionLifecycleManager];
+        self.secondaryTransportManager = [[SDLSecondaryTransportManager alloc] initWithStreamingProtocolDelegate:self serialQueue:self.lifecycleQueue marketplaceApp:self.marketplaceApp];
+        self.proxy = [SDLProxy iapProxyWithListener:self.notificationDispatcher secondaryTransportManager:self.secondaryTransportManager encryptionLifecycleManager:self.encryptionLifecycleManager marketplaceApp:self.marketplaceApp];
     }
 #pragma clang diagnostic pop
 }

@@ -33,13 +33,14 @@ NSString *const protocolStrings = @"UISupportedExternalAccessoryProtocols";
 @property (assign, nonatomic) BOOL sessionSetupInProgress;
 @property (assign, nonatomic) BOOL transportDestroyed;
 @property (assign, nonatomic) BOOL accessoryConnectDuringActiveSession;
+@property (assign, nonatomic) BOOL marketplaceApp;
 
 @end
 
 
 @implementation SDLIAPTransport
 
-- (instancetype)init {
+- (instancetype)initAsMarketplaceApp:(BOOL)marketplaceApp {
     SDLLogV(@"SDLIAPTransport init");
     self = [super init];
     if (!self) {
@@ -52,6 +53,7 @@ NSString *const protocolStrings = @"UISupportedExternalAccessoryProtocols";
     _controlSession = nil;
     _retryCounter = 0;
     _accessoryConnectDuringActiveSession = NO;
+    _marketplaceApp = marketplaceApp;
 
     // Get notifications if an accessory connects in future
     [self sdl_startEventListening];
@@ -516,27 +518,34 @@ NSString *const protocolStrings = @"UISupportedExternalAccessoryProtocols";
     }
     NSArray *sdlProtocolArray = [[[NSBundle mainBundle] infoDictionary] objectForKey:protocolStrings];
 
-
-    if ([sdlProtocolArray containsObject:FordProtocolString] && [accessory supportsProtocol:FordProtocolString]) {
-        self.dataSession = [[SDLIAPDataSession alloc] initWithAccessory:accessory delegate:self forProtocol:FordProtocolString];
-        [self.dataSession startSession];
-        return YES;
-    } else if ([sdlProtocolArray containsObject:LincolnProtocolString] && [accessory supportsProtocol:LincolnProtocolString]) {
-        self.dataSession = [[SDLIAPDataSession alloc] initWithAccessory:accessory delegate:self forProtocol:LincolnProtocolString];
-        [self.dataSession startSession];
-        return YES;
-    } else if ([sdlProtocolArray containsObject:MultiSessionProtocolString] &&  [accessory supportsProtocol:MultiSessionProtocolString] && SDL_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9")) {
-        self.dataSession = [[SDLIAPDataSession alloc] initWithAccessory:accessory delegate:self forProtocol:protocolString];
-        [self.dataSession startSession];
-        return YES;
-    } else if ([sdlProtocolArray containsObject:ControlProtocolString] && [protocolString isEqualToString:ControlProtocolString]) {
-        self.controlSession = [[SDLIAPControlSession alloc] initWithAccessory:accessory delegate:self];
-        [self.controlSession startSession];
-        return YES;
-    } else if ([sdlProtocolArray containsObject:LegacyProtocolString] && [protocolString isEqualToString:LegacyProtocolString]) {
-        self.dataSession = [[SDLIAPDataSession alloc] initWithAccessory:accessory delegate:self forProtocol:protocolString];
-        [self.dataSession startSession];
-        return YES;
+    if (self.marketplaceApp) {
+        if ([sdlProtocolArray containsObject:ControlProtocolString] && [protocolString isEqualToString:ControlProtocolString]) {
+            self.controlSession = [[SDLIAPControlSession alloc] initWithAccessory:accessory delegate:self];
+            [self.controlSession startSession];
+            return YES;
+        }
+    } else {
+        if ([sdlProtocolArray containsObject:FordProtocolString] && [accessory supportsProtocol:FordProtocolString]) {
+            self.dataSession = [[SDLIAPDataSession alloc] initWithAccessory:accessory delegate:self forProtocol:FordProtocolString];
+            [self.dataSession startSession];
+            return YES;
+        } else if ([sdlProtocolArray containsObject:LincolnProtocolString] && [accessory supportsProtocol:LincolnProtocolString]) {
+            self.dataSession = [[SDLIAPDataSession alloc] initWithAccessory:accessory delegate:self forProtocol:LincolnProtocolString];
+            [self.dataSession startSession];
+            return YES;
+        } else if ([sdlProtocolArray containsObject:MultiSessionProtocolString] &&  [accessory supportsProtocol:MultiSessionProtocolString] && SDL_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9")) {
+            self.dataSession = [[SDLIAPDataSession alloc] initWithAccessory:accessory delegate:self forProtocol:protocolString];
+            [self.dataSession startSession];
+            return YES;
+        } else if ([sdlProtocolArray containsObject:ControlProtocolString] && [protocolString isEqualToString:ControlProtocolString]) {
+            self.controlSession = [[SDLIAPControlSession alloc] initWithAccessory:accessory delegate:self];
+            [self.controlSession startSession];
+            return YES;
+        } else if ([sdlProtocolArray containsObject:LegacyProtocolString] && [protocolString isEqualToString:LegacyProtocolString]) {
+            self.dataSession = [[SDLIAPDataSession alloc] initWithAccessory:accessory delegate:self forProtocol:protocolString];
+            [self.dataSession startSession];
+            return YES;
+        }
     }
 
     return NO;

@@ -94,6 +94,8 @@ static const int TCPPortUnspecified = -1;
 @property (strong, nonatomic, nullable) NSString *ipAddress;
 // TCP port number of SDL Core. If the information isn't available then TCPPortUnspecified is stored.
 @property (assign, nonatomic) int tcpPort;
+@property (assign, nonatomic) BOOL marketplaceApp;
+
 
 @end
 
@@ -102,7 +104,8 @@ static const int TCPPortUnspecified = -1;
 #pragma mark - Public
 
 - (instancetype)initWithStreamingProtocolDelegate:(id<SDLStreamingProtocolDelegate>)streamingProtocolDelegate
-                                      serialQueue:(dispatch_queue_t)queue {
+                                      serialQueue:(dispatch_queue_t)queue
+                                   marketplaceApp:(BOOL)marketplaceApp {
     self = [super init];
     if (!self) {
         return nil;
@@ -111,6 +114,7 @@ static const int TCPPortUnspecified = -1;
     _stateMachine = [[SDLStateMachine alloc] initWithTarget:self initialState:SDLSecondaryTransportStateStopped states:[self.class sdl_stateTransitionDictionary]];
     _stateMachineQueue = queue;
     _streamingProtocolDelegate = streamingProtocolDelegate;
+    _marketplaceApp = marketplaceApp;
 
     _secondaryTransportType = SDLSecondaryTransportTypeDisabled;
     _transportsForAudioService = @[];
@@ -524,7 +528,7 @@ static const int TCPPortUnspecified = -1;
 - (BOOL)sdl_startIAPSecondaryTransport {
     SDLLogD(@"Starting Secondary Transport: iAP");
 
-    SDLIAPTransport *transport = [[SDLIAPTransport alloc] init];
+    SDLIAPTransport *transport = [[SDLIAPTransport alloc] initAsMarketplaceApp:self.marketplaceApp];
     SDLProtocol *protocol = [[SDLProtocol alloc] init];
     transport.delegate = protocol;
     protocol.transport = transport;

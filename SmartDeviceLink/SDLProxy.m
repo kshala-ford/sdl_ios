@@ -73,7 +73,7 @@ static float DefaultConnectionTimeout = 45.0;
 @implementation SDLProxy
 
 #pragma mark - Object lifecycle
-- (instancetype)initWithTransport:(id<SDLTransportType>)transport delegate:(id<SDLProxyListener>)delegate secondaryTransportManager:(nullable SDLSecondaryTransportManager *)secondaryTransportManager {
+- (instancetype)initWithTransport:(id<SDLTransportType>)transport delegate:(id<SDLProxyListener>)delegate secondaryTransportManager:(nullable SDLSecondaryTransportManager *)secondaryTransportManager marketplaceApp:(BOOL)marketplaceApp {
     if (self = [super init]) {
         SDLLogD(@"Framework Version: %@", self.proxyVersion);
         _lsm = [[SDLLockScreenStatusManager alloc] init];
@@ -144,8 +144,8 @@ static float DefaultConnectionTimeout = 45.0;
 }
 
 
-+ (SDLProxy *)iapProxyWithListener:(id<SDLProxyListener>)delegate secondaryTransportManager:(nullable SDLSecondaryTransportManager *)secondaryTransportManager {
-    SDLIAPTransport *transport = [[SDLIAPTransport alloc] init];
++ (SDLProxy *)iapProxyWithListener:(id<SDLProxyListener>)delegate secondaryTransportManager:(nullable SDLSecondaryTransportManager *)secondaryTransportManager marketplaceApp:(BOOL)marketplaceApp {
+    SDLIAPTransport *transport = [[SDLIAPTransport alloc] initAsMarketplaceApp:marketplaceApp];
     SDLProxy *ret = [[SDLProxy alloc] initWithTransport:transport delegate:delegate secondaryTransportManager:secondaryTransportManager];
 
     return ret;
@@ -159,8 +159,8 @@ static float DefaultConnectionTimeout = 45.0;
     return ret;
 }
 
-+ (SDLProxy *)iapProxyWithListener:(id<SDLProxyListener>)delegate secondaryTransportManager:(nullable SDLSecondaryTransportManager *)secondaryTransportManager encryptionLifecycleManager:(SDLEncryptionLifecycleManager *)encryptionLifecycleManager {
-    SDLIAPTransport *transport = [[SDLIAPTransport alloc] init];
++ (SDLProxy *)iapProxyWithListener:(id<SDLProxyListener>)delegate secondaryTransportManager:(nullable SDLSecondaryTransportManager *)secondaryTransportManager encryptionLifecycleManager:(SDLEncryptionLifecycleManager *)encryptionLifecycleManager marketplaceApp:(BOOL)marketplaceApp {
+    SDLIAPTransport *transport = [[SDLIAPTransport alloc] initAsMarketplaceApp:marketplaceApp];
     SDLProxy *ret = [[SDLProxy alloc] initWithTransport:transport delegate:delegate secondaryTransportManager:secondaryTransportManager encryptionLifecycleManager:encryptionLifecycleManager];
     
     return ret;

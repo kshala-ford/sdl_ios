@@ -47,7 +47,8 @@ extern SDLSecondaryTransportState *const SDLSecondaryTransportStateReconnecting;
  @return A new secondary transport manager
  */
 - (instancetype)initWithStreamingProtocolDelegate:(id<SDLStreamingProtocolDelegate>)streamingProtocolDelegate
-                                      serialQueue:(dispatch_queue_t)queue;
+                                      serialQueue:(dispatch_queue_t)queue
+                                   marketplaceApp:(BOOL)marketplaceApp;
 
 /**
  *  Start the manager.
