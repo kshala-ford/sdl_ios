@@ -15,3 +15,5 @@ Change List:
 [Nil Accessory Check - Relay Requirement](https://github.ford.com/FordMobile/sdl_ag/pull/6)
 
 [Expose SDLSytemRequestResponse](https://github.ford.com/FordMobile/sdl_ios/pull/7)
+
+[Add XEVO Markeplace Support](https://github.ford.com/FordMobile/sdl_ios/pull/9)
