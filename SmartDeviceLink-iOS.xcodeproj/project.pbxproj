@@ -38,7 +38,7 @@
 		00E22CED22C2F1B300BC6B08 /* SDLEncryptionConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 00E22CEB22C2F1B300BC6B08 /* SDLEncryptionConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00EADD3322DFE54B0088B608 /* SDLEncryptionLifecycleManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EADD3222DFE54B0088B608 /* SDLEncryptionLifecycleManagerSpec.m */; };
 		00EADD3522DFE5670088B608 /* SDLEncryptionConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EADD3422DFE5670088B608 /* SDLEncryptionConfigurationSpec.m */; };
-		112E66CA243776D7003F4F52 /* SDLPTTBControlData.h in Headers */ = {isa = PBXBuildFile; fileRef = 112E66C8243776D7003F4F52 /* SDLPTTBControlData.h */; };
+		112E66CA243776D7003F4F52 /* SDLPTTBControlData.h in Headers */ = {isa = PBXBuildFile; fileRef = 112E66C8243776D7003F4F52 /* SDLPTTBControlData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		112E66CB243776D7003F4F52 /* SDLPTTBControlData.m in Sources */ = {isa = PBXBuildFile; fileRef = 112E66C9243776D7003F4F52 /* SDLPTTBControlData.m */; };
 		162E82CA1A9BDE8A00906325 /* SDLAmbientLightStatusSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E81E21A9BDE8A00906325 /* SDLAmbientLightStatusSpec.m */; };
 		162E82CB1A9BDE8A00906325 /* SDLAppHMITypeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E81E31A9BDE8A00906325 /* SDLAppHMITypeSpec.m */; };
@@ -6532,6 +6532,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				112E66CA243776D7003F4F52 /* SDLPTTBControlData.h in Headers */,
 				5DE5ABB81B0E38C90067BB02 /* SDLSystemRequestResponse.h in Headers */,
 				9F425AD222DD980200BE3245 /* SDLWindowCapability.h in Headers */,
 				9F425ADA22DD983500BE3245 /* SDLDisplayCapability.h in Headers */,
@@ -6661,7 +6662,6 @@
 				DA6223BD1E7B088200878689 /* CVPixelBufferRef+SDLUtil.h in Headers */,
 				5D61FD031A84238C00846EE7 /* SDLOnButtonEvent.h in Headers */,
 				5D61FDAF1A84238C00846EE7 /* SDLSubscribeButtonResponse.h in Headers */,
-				112E66CA243776D7003F4F52 /* SDLPTTBControlData.h in Headers */,
 				5D61FCB51A84238C00846EE7 /* SDLGetVehicleData.h in Headers */,
 				5D61FDEB1A84238C00846EE7 /* SDLUnsubscribeVehicleData.h in Headers */,
 				5DA3F3541BC448060026F2D0 /* NSMapTable+Subscripting.h in Headers */,
