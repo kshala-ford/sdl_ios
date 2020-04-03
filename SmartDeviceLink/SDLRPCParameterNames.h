@@ -492,7 +492,6 @@ extern SDLRPCParameterName const SDLRPCParameterNameProgramService;
 extern SDLRPCParameterName const SDLRPCParameterNameProgramType;
 extern SDLRPCParameterName const SDLRPCParameterNamePrompt;
 extern SDLRPCParameterName const SDLRPCParameterNamePTTBControlData;
-extern SDLRPCParameterName const SDLRPCParameterNameSeatControlData;
 extern SDLRPCParameterName const SDLRPCParameterNameQueueCurrentTrackNumber;
 extern SDLRPCParameterName const SDLRPCParameterNameQueuePlaybackDuration;
 extern SDLRPCParameterName const SDLRPCParameterNameQueuePlaybackProgress;
