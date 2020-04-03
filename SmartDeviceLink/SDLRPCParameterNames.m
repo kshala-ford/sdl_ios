@@ -485,6 +485,7 @@ SDLRPCParameterName const SDLRPCParameterNameProperties = @"properties";
 SDLRPCParameterName const SDLRPCParameterNameProgramService = @"PS";
 SDLRPCParameterName const SDLRPCParameterNameProgramType = @"PTY";
 SDLRPCParameterName const SDLRPCParameterNamePrompt = @"prompt";
+SDLRPCParameterName const SDLRPCParameterNamePTTBControlData = @"pttbControlData";
 SDLRPCParameterName const SDLRPCParameterNameQueueCurrentTrackNumber = @"queueCurrentTrackNumber";
 SDLRPCParameterName const SDLRPCParameterNameQueuePlaybackDuration = @"queuePlaybackDuration";
 SDLRPCParameterName const SDLRPCParameterNameQueuePlaybackProgress = @"queuePlaybackProgress";

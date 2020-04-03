@@ -11,6 +11,7 @@
 @class SDLAudioControlData;
 @class SDLHMISettingsControlData;
 @class SDLLightControlData;
+@class SDLPTTBControlData;
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -59,6 +60,14 @@ NS_ASSUME_NONNULL_BEGIN
  @return An instance of the SDLModuleData class
  */
 - (instancetype)initWithHMISettingsControlData:(SDLHMISettingsControlData *)hmiSettingsControlData;
+
+/**
+ Constructs a newly allocated SDLModuleData object with PTTB data
+ 
+ @param pttbControlData The PTTB control data
+ @return An instance of the SDLModuleData class
+ */
+- (instancetype)initWithPTTBControlData:(SDLPTTBControlData *)pttbControlData;
 
 /**
  Constructs a newly allocated SDLModuleData object with seat control data
@@ -125,6 +134,14 @@ NS_ASSUME_NONNULL_BEGIN
  Optional
  */
 @property (nullable, strong, nonatomic) SDLHMISettingsControlData *hmiSettingsControlData;
+
+/**
+ The pttb control data
+ 
+ Optional
+ */
+@property (nullable, strong, nonatomic) SDLPTTBControlData *pttbControlData;
+
 
 @end
 
