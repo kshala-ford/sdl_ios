@@ -351,6 +351,7 @@ FOUNDATION_EXPORT const unsigned char SmartDeviceLinkVersionString[];
 #import "SDLPrerecordedSpeech.h"
 #import "SDLPredefinedWindows.h"
 #import "SDLPrimaryAudioSource.h"
+#import "SDLPttbHwConfig.h"
 #import "SDLPttbPowerState.h"
 #import "SDLPttbPowerStatus.h"
 #import "SDLRadioBand.h"

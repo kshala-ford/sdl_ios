@@ -62,6 +62,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, strong, nonatomic, readonly) NSNumber<SDLInt> *pwMax;
 
 /**
+ * @abstract read-only, maps to DcacHW_D_Confg
+ *
+ * Optional, PttbHwConfig
+ */
+@property (nullable, strong, nonatomic, readonly) SDLPttbHwConfig hwConfig;
+
+/**
  * @abstract read-only, maps to DcacOut_E_tot
  *
  * Optional, MinValue = 0 MaxValue = 65535
