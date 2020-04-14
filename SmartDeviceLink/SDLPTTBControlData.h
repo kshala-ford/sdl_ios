@@ -34,6 +34,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, strong, nonatomic, readonly) NSNumber<SDLInt> *loFuelMsg;
 
 /**
+ * @abstract read-only, maps to DcacElPw_D_Stat
+ *
+ * Optional, PttbPowerStatus
+ */
+@property (nullable, strong, nonatomic, readonly) SDLPttbPowerStatus status;
+
+/**
  * @abstract read-only, maps to DcacOut1_Pw2_Dsply
  *
  * Optional, MinValue = 0 MaxValue = 8191
