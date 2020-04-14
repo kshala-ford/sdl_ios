@@ -27,6 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, strong, nonatomic) NSNumber<SDLBool> *reset;
 
 /**
+ * @abstract read-only, maps to DcacFaltMsgTxt_D2_Rq, if *D2_Rq not available default to DcacFaltMsgTxt_D_Rq
+ *
+ * Optional, PttbFaltMsg
+ */
+@property (nullable, strong, nonatomic) SDLPttbFaltMsg faltMsg;
+
+/**
  * @abstract read-only, maps to DcacLoFuelMsgTxt_D_Rq
  *
  * Optional, MinValue = 0 MaxValue = 30
