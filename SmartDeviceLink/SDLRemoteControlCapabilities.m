@@ -7,6 +7,7 @@
 #import "SDLClimateControlCapabilities.h"
 #import "SDLHMISettingsControlCapabilities.h"
 #import "SDLLightControlCapabilities.h"
+#import "SDLPttbControlCapabilities.h"
 #import "SDLRemoteControlCapabilities.h"
 #import "SDLRadioControlCapabilities.h"
 #import "SDLSeatControlCapabilities.h"
@@ -112,6 +113,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable NSArray<SDLLightControlCapabilities *> *)lightControlCapabilities {
     SDLLightControlCapabilities *capability = [self.store sdl_objectForName:SDLRPCParameterNameLightControlCapabilities ofClass:SDLLightControlCapabilities.class error:nil];
+    if (capability == nil) { return nil; }
+
+    return @[capability];
+}
+
+- (void)setPttbControlCapabilities:(nullable NSArray<SDLPttbControlCapabilities *> *)pttbControlCapabilities {
+    // TODO: This parameter should not be an array according to the spec, in a future major version change, this parameter's type should be altered
+    if (pttbControlCapabilities.count == 0) {
+        [self.store sdl_setObject:nil forName:SDLRPCParameterNamePttbControlCapabilities];
+        return;
+    }
+
+    SDLPttbControlCapabilities *capability = pttbControlCapabilities.firstObject;
+
+    [self.store sdl_setObject:capability forName:SDLRPCParameterNamePttbControlCapabilities];
+}
+
+- (nullable NSArray<SDLPttbControlCapabilities *> *)pttbControlCapabilities {
+    SDLPttbControlCapabilities *capability = [self.store sdl_objectForName:SDLRPCParameterNamePttbControlCapabilities ofClass:SDLPttbControlCapabilities.class error:nil];
     if (capability == nil) { return nil; }
 
     return @[capability];

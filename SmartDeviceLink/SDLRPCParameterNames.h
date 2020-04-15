@@ -498,6 +498,7 @@ extern SDLRPCParameterName const SDLRPCParameterNameProperties;
 extern SDLRPCParameterName const SDLRPCParameterNameProgramService;
 extern SDLRPCParameterName const SDLRPCParameterNameProgramType;
 extern SDLRPCParameterName const SDLRPCParameterNamePrompt;
+extern SDLRPCParameterName const SDLRPCParameterNamePttbControlCapabilities;
 extern SDLRPCParameterName const SDLRPCParameterNamePttbBControlData;
 extern SDLRPCParameterName const SDLRPCParameterNamePwMaxAvailable;
 extern SDLRPCParameterName const SDLRPCParameterNamePwConsumptionAvailable;

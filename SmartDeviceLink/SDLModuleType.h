@@ -42,5 +42,5 @@ extern SDLModuleType const SDLModuleTypeHMISettings;
 /**
  * A SDLModuleType with the value of *PTTB*
  */
-extern SDLModuleType const SDLModuleTypePTTB;
+extern SDLModuleType const SDLModuleTypePttb;
 

@@ -492,6 +492,7 @@ SDLRPCParameterName const SDLRPCParameterNameProperties = @"properties";
 SDLRPCParameterName const SDLRPCParameterNameProgramService = @"PS";
 SDLRPCParameterName const SDLRPCParameterNameProgramType = @"PTY";
 SDLRPCParameterName const SDLRPCParameterNamePrompt = @"prompt";
+SDLRPCParameterName const SDLRPCParameterNamePttbControlCapabilities = @"pttbControlCapabilities";
 SDLRPCParameterName const SDLRPCParameterNamePttbBControlData = @"pttbControlData";
 SDLRPCParameterName const SDLRPCParameterNamePwConsumptionAvailable = @"pwConsumptionAvailable";
 SDLRPCParameterName const SDLRPCParameterNamePwMaxAvailable = @"pwMaxAvailable";

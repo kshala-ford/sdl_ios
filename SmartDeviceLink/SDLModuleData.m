@@ -83,7 +83,7 @@ NS_ASSUME_NONNULL_BEGIN
         return nil;
     }
 
-    self.moduleType = SDLModuleTypePTTB;
+    self.moduleType = SDLModuleTypePttb;
     self.pttbControlData = pttbControlData;
 
     return self;
