@@ -6,7 +6,6 @@
 //  Copyright © 2020 smartdevicelink. All rights reserved.
 //
 
-
 #import "SDLPttbPowerStatus.h"
 
 SDLPttbPowerStatus const PttbPowerStatusNotUsed = @"NOT_USED";

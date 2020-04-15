@@ -6,9 +6,10 @@
 //  Copyright © 2020 smartdevicelink. All rights reserved.
 //
 
-#import "SDLPttbPowerState.h"
+#import "SDLPttbPowerStatus.h"
 
-SDLPttbPowerState const PttbPowerStateNotUsed = @"NOT_USED";
-SDLPttbPowerState const PttbPowerStateOff = @"OFF";
-SDLPttbPowerState const PttbPowerStateLow = @"LOW";
-SDLPttbPowerState const PttbPowerStateHigh = @"HIGH";
+SDLPttbPowerState const SDLPttbPowerStateNotUsed = @"NOT_USED";
+SDLPttbPowerState const SDLPttbPowerStateOff = @"OFF";
+SDLPttbPowerState const SDLPttbPowerStateLow = @"LOW";
+SDLPttbPowerState const SDLPttbPowerStateHigh = @"HIGH";
+
