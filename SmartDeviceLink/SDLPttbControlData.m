@@ -1,14 +1,13 @@
 //
 //  SDLPttbControlData.m
-//  SmartDeviceLink
+//  SmartDeviceLink-iOS
 //
-//  Created by Arnold Goetzke on 4/3/20.
+//  Created by Tanda, Satbir (S.S.) on 4/14/20.
 //  Copyright © 2020 smartdevicelink. All rights reserved.
 //
 
 #import "SDLPttbControlData.h"
 
 @implementation SDLPttbControlData
-
 
 @end
