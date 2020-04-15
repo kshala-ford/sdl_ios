@@ -168,11 +168,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setPTTBControlData:(nullable SDLPttbControlData *)pttbControlData {
-    [self.store sdl_setObject:pttbControlData forName:SDLRPCParameterNamePTTBControlData];
+    [self.store sdl_setObject:pttbControlData forName:SDLRPCParameterNamePttbBControlData];
 }
 
 - (nullable SDLPttbControlData *)pttbControlData {
-    return [self.store sdl_objectForName:SDLRPCParameterNamePTTBControlData ofClass:SDLPttbControlData.class error:nil];
+    return [self.store sdl_objectForName:SDLRPCParameterNamePttbBControlData ofClass:SDLPttbControlData.class error:nil];
 }
 
 @end

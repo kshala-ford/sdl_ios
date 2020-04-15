@@ -11,6 +11,7 @@
 @class  SDLLightControlCapabilities;
 @class  SDLRadioControlCapabilities;
 @class  SDLSeatControlCapabilities;
+@class  SDLPttbControlCapabilities;
 
 NS_ASSUME_NONNULL_BEGIN
 
