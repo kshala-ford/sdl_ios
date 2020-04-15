@@ -5048,6 +5048,8 @@
 				9FE2471722D77AED00F8D2FC /* SDLPredefinedWindows.h */,
 				5D61FB501A84238B00846EE7 /* SDLPrimaryAudioSource.h */,
 				5D61FB511A84238B00846EE7 /* SDLPrimaryAudioSource.m */,
+				005295C12446852800E65B76 /* SDLPttbEngOnMsg.h */,
+				005295C22446852800E65B76 /* SDLPttbEngOnMsg.m */,
 				005295BA244682E100E65B76 /* SDLPttbFaltMsg.h */,
 				005295BB244682E100E65B76 /* SDLPttbFaltMsg.m */,
 				005295B32446810700E65B76 /* SDLPttbHwConfig.h */,
@@ -5137,8 +5139,6 @@
 				5D0C29FB20D93D8C008B56CD /* SDLVideoStreamingState.m */,
 				9FE2471322D77AD500F8D2FC /* SDLWindowType.h */,
 				9FE2471422D77AD500F8D2FC /* SDLWindowType.m */,
-				005295C12446852800E65B76 /* SDLPttbEngOnMsg.h */,
-				005295C22446852800E65B76 /* SDLPttbEngOnMsg.m */,
 			);
 			name = Enums;
 			sourceTree = "<group>";
