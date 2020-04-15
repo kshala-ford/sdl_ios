@@ -1,5 +1,5 @@
 //
-//  SDLPTTBControlData.h
+//  SDLPttbControlData.h
 //  SmartDeviceLink
 //
 //  Created by Arnold Goetzke on 4/3/20.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SDLPTTBControlData : SDLRPCStruct
+@interface SDLPttbControlData : SDLRPCStruct
 
 /**
  * @abstract control command, maps to DcacPw_D_Rq

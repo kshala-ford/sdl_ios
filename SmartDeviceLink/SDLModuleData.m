@@ -10,7 +10,7 @@
 #import "SDLAudioControlData.h"
 #import "SDLLightControlData.h"
 #import "SDLHMISettingsControlData.h"
-#import "SDLPTTBControlData.h"
+#import "SDLPttbControlData.h"
 #import "NSMutableDictionary+Store.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)initWithPTTBControlData:(SDLPTTBControlData *)pttbControlData {
+- (instancetype)initWithPTTBControlData:(SDLPttbControlData *)pttbControlData {
     self = [self init];
     if(!self){
         return nil;
@@ -167,12 +167,12 @@ NS_ASSUME_NONNULL_BEGIN
     return [self.store sdl_objectForName:SDLRPCParameterNameHmiSettingsControlData ofClass:SDLHMISettingsControlData.class error:nil];
 }
 
-- (void)setPTTBControlData:(nullable SDLPTTBControlData *)pttbControlData {
+- (void)setPTTBControlData:(nullable SDLPttbControlData *)pttbControlData {
     [self.store sdl_setObject:pttbControlData forName:SDLRPCParameterNamePTTBControlData];
 }
 
-- (nullable SDLPTTBControlData *)pttbControlData {
-    return [self.store sdl_objectForName:SDLRPCParameterNamePTTBControlData ofClass:SDLPTTBControlData.class error:nil];
+- (nullable SDLPttbControlData *)pttbControlData {
+    return [self.store sdl_objectForName:SDLRPCParameterNamePTTBControlData ofClass:SDLPttbControlData.class error:nil];
 }
 
 @end
