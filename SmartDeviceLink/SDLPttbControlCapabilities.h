@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
 * Contains information about a pttb control module's capabilities.
 */
-@interface SDLPttbControlCapabilities : NSObject
+@interface SDLPttbControlCapabilities : SDLRPCStruct
 
 /**
  *
