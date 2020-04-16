@@ -14,38 +14,31 @@
 		000DD57422EF0957005AB7A7 /* SDLReleaseInteriorVehicleDataModuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 000DD57322EF0957005AB7A7 /* SDLReleaseInteriorVehicleDataModuleSpec.m */; };
 		000DD57622EF0971005AB7A7 /* SDLReleaseInteriorVehicleDataModuleResponseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 000DD57522EF0971005AB7A7 /* SDLReleaseInteriorVehicleDataModuleResponseSpec.m */; };
 		001A08B52321ADD30078A31E /* SDLServiceEncryptionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 001A08B32321ADD30078A31E /* SDLServiceEncryptionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		005295A724467F9D00E65B76 /* SDLPttbPowerStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295A524467F9D00E65B76 /* SDLPttbPowerStatus.h */; };
-		005295A824467F9D00E65B76 /* SDLPttbPowerStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295A524467F9D00E65B76 /* SDLPttbPowerStatus.h */; };
+		005295A724467F9D00E65B76 /* SDLPttbPowerStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295A524467F9D00E65B76 /* SDLPttbPowerStatus.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		005295A924467F9D00E65B76 /* SDLPttbPowerStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295A624467F9D00E65B76 /* SDLPttbPowerStatus.m */; };
 		005295AA24467F9D00E65B76 /* SDLPttbPowerStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295A624467F9D00E65B76 /* SDLPttbPowerStatus.m */; };
 		005295AB24467F9D00E65B76 /* SDLPttbPowerStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295A624467F9D00E65B76 /* SDLPttbPowerStatus.m */; };
-		005295B52446810700E65B76 /* SDLPttbHwConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295B32446810700E65B76 /* SDLPttbHwConfig.h */; };
-		005295B62446810700E65B76 /* SDLPttbHwConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295B32446810700E65B76 /* SDLPttbHwConfig.h */; };
+		005295B52446810700E65B76 /* SDLPttbHwConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295B32446810700E65B76 /* SDLPttbHwConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		005295B72446810700E65B76 /* SDLPttbHwConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295B42446810700E65B76 /* SDLPttbHwConfig.m */; };
 		005295B82446810700E65B76 /* SDLPttbHwConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295B42446810700E65B76 /* SDLPttbHwConfig.m */; };
 		005295B92446810700E65B76 /* SDLPttbHwConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295B42446810700E65B76 /* SDLPttbHwConfig.m */; };
-		005295BC244682E100E65B76 /* SDLPttbFaltMsg.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295BA244682E100E65B76 /* SDLPttbFaltMsg.h */; };
-		005295BD244682E100E65B76 /* SDLPttbFaltMsg.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295BA244682E100E65B76 /* SDLPttbFaltMsg.h */; };
+		005295BC244682E100E65B76 /* SDLPttbFaltMsg.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295BA244682E100E65B76 /* SDLPttbFaltMsg.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		005295BE244682E100E65B76 /* SDLPttbFaltMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295BB244682E100E65B76 /* SDLPttbFaltMsg.m */; };
 		005295BF244682E100E65B76 /* SDLPttbFaltMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295BB244682E100E65B76 /* SDLPttbFaltMsg.m */; };
 		005295C0244682E100E65B76 /* SDLPttbFaltMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295BB244682E100E65B76 /* SDLPttbFaltMsg.m */; };
-		005295C32446852900E65B76 /* SDLPttbEngOnMsg.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295C12446852800E65B76 /* SDLPttbEngOnMsg.h */; };
-		005295C42446852900E65B76 /* SDLPttbEngOnMsg.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295C12446852800E65B76 /* SDLPttbEngOnMsg.h */; };
+		005295C32446852900E65B76 /* SDLPttbEngOnMsg.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295C12446852800E65B76 /* SDLPttbEngOnMsg.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		005295C52446852900E65B76 /* SDLPttbEngOnMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295C22446852800E65B76 /* SDLPttbEngOnMsg.m */; };
 		005295C62446852900E65B76 /* SDLPttbEngOnMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295C22446852800E65B76 /* SDLPttbEngOnMsg.m */; };
 		005295C72446852900E65B76 /* SDLPttbEngOnMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295C22446852800E65B76 /* SDLPttbEngOnMsg.m */; };
-		005295CA2446868E00E65B76 /* SDLPttbPowerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295C82446868E00E65B76 /* SDLPttbPowerState.h */; };
-		005295CB2446868E00E65B76 /* SDLPttbPowerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295C82446868E00E65B76 /* SDLPttbPowerState.h */; };
+		005295CA2446868E00E65B76 /* SDLPttbPowerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295C82446868E00E65B76 /* SDLPttbPowerState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		005295CC2446868E00E65B76 /* SDLPttbPowerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295C92446868E00E65B76 /* SDLPttbPowerState.m */; };
 		005295CD2446868E00E65B76 /* SDLPttbPowerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295C92446868E00E65B76 /* SDLPttbPowerState.m */; };
 		005295CE2446868E00E65B76 /* SDLPttbPowerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295C92446868E00E65B76 /* SDLPttbPowerState.m */; };
-		005295D12446881500E65B76 /* SDLPttbControlCapabilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295CF2446881500E65B76 /* SDLPttbControlCapabilities.h */; };
-		005295D22446881500E65B76 /* SDLPttbControlCapabilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295CF2446881500E65B76 /* SDLPttbControlCapabilities.h */; };
+		005295D12446881500E65B76 /* SDLPttbControlCapabilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295CF2446881500E65B76 /* SDLPttbControlCapabilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		005295D32446881500E65B76 /* SDLPttbControlCapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295D02446881500E65B76 /* SDLPttbControlCapabilities.m */; };
 		005295D42446881500E65B76 /* SDLPttbControlCapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295D02446881500E65B76 /* SDLPttbControlCapabilities.m */; };
 		005295D52446881500E65B76 /* SDLPttbControlCapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295D02446881500E65B76 /* SDLPttbControlCapabilities.m */; };
-		005295D824468A6E00E65B76 /* SDLPttbControlData.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295D624468A6E00E65B76 /* SDLPttbControlData.h */; };
-		005295D924468A6E00E65B76 /* SDLPttbControlData.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295D624468A6E00E65B76 /* SDLPttbControlData.h */; };
+		005295D824468A6E00E65B76 /* SDLPttbControlData.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295D624468A6E00E65B76 /* SDLPttbControlData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		005295DA24468A6E00E65B76 /* SDLPttbControlData.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295D724468A6E00E65B76 /* SDLPttbControlData.m */; };
 		005295DB24468A6E00E65B76 /* SDLPttbControlData.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295D724468A6E00E65B76 /* SDLPttbControlData.m */; };
 		005295DC24468A6E00E65B76 /* SDLPttbControlData.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295D724468A6E00E65B76 /* SDLPttbControlData.m */; };
@@ -7147,14 +7140,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				005295A824467F9D00E65B76 /* SDLPttbPowerStatus.h in Headers */,
-				005295C42446852900E65B76 /* SDLPttbEngOnMsg.h in Headers */,
-				005295D924468A6E00E65B76 /* SDLPttbControlData.h in Headers */,
-				005295CB2446868E00E65B76 /* SDLPttbPowerState.h in Headers */,
-				005295BD244682E100E65B76 /* SDLPttbFaltMsg.h in Headers */,
 				88802FF420853BED00E9EBC6 /* SmartDeviceLinkSwift.h in Headers */,
-				005295D22446881500E65B76 /* SDLPttbControlCapabilities.h in Headers */,
-				005295B62446810700E65B76 /* SDLPttbHwConfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
