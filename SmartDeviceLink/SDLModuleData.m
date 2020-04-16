@@ -101,6 +101,18 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (instancetype)initWithPttbControlData:(SDLPttbControlData *)pttbControlData {
+    self = [self init];
+    if(!self){
+        return nil;
+    }
+
+    self.moduleType = SDLModuleTypeSeat;
+    self.pttbControlData = pttbControlData;
+
+    return self;
+}
+
 - (void)setModuleType:(SDLModuleType)moduleType {
     [self.store sdl_setObject:moduleType forName:SDLRPCParameterNameModuleType];
 }

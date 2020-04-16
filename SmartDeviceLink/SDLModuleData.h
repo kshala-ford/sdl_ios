@@ -78,6 +78,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithSeatControlData:(SDLSeatControlData *)seatControlData;
 
 /**
+ Constructs a newly allocated SDLModuleData object with pttb control data
+
+ @param pttbControlData The pttb control data
+ @return An instance of the SDLModuleData class
+ */
+- (instancetype)initWithPttbControlData:(SDLPttbControlData *)pttbControlData;
+
+/**
  The moduleType indicates which type of data should be changed and identifies which data object exists in this struct.
 
  For example, if the moduleType is CLIMATE then a "climateControlData" should exist

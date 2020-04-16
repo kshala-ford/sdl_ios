@@ -40,6 +40,24 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (instancetype)initWithClimateControlCapabilities:(nullable NSArray<SDLClimateControlCapabilities *> *)climateControlCapabilities radioControlCapabilities:(nullable NSArray<SDLRadioControlCapabilities *> *)radioControlCapabilities buttonCapabilities:(nullable NSArray<SDLButtonCapabilities *> *)buttonCapabilities seatControlCapabilities:(nullable NSArray<SDLSeatControlCapabilities *> *)seatControlCapabilities audioControlCapabilities:(nullable NSArray<SDLAudioControlCapabilities *> *)audioControlCapabilities hmiSettingsControlCapabilities:(nullable NSArray<SDLHMISettingsControlCapabilities *> *)hmiSettingsControlCapabilities lightControlCapabilities:(nullable NSArray<SDLLightControlCapabilities *> *)lightControlCapabilities pttbControlCapabilities:(nullable NSArray<SDLPttbControlCapabilities *> *)pttbControlCapabilities {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+
+    self.climateControlCapabilities = climateControlCapabilities;
+    self.radioControlCapabilities = radioControlCapabilities;
+    self.buttonCapabilities = buttonCapabilities;
+    self.seatControlCapabilities = seatControlCapabilities;
+    self.audioControlCapabilities = audioControlCapabilities;
+    self.hmiSettingsControlCapabilities = hmiSettingsControlCapabilities;
+    self.lightControlCapabilities = lightControlCapabilities;
+    self.pttbControlCapabilities = pttbControlCapabilities;
+
+    return self;
+}
+
 - (void)setClimateControlCapabilities:(nullable NSArray<SDLClimateControlCapabilities *> *)climateControlCapabilities {
     [self.store sdl_setObject:climateControlCapabilities forName:SDLRPCParameterNameClimateControlCapabilities];
 }
