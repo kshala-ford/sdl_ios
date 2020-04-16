@@ -14,6 +14,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+* Power to the box data corresponds to "PTTB" ModuleType.
+*/
+
 @interface SDLPttbControlData : SDLRPCStruct
 
 /**
