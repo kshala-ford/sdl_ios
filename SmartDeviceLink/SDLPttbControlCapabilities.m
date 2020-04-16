@@ -12,6 +12,27 @@
 
 @implementation SDLPttbControlCapabilities
 
+- (instancetype)initWithModuleName:(NSString *)moduleName stateAvailable:(BOOL)stateAvailable resetAvailable:(BOOL)resetAvailable faltMsgAvailable:(BOOL)faltMsgAvailable engOnMsgAvailable:(BOOL)engOnMsgAvailable loFuelMsgAvailable:(BOOL)loFuelMsgAvailable powerStatusAvailable:(BOOL)powerStatusAvailable outletAAvailable:(BOOL)outletAAvailable outletBAvailable:(BOOL)outletBAvailable pwMaxAvailable:(BOOL)pwMaxAvailable hwConfigAvailable:(BOOL)hwConfigAvailable pwConsumptionAvailable:(BOOL)pwConsumptionAvailable {
+    self = [self init];
+    if (!self) {
+        return nil;
+    }
+
+    self.moduleName = moduleName;
+    self.stateAvailable = @(stateAvailable);
+    self.resetAvailable = @(resetAvailable);
+    self.faltMsgAvailable = @(faltMsgAvailable);
+    self.engOnMsgAvailable = @(engOnMsgAvailable);
+    self.loFuelMsgAvailable = @(loFuelMsgAvailable);
+    self.powerStatusAvailable = @(powerStatusAvailable);
+    self.outletAAvailable = @(outletAAvailable);
+    self.outletBAvailable = @(outletBAvailable);
+    self.pwMaxAvailable = @(pwMaxAvailable);
+    self.hwConfigAvailable = @(hwConfigAvailable);
+    self.pwConsumptionAvailable = @(pwConsumptionAvailable);
+
+    return self;
+}
 
 - (void)setModuleName:(NSString *)moduleName {
     [self.store sdl_setObject:moduleName forName:SDLRPCParameterNameModuleName];
