@@ -6,7 +6,11 @@
 //  Copyright © 2020 smartdevicelink. All rights reserved.
 //
 
-#import <SmartDeviceLink/SmartDeviceLink.h>
+#import "SDLRPCStruct.h"
+#import "SDLPttbPowerState.h"
+#import "SDLPttbFaltMsg.h"
+#import "SDLPttbPowerStatus.h"
+#import "SDLPttbHwConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
