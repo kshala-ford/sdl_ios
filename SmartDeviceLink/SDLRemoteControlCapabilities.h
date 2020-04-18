@@ -110,7 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, strong, nonatomic) NSArray<SDLLightControlCapabilities *> *lightControlCapabilities;
 
 /**
- * If included, the platform supports Pttb controls.
+ * If included, the platform supports pttb controls.
  *
  * Optional, Array of SDLPttbControlCapabilities, Array length 1 - 100
  */
