@@ -18,6 +18,7 @@
 		004D51F7244BEAF7002F9889 /* SDLPttbEngOnMsgSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004D51F6244BEAF7002F9889 /* SDLPttbEngOnMsgSpec.m */; };
 		004D51F9244BECC1002F9889 /* SDLPttbFaltMsgSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004D51F8244BECC1002F9889 /* SDLPttbFaltMsgSpec.m */; };
 		004D51FB244BEE2C002F9889 /* SDLPttbPowerStatusSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004D51FA244BEE2C002F9889 /* SDLPttbPowerStatusSpec.m */; };
+		004D51FD244BEFA4002F9889 /* SDLPttbHwConfigSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004D51FC244BEFA4002F9889 /* SDLPttbHwConfigSpec.m */; };
 		005295A724467F9D00E65B76 /* SDLPttbPowerStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295A524467F9D00E65B76 /* SDLPttbPowerStatus.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		005295A924467F9D00E65B76 /* SDLPttbPowerStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 005295A624467F9D00E65B76 /* SDLPttbPowerStatus.m */; };
 		005295B52446810700E65B76 /* SDLPttbHwConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 005295B32446810700E65B76 /* SDLPttbHwConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1742,6 +1743,7 @@
 		004D51F6244BEAF7002F9889 /* SDLPttbEngOnMsgSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLPttbEngOnMsgSpec.m; sourceTree = "<group>"; };
 		004D51F8244BECC1002F9889 /* SDLPttbFaltMsgSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLPttbFaltMsgSpec.m; sourceTree = "<group>"; };
 		004D51FA244BEE2C002F9889 /* SDLPttbPowerStatusSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLPttbPowerStatusSpec.m; sourceTree = "<group>"; };
+		004D51FC244BEFA4002F9889 /* SDLPttbHwConfigSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLPttbHwConfigSpec.m; sourceTree = "<group>"; };
 		005295A524467F9D00E65B76 /* SDLPttbPowerStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLPttbPowerStatus.h; sourceTree = "<group>"; };
 		005295A624467F9D00E65B76 /* SDLPttbPowerStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLPttbPowerStatus.m; sourceTree = "<group>"; };
 		005295B32446810700E65B76 /* SDLPttbHwConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLPttbHwConfig.h; sourceTree = "<group>"; };
@@ -3636,6 +3638,7 @@
 				004D51F6244BEAF7002F9889 /* SDLPttbEngOnMsgSpec.m */,
 				004D51FA244BEE2C002F9889 /* SDLPttbPowerStatusSpec.m */,
 				004D51F8244BECC1002F9889 /* SDLPttbFaltMsgSpec.m */,
+				004D51FC244BEFA4002F9889 /* SDLPttbHwConfigSpec.m */,
 			);
 			path = EnumSpecs;
 			sourceTree = "<group>";
@@ -8146,6 +8149,7 @@
 				162E83751A9BDE8B00906325 /* SDLButtonCapabilitiesSpec.m in Sources */,
 				DA9F7EAF1DCC063400ACAE48 /* SDLLocationCoordinateSpec.m in Sources */,
 				162E83151A9BDE8B00906325 /* SDLOnEncodedSyncPDataSpec.m in Sources */,
+				004D51FD244BEFA4002F9889 /* SDLPttbHwConfigSpec.m in Sources */,
 				162E83261A9BDE8B00906325 /* SDLChangeRegistrationSpec.m in Sources */,
 				162E82D21A9BDE8A00906325 /* SDLButtonPressModeSpec.m in Sources */,
 				DA9F7EA21DCC05E100ACAE48 /* SDLGetWaypointsSpec.m in Sources */,
