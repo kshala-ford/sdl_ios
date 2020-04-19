@@ -8,7 +8,7 @@
 
 #import "SDLPttbFaltMsg.h"
 
-SDLPttbFaltMsg const SDLPttbFaltMsgOK = @"OK";
+SDLPttbFaltMsg const SDLPttbFaltMsgOk = @"OK";
 SDLPttbFaltMsg const SDLPttbFaltMsgOverCurrent = @"OVER_CURRENT";
 SDLPttbFaltMsg const SDLPttbFaltMsgGFCI = @"GFCI";
 SDLPttbFaltMsg const SDLPttbFaltMsgTemperature = @"TEMPERATURE";
