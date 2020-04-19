@@ -7,7 +7,6 @@
 //
 
 #import "SDLRPCMessage.h"
-#import "SDLModuleInfo.h"
 
 @class SDLPttbControlCapabilities;
 
