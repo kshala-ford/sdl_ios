@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation SDLPttbControlData
 
-- (instancetype)initWithState:(nullable SDLPttbPowerState)state reset:(BOOL)reset faltMsg:(nullable SDLPttbFaltMsg)faltMsg loFuelMsg:(UInt8)loFuelMsg status:(nullable SDLPttbPowerStatus)status outletA:(UInt8)outletA outletB:(UInt8)outletB pwMax:(UInt8)pwMax hwConfig:(nullable SDLPttbHwConfig)hwConfig pwConsumption:(UInt8)pwConsumption {
+- (instancetype)initWithState:(nullable SDLPttbPowerState)state reset:(BOOL)reset faltMsg:(nullable SDLPttbFaltMsg)faltMsg engOnMsg:(nullable SDLPttbEngOnMsg)engOnMsg loFuelMsg:(UInt8)loFuelMsg powerStatus:(nullable SDLPttbPowerStatus)powerStatus outletA:(UInt16)outletA outletB:(UInt16)outletB pwMax:(UInt16)pwMax hwConfig:(nullable SDLPttbHwConfig)hwConfig pwConsumption:(UInt16)pwConsumption {
     self = [self init];
     if (!self) {
         return nil;
@@ -23,8 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
     self.state = state;
     self.reset = @(reset);
     self.faltMsg = faltMsg;
+    self.engOnMsg = engOnMsg;
     self.loFuelMsg = @(loFuelMsg);
-    self.status = status;
+    self.powerStatus = powerStatus;
     self.outletA = @(outletA);
     self.outletB = @(outletB);
     self.pwMax = @(pwMax);
@@ -58,6 +59,14 @@ NS_ASSUME_NONNULL_BEGIN
     return [self.store sdl_enumForName:SDLRPCParameterNameFaltMsg error:nil];
 }
 
+- (void)setEngOnMsg:(nullable SDLPttbEngOnMsg)engOnMsg {
+    [self.store sdl_setObject:engOnMsg forName:SDLRPCParameterNameEngineOnMsg];
+}
+
+- (nullable SDLPttbEngOnMsg)engOnMsg {
+    return [self.store sdl_enumForName:SDLRPCParameterNameEngineOnMsg error:nil];
+}
+
 - (void)setLoFuelMsg:(nullable NSNumber<SDLInt> *)loFuelMsg {
     [self.store sdl_setObject:loFuelMsg forName:SDLRPCParameterNameLowFuelMsg];
 }
@@ -66,12 +75,12 @@ NS_ASSUME_NONNULL_BEGIN
     return [self.store sdl_objectForName:SDLRPCParameterNameLowFuelMsg ofClass:NSNumber.class error:nil];
 }
 
-- (void)setStatus:(nullable SDLPttbPowerStatus)status {
-    [self.store sdl_setObject:status forName:SDLRPCParameterNameState];
+- (void)setPowerStatus:(nullable SDLPttbPowerStatus)powerStatus {
+    [self.store sdl_setObject:powerStatus forName:SDLRPCParameterNamePowerStatus];
 }
 
-- (nullable SDLPttbPowerStatus)status {
-    return [self.store sdl_enumForName:SDLRPCParameterNameStatus error:nil];
+- (nullable SDLPttbPowerStatus)powerStatus {
+    return [self.store sdl_enumForName:SDLRPCParameterNamePowerStatus error:nil];
 }
 
 - (void)setOutletA:(nullable NSNumber<SDLInt> *)outletA {

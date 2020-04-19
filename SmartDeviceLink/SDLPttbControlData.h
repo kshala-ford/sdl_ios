@@ -6,11 +6,12 @@
 //  Copyright © 2020 smartdevicelink. All rights reserved.
 //
 
-#import "SDLRPCStruct.h"
-#import "SDLPttbPowerState.h"
+#import "SDLPttbEngOnMsg.h"
 #import "SDLPttbFaltMsg.h"
-#import "SDLPttbPowerStatus.h"
 #import "SDLPttbHwConfig.h"
+#import "SDLPttbPowerState.h"
+#import "SDLPttbPowerStatus.h"
+#import "SDLRPCStruct.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,8 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
  @param state control command, maps to DcacPw_D_Rq
  @param reset control command, maps to DcacPwReset_B_Rq
  @param faltMsg maps to DcacFaltMsgTxt_D2_Rq, if *D2_Rq not available default to DcacFaltMsgTxt_D_Rq
+ @param engOnMsg maps to DcacEngOnMsgTxt_D_Rq
  @param loFuelMsg maps to DcacLoFuelMsgTxt_D_Rq
- @param status maps to DcacElPw_D_Stat
+ @param powerStatus maps to DcacElPw_D_Stat
  @param outletA maps to DcacOut1_Pw2_Dsply
  @param outletB maps to DcacOut2_Pw2_Dsply
  @param pwMax maps to DcacOut_Pw_DsplyMx
@@ -32,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param pwConsumption maps to DcacOut_E_tot
  @return An instance of the SDLPttbControlCapabilities class
  */
-- (instancetype)initWithState:(nullable SDLPttbPowerState)state reset:(BOOL)reset faltMsg:(nullable SDLPttbFaltMsg)faltMsg loFuelMsg:(UInt8)loFuelMsg status:(nullable SDLPttbPowerStatus)status outletA:(UInt8)outletA outletB:(UInt8)outletB pwMax:(UInt8)pwMax hwConfig:(nullable SDLPttbHwConfig)hwConfig pwConsumption:(UInt8)pwConsumption;
+- (instancetype)initWithState:(nullable SDLPttbPowerState)state reset:(BOOL)reset faltMsg:(nullable SDLPttbFaltMsg)faltMsg engOnMsg:(nullable SDLPttbEngOnMsg)engOnMsg loFuelMsg:(UInt8)loFuelMsg powerStatus:(nullable SDLPttbPowerStatus)powerStatus outletA:(UInt16)outletA outletB:(UInt16)outletB pwMax:(UInt16)pwMax hwConfig:(nullable SDLPttbHwConfig)hwConfig pwConsumption:(UInt16)pwConsumption;
 
 /**
  * @abstract control command, maps to DcacPw_D_Rq
@@ -53,7 +55,14 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * Optional, PttbFaltMsg
  */
-@property (nullable, strong, nonatomic) SDLPttbFaltMsg faltMsg;
+@property (nullable, strong, nonatomic, readonly) SDLPttbFaltMsg faltMsg;
+
+/**
+ * @abstract read-only,  maps to DcacElPw_D_Stat
+ *
+ * Optional, PttbEngOnMsg
+ */
+@property (nullable, strong, nonatomic, readonly) SDLPttbEngOnMsg engOnMsg;
 
 /**
  * @abstract read-only, maps to DcacLoFuelMsgTxt_D_Rq
@@ -67,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * Optional, PttbPowerStatus
  */
-@property (nullable, strong, nonatomic, readonly) SDLPttbPowerStatus status;
+@property (nullable, strong, nonatomic, readonly) SDLPttbPowerStatus powerStatus;
 
 /**
  * @abstract read-only, maps to DcacOut1_Pw2_Dsply
