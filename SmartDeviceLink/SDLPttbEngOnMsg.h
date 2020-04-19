@@ -17,19 +17,19 @@ typedef SDLEnum SDLPttbEngOnMsg SDL_SWIFT_ENUM;
 /**
  * @abstract Eng On Msg : OK
  */
-extern SDLPttbEngOnMsg const OK;
+extern SDLPttbEngOnMsg const SDLPttbEngOnMsgOk;
 
 /**
  * @abstract Eng On Msg : DISPLAY_WARNING.
  */
-extern SDLPttbEngOnMsg const DISPLAY_WARNING;
+extern SDLPttbEngOnMsg const SDLPttbEngOnMsgDisplayWarning;
 
 /**
  * @abstract Eng On Msg : DISPLAY_QUESTION.
  */
-extern SDLPttbEngOnMsg const DISPLAY_QUESTION;
+extern SDLPttbEngOnMsg const SDLPttbEngOnMsgDisplayQuestion;
 
 /**
  * @abstract Eng On Msg : NOT_USED.
  */
-extern SDLPttbEngOnMsg const NOT_USED;
+extern SDLPttbEngOnMsg const SDLPttbEngOnMsgNotUsed;

@@ -8,7 +8,7 @@
 
 #import "SDLPttbEngOnMsg.h"
 
-SDLPttbEngOnMsg const SDLPttbEngOnMsgOK = @"OK";
+SDLPttbEngOnMsg const SDLPttbEngOnMsgOk = @"OK";
 SDLPttbEngOnMsg const SDLPttbEngOnMsgDisplayWarning = @"DISPLAY_WARNING";
 SDLPttbEngOnMsg const SDLPttbEngOnMsgDisplayQuestion = @"DISPLAY_QUESTION";
 SDLPttbEngOnMsg const SDLPttbEngOnMsgNotUsed = @"NOT_USED";
