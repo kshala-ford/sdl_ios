@@ -17,19 +17,19 @@ typedef SDLEnum SDLPttbPowerStatus SDL_SWIFT_ENUM;
 /**
  * @abstract Power Status : NOT_USED
  */
-extern SDLPttbPowerStatus const NOT_USED;
+extern SDLPttbPowerStatus const SDLPttbPowerStatusNotUsed;
 
 /**
  * @abstract Power Status : OFF.
  */
-extern SDLPttbPowerStatus const OFF;
+extern SDLPttbPowerStatus const SDLPttbPowerStatusOff;
 
 /**
  * @abstract Power Status : LOW.
  */
-extern SDLPttbPowerStatus const LOW;
+extern SDLPttbPowerStatus const SDLPttbPowerStatusLow;
 
 /**
  * @abstract Power Status : HIGH.
  */
-extern SDLPttbPowerStatus const HIGH;
+extern SDLPttbPowerStatus const SDLPttbPowerStatusHigh;

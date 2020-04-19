@@ -8,7 +8,7 @@
 
 #import "SDLPttbPowerStatus.h"
 
-SDLPttbPowerStatus const PttbPowerStatusNotUsed = @"NOT_USED";
-SDLPttbPowerStatus const PttbPowerStatusOff = @"OFF";
-SDLPttbPowerStatus const PttbPowerStatusLow = @"LOW";
-SDLPttbPowerStatus const PttbPowerStatusHigh = @"HIGH";
+SDLPttbPowerStatus const SDLPttbPowerStatusNotUsed = @"NOT_USED";
+SDLPttbPowerStatus const SDLPttbPowerStatusOff = @"OFF";
+SDLPttbPowerStatus const SDLPttbPowerStatusLow = @"LOW";
+SDLPttbPowerStatus const SDLPttbPowerStatusHigh = @"HIGH";
