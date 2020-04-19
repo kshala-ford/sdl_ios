@@ -179,12 +179,12 @@ NS_ASSUME_NONNULL_BEGIN
     return [self.store sdl_objectForName:SDLRPCParameterNameHmiSettingsControlData ofClass:SDLHMISettingsControlData.class error:nil];
 }
 
-- (void)setPTTBControlData:(nullable SDLPttbControlData *)pttbControlData {
-    [self.store sdl_setObject:pttbControlData forName:SDLRPCParameterNamePttbBControlData];
+- (void)setPttbControlData:(nullable SDLPttbControlData *)pttbControlData {
+    [self.store sdl_setObject:pttbControlData forName:SDLRPCParameterNamePttbControlData];
 }
 
 - (nullable SDLPttbControlData *)pttbControlData {
-    return [self.store sdl_objectForName:SDLRPCParameterNamePttbBControlData ofClass:SDLPttbControlData.class error:nil];
+    return [self.store sdl_objectForName:SDLRPCParameterNamePttbControlData ofClass:SDLPttbControlData.class error:nil];
 }
 
 @end

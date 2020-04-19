@@ -504,7 +504,7 @@ extern SDLRPCParameterName const SDLRPCParameterNameProgramService;
 extern SDLRPCParameterName const SDLRPCParameterNameProgramType;
 extern SDLRPCParameterName const SDLRPCParameterNamePrompt;
 extern SDLRPCParameterName const SDLRPCParameterNamePttbControlCapabilities;
-extern SDLRPCParameterName const SDLRPCParameterNamePttbBControlData;
+extern SDLRPCParameterName const SDLRPCParameterNamePttbControlData;
 extern SDLRPCParameterName const SDLRPCParameterNamePwMax;
 extern SDLRPCParameterName const SDLRPCParameterNamePwMaxAvailable;
 extern SDLRPCParameterName const SDLRPCParameterNamePwConsumption;
