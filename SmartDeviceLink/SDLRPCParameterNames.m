@@ -186,6 +186,7 @@ SDLRPCParameterName const SDLRPCParameterNameECUName = @"ecuName";
 SDLRPCParameterName const SDLRPCParameterNameEdrEventTriggerStatus = @"edrEventTriggerStatus";
 SDLRPCParameterName const SDLRPCParameterNameElectronicParkBrakeStatus = @"electronicParkBrakeStatus";
 SDLRPCParameterName const SDLRPCParameterNameEmergencyEvent = @"emergencyEvent";
+SDLRPCParameterName const SDLRPCParameterNameEmergencyEventTrigger = @"emergencyEventTrigger";
 SDLRPCParameterName const SDLRPCParameterNameEmergencyEventType = @"emergencyEventType";
 SDLRPCParameterName const SDLRPCParameterNameEnabled = @"enabled";
 SDLRPCParameterName const SDLRPCParameterNameEndpoint = @"endpoint";

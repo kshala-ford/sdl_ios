@@ -308,6 +308,14 @@ NS_ASSUME_NONNULL_BEGIN
     return [self.parameters sdl_objectForName:vehicleDataName ofClass:NSNumber.class error:nil];
 }
 
+- (void)setEmergencyEventTrigger:(nullable NSNumber<SDLBool> *)emergencyEventTrigger {
+    [self.parameters sdl_setObject:emergencyEventTrigger forName:SDLRPCParameterNameEmergencyEventTrigger];
+}
+
+- (nullable NSNumber<SDLBool> *)emergencyEventTrigger {
+    return [self.parameters sdl_objectForName:SDLRPCParameterNameEmergencyEventTrigger ofClass:NSNumber.class error:nil];
+}
+
 @end
 
 NS_ASSUME_NONNULL_END

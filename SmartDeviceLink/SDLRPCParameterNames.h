@@ -190,6 +190,7 @@ extern SDLRPCParameterName const SDLRPCParameterNameECUName;
 extern SDLRPCParameterName const SDLRPCParameterNameEdrEventTriggerStatus;
 extern SDLRPCParameterName const SDLRPCParameterNameElectronicParkBrakeStatus;
 extern SDLRPCParameterName const SDLRPCParameterNameEmergencyEvent;
+extern SDLRPCParameterName const SDLRPCParameterNameEmergencyEventTrigger;
 extern SDLRPCParameterName const SDLRPCParameterNameEmergencyEventType;
 extern SDLRPCParameterName const SDLRPCParameterNameEnabled;
 extern SDLRPCParameterName const SDLRPCParameterNameEndpoint;
