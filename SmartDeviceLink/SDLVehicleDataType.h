@@ -170,3 +170,8 @@ extern SDLVehicleDataType const SDLVehicleDataTypeCloudAppVehicleID;
  Added in SDL 6.0
  */
 extern SDLVehicleDataType const SDLVehicleDataTypeOEMVehicleDataType;
+
+/**
+Used to predict low severity crash and other use cases
+ */
+extern SDLVehicleDataType const SDLVehicleDataTypeEmergencyEventTrigger;
