@@ -292,6 +292,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable NSNumber<SDLBool> *)getOEMCustomVehicleData:(NSString *)vehicleDataName;
 
+/**
+ Additional signal Information related to an emergency event triggers.
+ */
+@property (nullable, strong, nonatomic) NSNumber<SDLBool> *emergencyEventTrigger;
+
 @end
 
 NS_ASSUME_NONNULL_END
