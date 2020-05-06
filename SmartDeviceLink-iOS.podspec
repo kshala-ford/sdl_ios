@@ -116,6 +116,8 @@ ss.public_header_files = [
 'SmartDeviceLink/SDLElectronicParkBrakeStatus.h',
 'SmartDeviceLink/SDLEncryptionConfiguration.h',
 'SmartDeviceLink/SDLEmergencyEvent.h',
+'SmartDeviceLink/SDLEmergencyEventTrigger.h',
+'SmartDeviceLink/SDLEmergencyEventTriggerType.h',
 'SmartDeviceLink/SDLEmergencyEventType.h',
 'SmartDeviceLink/SDLEncodedSyncPData.h',
 'SmartDeviceLink/SDLEncodedSyncPDataResponse.h',
