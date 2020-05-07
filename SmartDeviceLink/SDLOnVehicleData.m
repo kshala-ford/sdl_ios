@@ -18,6 +18,7 @@
 #import "SDLRPCParameterNames.h"
 #import "SDLRPCFunctionNames.h"
 #import "SDLTireStatus.h"
+#import "SDLEmergencyEventTrigger.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -278,6 +279,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable NSObject *)getOEMCustomVehicleData:(NSString *)vehicleDataName {
     return [self.parameters sdl_objectForName:vehicleDataName ofClass:NSObject.class error:nil];
+}
+
+- (void)setEmergencyEventTrigger:(nullable SDLEmergencyEventTrigger *)emergencyEventTrigger {
+    [self.parameters sdl_setObject:emergencyEventTrigger forName:SDLRPCParameterNameEmergencyEventTrigger];
+}
+
+- (nullable SDLEmergencyEventTrigger *)emergencyEventTrigger {
+    return [self.parameters sdl_objectForName:SDLRPCParameterNameEmergencyEventTrigger ofClass:SDLEmergencyEventTrigger.class error:nil];
 }
 
 @end
