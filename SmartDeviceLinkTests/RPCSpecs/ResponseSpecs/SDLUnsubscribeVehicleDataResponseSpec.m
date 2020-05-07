@@ -52,7 +52,8 @@ describe(@"Getter/Setter Tests", ^ {
         testResponse.electronicParkBrakeStatus = vehicleDataResult;
         testResponse.turnSignal = vehicleDataResult;
         testResponse.cloudAppVehicleID = vehicleDataResult;
-        
+        testResponse.emergencyEventTrigger = vehicleDataResult;
+
         expect(testResponse.gps).to(equal(vehicleDataResult));
         expect(testResponse.speed).to(equal(vehicleDataResult));
         expect(testResponse.rpm).to(equal(vehicleDataResult));
@@ -82,6 +83,7 @@ describe(@"Getter/Setter Tests", ^ {
         expect(testResponse.electronicParkBrakeStatus).to(equal(vehicleDataResult));
         expect(testResponse.turnSignal).to(equal(vehicleDataResult));
         expect(testResponse.cloudAppVehicleID).to(equal(vehicleDataResult));
+        expect(testResponse.emergencyEventTrigger).to(equal(vehicleDataResult));
     });
     
     it(@"Should get correctly when initialized", ^ {
@@ -115,7 +117,8 @@ describe(@"Getter/Setter Tests", ^ {
                                                                    SDLRPCParameterNameMyKey:vehicleDataResult,
                                                                    SDLRPCParameterNameElectronicParkBrakeStatus:vehicleDataResult,
                                                                    SDLRPCParameterNameTurnSignal:vehicleDataResult,
-                                                                   SDLRPCParameterNameCloudAppVehicleID:vehicleDataResult
+                                                                   SDLRPCParameterNameCloudAppVehicleID:vehicleDataResult,
+                                                                   SDLRPCParameterNameEmergencyEventTrigger:vehicleDataResult
                                                                    },
                                                              SDLRPCParameterNameOperationName:SDLRPCFunctionNameUnsubscribeVehicleData}} mutableCopy];
 #pragma clang diagnostic push
@@ -152,6 +155,7 @@ describe(@"Getter/Setter Tests", ^ {
         expect(testResponse.electronicParkBrakeStatus).to(equal(vehicleDataResult));
         expect(testResponse.turnSignal).to(equal(vehicleDataResult));
         expect(testResponse.cloudAppVehicleID).to(equal(vehicleDataResult));
+        expect(testResponse.emergencyEventTrigger).to(equal(vehicleDataResult));
     });
     
     it(@"Should return nil if not set", ^ {
@@ -186,6 +190,7 @@ describe(@"Getter/Setter Tests", ^ {
         expect(testResponse.electronicParkBrakeStatus).to(beNil());
         expect(testResponse.turnSignal).to(beNil());
         expect(testResponse.cloudAppVehicleID).to(beNil());
+        expect(testResponse.emergencyEventTrigger).to(beNil());
     });
 
     it(@"Should set and get Generic Network Signal Data", ^{
