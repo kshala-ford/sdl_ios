@@ -23,6 +23,7 @@ describe(@"Getter/Setter Tests", ^ {
     __block SDLDeviceStatus* device = nil;
     __block SDLHeadLampStatus* headLamp = nil;
     __block SDLECallInfo* eCall = nil;
+    __block SDLEmergencyEventTrigger* emergencyEventTrigger = nil;
     __block SDLAirbagStatus* airbag = nil;
     __block SDLEmergencyEvent* event = nil;
     __block SDLClusterModeStatus* clusterMode = nil;
@@ -30,7 +31,6 @@ describe(@"Getter/Setter Tests", ^ {
     __block SDLFuelRange* fuelRange = nil;
     __block NSString* vin = nil;
     __block NSString* cloudAppVehicleID = nil;
-    __block SDLEmergencyEventTrigger* emergencyEventTrigger = nil;
 
     beforeEach(^{
         gps = [[SDLGPSData alloc] init];
@@ -42,12 +42,12 @@ describe(@"Getter/Setter Tests", ^ {
         eCall = [[SDLECallInfo alloc] init];
         airbag = [[SDLAirbagStatus alloc] init];
         event = [[SDLEmergencyEvent alloc] init];
+        emergencyEventTrigger = [[SDLEmergencyEventTrigger alloc] init];
         clusterMode = [[SDLClusterModeStatus alloc] init];
         myKey = [[SDLMyKey alloc] init];
         fuelRange = [[SDLFuelRange alloc] init];
         vin = @"6574839201a";
         cloudAppVehicleID = @"cloudAppVehicleID";
-        emergencyEventTrigger = [[SDLEmergencyEventTrigger alloc] init];
     });
 
     it(@"Should set and get correctly", ^ {
