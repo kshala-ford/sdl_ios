@@ -14,6 +14,7 @@
 #import "SDLHMILevel.h"
 #import "SDLLanguage.h"
 #import "SDLSystemContext.h"
+#import "SDLVideoStreamingState.h"
 
 @class SDLConfiguration;
 @class SDLFileManager;
@@ -86,6 +87,7 @@ typedef void (^SDLManagerReadyBlock)(BOOL success, NSError *_Nullable error);
 @property (copy, nonatomic, readonly) SDLLifecycleState *lifecycleState;
 @property (copy, nonatomic, nullable) SDLHMILevel hmiLevel;
 @property (copy, nonatomic, nullable) SDLAudioStreamingState audioStreamingState;
+@property (copy, nonatomic, nullable) SDLVideoStreamingState videoStreamingState;
 @property (copy, nonatomic, nullable) SDLSystemContext systemContext;
 @property (strong, nonatomic, nullable) SDLRegisterAppInterfaceResponse *registerResponse;
 

@@ -33,8 +33,7 @@
   
   
   <h4>Objective-C</h4>
-  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span>
-    <span class="n"><a href="../Type%20Definitions.html#/c:SDLDriverDistractionState.h@T@SDLDriverDistractionState">SDLDriverDistractionState</a></span> <span class="n">_Nonnull</span> <span class="n">state</span><span class="p">;</span></code></pre>
+  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n"><a href="../Type%20Definitions.html#/c:SDLDriverDistractionState.h@T@SDLDriverDistractionState">SDLDriverDistractionState</a></span> <span class="n">_Nonnull</span> <span class="n">state</span><span class="p">;</span></code></pre>
 
   
   <h4>Swift</h4>
@@ -54,8 +53,7 @@
   
   
   <h4>Objective-C</h4>
-  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span>
-    <span class="n">NSNumber</span><span class="o">&lt;</span><span class="n"><a href="../Protocols.html#/c:objc(pl)SDLBool">SDLBool</a></span><span class="o">&gt;</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">lockScreenDismissalEnabled</span><span class="p">;</span></code></pre>
+  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">NSNumber</span><span class="o">&lt;</span><span class="n"><a href="../Protocols.html#/c:objc(pl)SDLBool">SDLBool</a></span><span class="o">&gt;</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">lockScreenDismissalEnabled</span><span class="p">;</span></code></pre>
 
   
   <h4>Swift</h4>
@@ -68,15 +66,14 @@
       lockScreenDismissalWarning
   </h3>
   
-  <p>Warning message to be displayed on the lock screen when dismissal is enabled.  This warning should be used to ensure that the user is not the driver of the vehicle, ex. <code>Swipe up to dismiss, acknowledging that you are not the driver.</code>.  This parameter must be present if <q>lockScreenDismissalEnabled</q> is set to true.</p>
+  <p>Warning message to be displayed on the lock screen when dismissal is enabled.  This warning should be used to ensure that the user is not the driver of the vehicle, ex. <code>Swipe up to dismiss, acknowledging that you are not the driver.</code>.  This parameter must be present if &ldquo;lockScreenDismissalEnabled&rdquo; is set to true.</p>
 
 <p>Optional,  String</p>
 
   
   
   <h4>Objective-C</h4>
-  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span>
-    <span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">lockScreenDismissalWarning</span><span class="p">;</span></code></pre>
+  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">lockScreenDismissalWarning</span><span class="p">;</span></code></pre>
 
   
   <h4>Swift</h4>

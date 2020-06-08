@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SDLSoftButtonReplaceOperation ()
 
-@property (strong, nonatomic) SDLSoftButtonCapabilities *softButtonCapabilities;
+@property (strong, nonatomic, nullable) SDLSoftButtonCapabilities *softButtonCapabilities;
 @property (strong, nonatomic) NSArray<SDLSoftButtonObject *> *softButtonObjects;
 
 @property (weak, nonatomic) id<SDLConnectionManagerType> connectionManager;
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation SDLSoftButtonReplaceOperation
 
-- (instancetype)initWithConnectionManager:(id<SDLConnectionManagerType>)connectionManager fileManager:(SDLFileManager *)fileManager capabilities:(SDLSoftButtonCapabilities *)capabilities softButtonObjects:(NSArray<SDLSoftButtonObject *> *)softButtonObjects mainField1:(NSString *)mainField1 {
+- (instancetype)initWithConnectionManager:(id<SDLConnectionManagerType>)connectionManager fileManager:(SDLFileManager *)fileManager capabilities:(nullable SDLSoftButtonCapabilities *)capabilities softButtonObjects:(NSArray<SDLSoftButtonObject *> *)softButtonObjects mainField1:(NSString *)mainField1 {
     self = [super init];
     if (!self) { return nil; }
 
@@ -60,8 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
         [self sdl_sendCurrentStateTextOnlySoftButtonsWithCompletionHandler:^(BOOL success) {
             if (!success) {
                 SDLLogE(@"Head unit does not support images and some of the soft buttons do not have text, so none of the buttons will be sent.");
-                [weakself finishOperation];
             }
+            [weakself finishOperation];
         }];
     } else if ([self sdl_currentStateHasImages] && ![self sdl_allCurrentStateImagesAreUploaded]) {
         // If there are images that aren't uploaded
@@ -273,7 +273,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (BOOL)sdl_supportsSoftButtonImages {
-    return self.softButtonCapabilities ? self.softButtonCapabilities.imageSupported.boolValue : NO;
+    return self.softButtonCapabilities.imageSupported.boolValue;
 }
 
 #pragma mark - Property Overrides

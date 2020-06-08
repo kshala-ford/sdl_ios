@@ -17,7 +17,7 @@
 
 <h3>Overview</h3>
 
-<p>Undocumented</p>
+<p>The permission manager monitoring RPC permissions.</p>
 
 
 <section class="section task-group-section">
@@ -30,7 +30,7 @@
   
   
   <h4>Objective-C</h4>
-  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">assign</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">requiresEncryption</span><span class="p">;</span></code></pre>
+  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">readonly</span><span class="p">)</span> <span class="n">BOOL</span> <span class="n">requiresEncryption</span><span class="p">;</span></code></pre>
 
   
   <h4>Swift</h4>
@@ -173,8 +173,7 @@
     <p class="aside-title">Warning</p>
     <p>This block will be captured by the SDLPermissionsManager, be sure to use <a href="http://www.logicsector.com/ios/avoiding-objc-retain-cycles-with-weakself-and-strongself-the-easy-way/">weakself/strongself</a> if you are referencing self within your observer block.</p>
 
-</div>
-<div class="aside aside-warning">
+</div><div class="aside aside-warning">
     <p class="aside-title">Warning</p>
     <p>The observer may be called before this method returns, do not attempt to remove the observer from within the observer. That could send <code>nil</code> to removeObserverForIdentifier:. If you want functionality like that, call groupStatusOfRPCs: instead.</p>
 
