@@ -7,6 +7,8 @@
 //
 
 #import "SDLRPCMessage.h"
+#import "SDLTailLightModeStatus.h"
+#import "SDLTareStatus.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

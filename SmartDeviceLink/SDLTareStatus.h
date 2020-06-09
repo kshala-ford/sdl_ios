@@ -10,7 +10,6 @@
 
 /**
  * The Tare Status
- *
  */
 typedef SDLEnum SDLTareStatus SDL_SWIFT_ENUM;
 
@@ -30,6 +29,6 @@ extern SDLTareStatus const SDLTareStatusRequest;
 extern SDLTareStatus const SDLTareStatusNotUsed;
 
 /**
-* Faulty
-*/
+ * Faulty
+ */
 extern SDLTareStatus const SDLTareStatusFaulty;
