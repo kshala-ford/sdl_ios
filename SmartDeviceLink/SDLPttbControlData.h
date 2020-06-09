@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param pwConsumption maps to DcacOut_E_tot
  @return An instance of the SDLPttbControlCapabilities class
  */
-- (instancetype)initWithState:(nullable SDLPttbPowerState)state reset:(BOOL)reset faltMsg:(nullable SDLPttbFaltMsg)faltMsg engOnMsg:(nullable SDLPttbEngOnMsg)engOnMsg loFuelMsg:(UInt8)loFuelMsg powerStatus:(nullable SDLPttbPowerStatus)powerStatus outletA:(UInt16)outletA outletB:(UInt16)outletB pwMax:(UInt16)pwMax hwConfig:(nullable SDLPttbHwConfig)hwConfig pwConsumption:(UInt16)pwConsumption;
+- (instancetype)initWithState:(nullable SDLPttbPowerState)state reset:(nullable NSNumber<SDLBool> *)reset faltMsg:(nullable SDLPttbFaltMsg)faltMsg engOnMsg:(nullable SDLPttbEngOnMsg)engOnMsg loFuelMsg:(nullable NSNumber<SDLInt> *)loFuelMsg powerStatus:(nullable SDLPttbPowerStatus)powerStatus outletA:(nullable NSNumber<SDLInt> *)outletA outletB:(nullable NSNumber<SDLInt> *)outletB pwMax:(nullable NSNumber<SDLInt> *)pwMax hwConfig:(nullable SDLPttbHwConfig)hwConfig pwConsumption:(nullable NSNumber<SDLInt> *)pwConsumption;
 
 /**
  * @abstract control command, maps to DcacPw_D_Rq

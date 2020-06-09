@@ -14,23 +14,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation SDLPttbControlData
 
-- (instancetype)initWithState:(nullable SDLPttbPowerState)state reset:(BOOL)reset faltMsg:(nullable SDLPttbFaltMsg)faltMsg engOnMsg:(nullable SDLPttbEngOnMsg)engOnMsg loFuelMsg:(UInt8)loFuelMsg powerStatus:(nullable SDLPttbPowerStatus)powerStatus outletA:(UInt16)outletA outletB:(UInt16)outletB pwMax:(UInt16)pwMax hwConfig:(nullable SDLPttbHwConfig)hwConfig pwConsumption:(UInt16)pwConsumption {
+- (instancetype)initWithState:(nullable SDLPttbPowerState)state reset:(nullable NSNumber<SDLBool> *)reset faltMsg:(nullable SDLPttbFaltMsg)faltMsg engOnMsg:(nullable SDLPttbEngOnMsg)engOnMsg loFuelMsg:(nullable NSNumber<SDLInt> *)loFuelMsg powerStatus:(nullable SDLPttbPowerStatus)powerStatus outletA:(nullable NSNumber<SDLInt> *)outletA outletB:(nullable NSNumber<SDLInt> *)outletB pwMax:(nullable NSNumber<SDLInt> *)pwMax hwConfig:(nullable SDLPttbHwConfig)hwConfig pwConsumption:(nullable NSNumber<SDLInt> *)pwConsumption {
     self = [self init];
     if (!self) {
         return nil;
     }
 
     self.state = state;
-    self.reset = @(reset);
+    self.reset = reset;
     self.faltMsg = faltMsg;
     self.engOnMsg = engOnMsg;
-    self.loFuelMsg = @(loFuelMsg);
+    self.loFuelMsg = loFuelMsg;
     self.powerStatus = powerStatus;
-    self.outletA = @(outletA);
-    self.outletB = @(outletB);
-    self.pwMax = @(pwMax);
+    self.outletA = outletA;
+    self.outletB = outletB;
+    self.pwMax = pwMax;
     self.hwConfig = hwConfig;
-    self.pwConsumption = @(pwConsumption);
+    self.pwConsumption = pwConsumption;
 
     return self;
 }
