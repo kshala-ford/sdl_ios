@@ -28,7 +28,7 @@ describe(@"Getter/Setter Tests", ^ {
     });
 
     it(@"Should set and get correctly", ^ {
-    SDLPttbControlData *testStruct = [[SDLPttbControlData alloc] initWithState:SDLPttbPowerStateOff reset:NO faltMsg:SDLPttbFaltMsgOk engOnMsg:SDLPttbEngOnMsgDisplayQuestion loFuelMsg:30 powerStatus:SDLPttbPowerStatusOff outletA:8191 outletB:8191 pwMax:1023 hwConfig:SDLPttbHwConfig20 pwConsumption:65535];
+    SDLPttbControlData *testStruct = [[SDLPttbControlData alloc] initWithState:SDLPttbPowerStateOff reset:@NO faltMsg:SDLPttbFaltMsgOk engOnMsg:SDLPttbEngOnMsgDisplayQuestion loFuelMsg:@30 powerStatus:SDLPttbPowerStatusOff outletA:@8191 outletB:@8191 pwMax:@1023 hwConfig:SDLPttbHwConfig20 pwConsumption:@65535];
 
         expect(testStruct.state).to(equal(SDLPttbPowerStateOff));
         expect(testStruct.reset).to(equal(@NO));
