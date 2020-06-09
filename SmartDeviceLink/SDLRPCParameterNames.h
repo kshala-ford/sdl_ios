@@ -434,6 +434,7 @@ extern SDLRPCParameterName const SDLRPCParameterNameNotification;
 extern SDLRPCParameterName const SDLRPCParameterNameNumber;
 extern SDLRPCParameterName const SDLRPCParameterNameNumberCustomPresetsAvailable;
 extern SDLRPCParameterName const SDLRPCParameterNameNumberTicks;
+extern SDLRPCParameterName const SDLRPCParameterNameObsshControlData;
 extern SDLRPCParameterName const SDLRPCParameterNameOdometer;
 extern SDLRPCParameterName const SDLRPCParameterNameOffset;
 extern SDLRPCParameterName const SDLRPCParameterNameOnLockScreenStatus;
