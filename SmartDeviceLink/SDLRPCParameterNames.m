@@ -427,6 +427,7 @@ SDLRPCParameterName const SDLRPCParameterNameNotification = @"notification";
 SDLRPCParameterName const SDLRPCParameterNameNumber = @"number";
 SDLRPCParameterName const SDLRPCParameterNameNumberCustomPresetsAvailable = @"numCustomPresetsAvailable";
 SDLRPCParameterName const SDLRPCParameterNameNumberTicks = @"numTicks";
+SDLRPCParameterName const SDLRPCParameterNameObsshControlCapabilities = @"obsshControlCapabilities";
 SDLRPCParameterName const SDLRPCParameterNameObsshControlData = @"obsshControlData";
 SDLRPCParameterName const SDLRPCParameterNameOdometer = @"odometer";
 SDLRPCParameterName const SDLRPCParameterNameOEMCustomDataType = @"oemCustomDataType";
