@@ -6,7 +6,12 @@
 //  Copyright © 2020 smartdevicelink. All rights reserved.
 //
 
+#import "SDLFrontAxleLoadRestoration.h"
+#import "SDLFrontAxleLoadRestorationStatus.h"
+#import "SDLObsshDisplayUnit.h"
 #import "SDLRPCMessage.h"
+#import "SDLScreenMode.h"
+#import "SDLTailLightMode.h"
 #import "SDLTailLightModeStatus.h"
 #import "SDLTareStatus.h"
 
