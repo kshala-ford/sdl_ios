@@ -38,6 +38,8 @@
 		00E22CED22C2F1B300BC6B08 /* SDLEncryptionConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 00E22CEB22C2F1B300BC6B08 /* SDLEncryptionConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00EADD3322DFE54B0088B608 /* SDLEncryptionLifecycleManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EADD3222DFE54B0088B608 /* SDLEncryptionLifecycleManagerSpec.m */; };
 		00EADD3522DFE5670088B608 /* SDLEncryptionConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EADD3422DFE5670088B608 /* SDLEncryptionConfigurationSpec.m */; };
+		11FE533E249281490091C252 /* SDLACVLLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 11FE533C249281490091C252 /* SDLACVLLogging.h */; };
+		11FE533F249281490091C252 /* SDLACVLLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 11FE533D249281490091C252 /* SDLACVLLogging.m */; };
 		162E82CA1A9BDE8A00906325 /* SDLAmbientLightStatusSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E81E21A9BDE8A00906325 /* SDLAmbientLightStatusSpec.m */; };
 		162E82CB1A9BDE8A00906325 /* SDLAppHMITypeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E81E31A9BDE8A00906325 /* SDLAppHMITypeSpec.m */; };
 		162E82CC1A9BDE8A00906325 /* SDLAppInterfaceUnregisteredReasonSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E81E41A9BDE8A00906325 /* SDLAppInterfaceUnregisteredReasonSpec.m */; };
@@ -1744,6 +1746,8 @@
 		00E22CEB22C2F1B300BC6B08 /* SDLEncryptionConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLEncryptionConfiguration.h; sourceTree = "<group>"; };
 		00EADD3222DFE54B0088B608 /* SDLEncryptionLifecycleManagerSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLEncryptionLifecycleManagerSpec.m; sourceTree = "<group>"; };
 		00EADD3422DFE5670088B608 /* SDLEncryptionConfigurationSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLEncryptionConfigurationSpec.m; sourceTree = "<group>"; };
+		11FE533C249281490091C252 /* SDLACVLLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLACVLLogging.h; sourceTree = "<group>"; };
+		11FE533D249281490091C252 /* SDLACVLLogging.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLACVLLogging.m; sourceTree = "<group>"; };
 		162E81E21A9BDE8A00906325 /* SDLAmbientLightStatusSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLAmbientLightStatusSpec.m; sourceTree = "<group>"; };
 		162E81E31A9BDE8A00906325 /* SDLAppHMITypeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLAppHMITypeSpec.m; sourceTree = "<group>"; };
 		162E81E41A9BDE8A00906325 /* SDLAppInterfaceUnregisteredReasonSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLAppInterfaceUnregisteredReasonSpec.m; sourceTree = "<group>"; };
@@ -5099,6 +5103,8 @@
 			children = (
 				5DD67CC01E68AE66009CD394 /* Modules */,
 				5DBF063D1E64BDAE00A5CF03 /* Log Targets */,
+				11FE533C249281490091C252 /* SDLACVLLogging.h */,
+				11FE533D249281490091C252 /* SDLACVLLogging.m */,
 				5DBF06211E64A83F00A5CF03 /* SDLLogManager.h */,
 				5DBF06221E64A83F00A5CF03 /* SDLLogManager.m */,
 				5DBF062B1E64A93A00A5CF03 /* SDLLogFilter.h */,
@@ -6951,6 +6957,7 @@
 				1E5AD0501F1F7BF10029B8AF /* SDLRadioBand.h in Headers */,
 				1E5AD0401F1F58480029B8AF /* SDLVentilationMode.h in Headers */,
 				1E5AD0941F20BEAD0029B8AF /* SDLSetInteriorVehicleDataResponse.h in Headers */,
+				11FE533E249281490091C252 /* SDLACVLLogging.h in Headers */,
 				1E5AD0881F20B9AA0029B8AF /* SDLGetInteriorVehicleData.h in Headers */,
 				1E5AD04C1F1F79640029B8AF /* SDLDefrostZone.h in Headers */,
 				1E5AD0601F207AB10029B8AF /* SDLRadioState.h in Headers */,
@@ -7342,6 +7349,7 @@
 				1E4920B21F6A6455008F2CC3 /* SDLGetInteriorVehicleDataResponse.m in Sources */,
 				1EB59CB8202D9C8100343A61 /* SDLSeatMemoryAction.m in Sources */,
 				1E4920B11F6A6443008F2CC3 /* SDLRadioState.m in Sources */,
+				11FE533F249281490091C252 /* SDLACVLLogging.m in Sources */,
 				5D0C2A0120D9479B008B56CD /* SDLStreamingVideoLifecycleManager.m in Sources */,
 				5DA8A0EA1E955FE00039C50D /* SDLLogModel.m in Sources */,
 				5DA8A0E91E955F710039C50D /* SDLStreamingMediaManagerConstants.m in Sources */,

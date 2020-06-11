@@ -62,6 +62,7 @@ typedef void (^SDLManagerReadyBlock)(BOOL success, NSError *_Nullable error);
 
 @interface SDLLifecycleManager : NSObject
 
+@property (nonatomic, readonly) BOOL isSync4;
 @property (copy, nonatomic, readonly) SDLConfiguration *configuration;
 @property (weak, nonatomic, nullable) id<SDLManagerDelegate> delegate;
 @property (strong, nonatomic, readonly, nullable) NSString *authToken;
