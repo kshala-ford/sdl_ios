@@ -60,6 +60,8 @@
 #import "SDLVersion.h"
 #import "SDLWindowCapability.h"
 
+#import "SDLACVLLogging.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 SDLLifecycleState *const SDLLifecycleStateStopped = @"Stopped";
@@ -89,6 +91,7 @@ NSString *const BackgroundTaskTransportName = @"com.sdl.transport.backgroundTask
 @interface SDLLifecycleManager () <SDLConnectionManagerType>
 
 // Readonly public properties
+@property (nonatomic, readwrite) BOOL isSync4;
 @property (copy, nonatomic, readwrite) SDLConfiguration *configuration;
 @property (strong, nonatomic, readwrite, nullable) NSString *authToken;
 @property (strong, nonatomic, readwrite) SDLNotificationDispatcher *notificationDispatcher;
@@ -123,6 +126,7 @@ NSString *const Sync4String = @"SYNC 4";
     }
 
     SDLLogV(@"Initializing Lifecycle Manager");
+    _isSync4 = true;
 
     // Dependencies
     _configuration = [configuration copy];
@@ -344,9 +348,16 @@ NSString *const Sync4String = @"SYNC 4";
     }
     
     NSString *syncName = (NSString *)self.proxy.transport.accessory.name;
+    NSString *syncLogMessage = [@"SYNC Module Name: " stringByAppendingString:[syncName debugDescription]];
+    [SDLACVLLogging logMessage:syncLogMessage];
+
+    NSString *logMessage = @"This is a SYNC4 Accessory";
     if (syncName != nil && [syncName isEqualToString:Sync4String] == false) {
+        logMessage = @"This is a SYNC3 Accessory";
+        _isSync4 = false;
         [self createSync3Configuration];
     }
+    [SDLACVLLogging logMessage:logMessage];
     
     // Build a register app interface request with the configuration data
     SDLRegisterAppInterface *regRequest = [[SDLRegisterAppInterface alloc] initWithLifecycleConfiguration:self.configuration.lifecycleConfig];

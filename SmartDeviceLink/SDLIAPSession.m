@@ -7,6 +7,8 @@
 #import "SDLMutableDataQueue.h"
 #import "SDLTimer.h"
 
+#import "SDLACVLLogging.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SDLIAPSession ()
@@ -23,7 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithAccessory:(nullable EAAccessory *)accessory forProtocol:(NSString *)protocol {
     SDLLogD(@"SDLIAPSession init with accessory:%@ for protocol:%@", accessory.name, protocol);
-
+    
+#if DEBUG
+    NSString *logMessage = [NSString stringWithFormat:@"SDLIAPSession init with accessory:%@ for protocol:%@", accessory.name, protocol];
+    [SDLACVLLogging logMessage:logMessage];
+#endif
+    
     self = [super init];
     if (!self) { return nil; }
 
