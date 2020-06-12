@@ -17,7 +17,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SDLObsshControlData : NSObject
+@interface SDLObsshControlData : SDLRPCStruct
+
+/**
+Constructs a newly allocated SDLObsshControlData object with given parameters
+
+@return An instance of the SDLObsshControlData class.
+*/
+- (instancetype)initWithCheckGear:(nullable NSNumber<SDLBool> *)checkGear checkSteeringWheel:(nullable NSNumber<SDLBool> *)checkSteeringWheel checkFlatSurface:(nullable NSNumber<SDLBool> *)checkFlatSurface checkTirePressure:(nullable NSNumber<SDLBool> *)checkTirePressure payload:(nullable NSNumber<SDLInt> *)payload payloadPercent:(nullable NSNumber<SDLInt> *)payloadPercent taredPayload:(nullable NSNumber<SDLInt> *)taredPayload trailerTongueLoad:(nullable NSNumber<SDLInt> *)trailerTongueLoad trailerTongueLoadPercent:(nullable NSNumber<SDLInt> *)trailerTongueLoadPercent frontAxleLoadRestorationPercent:(nullable NSNumber<SDLInt> *)frontAxleLoadRestorationPercent factoryCurbWeight:(nullable NSNumber<SDLInt> *)factoryCurbWeight grossVehicleWeightRating:(nullable NSNumber<SDLInt> *)grossVehicleWeightRating frontGrossAxleWeightRating:(NSNumber<SDLInt> *)frontGrossAxleWeightRating rearGrossAxleWeightRating:(nullable NSNumber<SDLInt> *)rearGrossAxleWeightRating maxHitchTrailerWeight:(nullable NSNumber<SDLInt> *)maxHitchTrailerWeight maxBedTrailerWeight:(nullable NSNumber<SDLInt> *)maxBedTrailerWeight frontAxleLoadRestorationUppr:(nullable NSNumber<SDLInt> *)frontAxleLoadRestorationUppr frontAxleLoadRestorationLwr:(nullable NSNumber<SDLInt> *)frontAxleLoadRestorationLwr screenModeStatus:(nullable SDLScreenMode)screenModeStatus tareStatus:(nullable SDLTareStatus)tareStatus tailLightModeStatus:(nullable SDLTailLightModeStatus)tailLightModeStatus trailerWeightStatus:(nullable NSNumber<SDLInt> *)trailerWeightStatus frontAxleLoadRestorationStatus:(nullable SDLFrontAxleLoadRestorationStatus)frontAxleLoadRestorationStatus screenMode:(nullable SDLScreenMode)screenMode tare:(nullable NSNumber<SDLBool> *)tare tailLightMode:(nullable SDLTailLightMode)tailLightMode trailerWeight:(nullable NSNumber<SDLInt> *)trailerWeight frontAxleLoadRestoration:(nullable SDLFrontAxleLoadRestoration)frontAxleLoadRestoration displayUnit:(nullable SDLObsshDisplayUnit)displayUnit passengerWeight:(nullable NSNumber<SDLInt> *)passengerWeight screenStep:(nullable NSNumber<SDLInt> *)screenStep;
 
 /**
  * read-only, maps to VehPayloadGear_B_Stat
@@ -153,6 +160,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, strong, nonatomic, readonly) SDLScreenMode screenModeStatus;
 
 /**
+ * read-only, maps to VehPayloadTare_D_Stat
+ *
+ * Optional, SDLTareStatus
+ */
+@property (nullable, strong, nonatomic, readonly) SDLTareStatus tareStatus;
+
+/**
  * read-only, maps to TailLghtLoadMde_D_Stat
  *
  * Optional, SDLTailLightModeStatus
@@ -172,13 +186,6 @@ NS_ASSUME_NONNULL_BEGIN
  * Optional, SDLFrontAxleLoadRestorationStatus
  */
 @property (nullable, strong, nonatomic, readonly) SDLFrontAxleLoadRestorationStatus frontAxleLoadRestorationStatus;
-
-/**
- * read-only, maps to VehPayloadTare_D_Stat
- *
- * Optional, SDLTareStatus
- */
-@property (nullable, strong, nonatomic, readonly) SDLTareStatus tareStatus;
 
 /**
  * control command, maps to VehPayloadScrn_D_Rq
