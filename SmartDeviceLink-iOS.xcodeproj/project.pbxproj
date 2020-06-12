@@ -14,6 +14,7 @@
 		000DD57422EF0957005AB7A7 /* SDLReleaseInteriorVehicleDataModuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 000DD57322EF0957005AB7A7 /* SDLReleaseInteriorVehicleDataModuleSpec.m */; };
 		000DD57622EF0971005AB7A7 /* SDLReleaseInteriorVehicleDataModuleResponseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 000DD57522EF0971005AB7A7 /* SDLReleaseInteriorVehicleDataModuleResponseSpec.m */; };
 		001A08B52321ADD30078A31E /* SDLServiceEncryptionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 001A08B32321ADD30078A31E /* SDLServiceEncryptionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		004A6916249375CC0000FC68 /* SDLScreenModeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A6915249375CC0000FC68 /* SDLScreenModeSpec.m */; };
 		0055412622D40DAB003194D3 /* SDLModuleInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0055412422D40DAB003194D3 /* SDLModuleInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0055412722D40DAB003194D3 /* SDLModuleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055412522D40DAB003194D3 /* SDLModuleInfo.m */; };
 		0055412A22D5DC0B003194D3 /* SDLGrid.h in Headers */ = {isa = PBXBuildFile; fileRef = 0055412822D5DC0B003194D3 /* SDLGrid.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -26,23 +27,23 @@
 		005DF3C622C59191006E01A9 /* SDLEncryptionLifecycleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF3C422C59191006E01A9 /* SDLEncryptionLifecycleManager.m */; };
 		005DF3CA22C62E00006E01A9 /* SDLEncryptionManagerConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 005DF3C822C62E00006E01A9 /* SDLEncryptionManagerConstants.h */; };
 		005DF3CB22C62E00006E01A9 /* SDLEncryptionManagerConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 005DF3C922C62E00006E01A9 /* SDLEncryptionManagerConstants.m */; };
-		007EFC12248F3585001E2FE3 /* SDLObsshControlData.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC10248F3585001E2FE3 /* SDLObsshControlData.h */; };
+		007EFC12248F3585001E2FE3 /* SDLObsshControlData.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC10248F3585001E2FE3 /* SDLObsshControlData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		007EFC13248F3585001E2FE3 /* SDLObsshControlData.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EFC11248F3585001E2FE3 /* SDLObsshControlData.m */; };
-		007EFC16248FAED1001E2FE3 /* SDLTareStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC14248FAED1001E2FE3 /* SDLTareStatus.h */; };
+		007EFC16248FAED1001E2FE3 /* SDLTareStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC14248FAED1001E2FE3 /* SDLTareStatus.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		007EFC17248FAED1001E2FE3 /* SDLTareStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EFC15248FAED1001E2FE3 /* SDLTareStatus.m */; };
-		007EFC1A248FC439001E2FE3 /* SDLTailLightModeStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC18248FC439001E2FE3 /* SDLTailLightModeStatus.h */; };
+		007EFC1A248FC439001E2FE3 /* SDLTailLightModeStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC18248FC439001E2FE3 /* SDLTailLightModeStatus.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		007EFC1B248FC439001E2FE3 /* SDLTailLightModeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EFC19248FC439001E2FE3 /* SDLTailLightModeStatus.m */; };
-		007EFC1E248FD0AB001E2FE3 /* SDLFrontAxleLoadRestorationStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC1C248FD0AB001E2FE3 /* SDLFrontAxleLoadRestorationStatus.h */; };
+		007EFC1E248FD0AB001E2FE3 /* SDLFrontAxleLoadRestorationStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC1C248FD0AB001E2FE3 /* SDLFrontAxleLoadRestorationStatus.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		007EFC1F248FD0AB001E2FE3 /* SDLFrontAxleLoadRestorationStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EFC1D248FD0AB001E2FE3 /* SDLFrontAxleLoadRestorationStatus.m */; };
-		007EFC22248FD8CF001E2FE3 /* SDLScreenMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC20248FD8CF001E2FE3 /* SDLScreenMode.h */; };
+		007EFC22248FD8CF001E2FE3 /* SDLScreenMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC20248FD8CF001E2FE3 /* SDLScreenMode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		007EFC23248FD8CF001E2FE3 /* SDLScreenMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EFC21248FD8CF001E2FE3 /* SDLScreenMode.m */; };
-		007EFC26248FDF15001E2FE3 /* SDLTailLightMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC24248FDF15001E2FE3 /* SDLTailLightMode.h */; };
+		007EFC26248FDF15001E2FE3 /* SDLTailLightMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC24248FDF15001E2FE3 /* SDLTailLightMode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		007EFC27248FDF15001E2FE3 /* SDLTailLightMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EFC25248FDF15001E2FE3 /* SDLTailLightMode.m */; };
-		007EFC2A248FE0E2001E2FE3 /* SDLFrontAxleLoadRestoration.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC28248FE0E2001E2FE3 /* SDLFrontAxleLoadRestoration.h */; };
+		007EFC2A248FE0E2001E2FE3 /* SDLFrontAxleLoadRestoration.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC28248FE0E2001E2FE3 /* SDLFrontAxleLoadRestoration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		007EFC2B248FE0E2001E2FE3 /* SDLFrontAxleLoadRestoration.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EFC29248FE0E2001E2FE3 /* SDLFrontAxleLoadRestoration.m */; };
-		007EFC2E248FE377001E2FE3 /* SDLObsshDisplayUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC2C248FE377001E2FE3 /* SDLObsshDisplayUnit.h */; };
+		007EFC2E248FE377001E2FE3 /* SDLObsshDisplayUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC2C248FE377001E2FE3 /* SDLObsshDisplayUnit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		007EFC2F248FE377001E2FE3 /* SDLObsshDisplayUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EFC2D248FE377001E2FE3 /* SDLObsshDisplayUnit.m */; };
-		007EFC3524905288001E2FE3 /* SDLObsshControlCapabilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC3324905288001E2FE3 /* SDLObsshControlCapabilities.h */; };
+		007EFC3524905288001E2FE3 /* SDLObsshControlCapabilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 007EFC3324905288001E2FE3 /* SDLObsshControlCapabilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		007EFC3624905288001E2FE3 /* SDLObsshControlCapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 007EFC3424905288001E2FE3 /* SDLObsshControlCapabilities.m */; };
 		008DB36122EA7482003F458C /* SDLGetInteriorVehicleDataConsent.h in Headers */ = {isa = PBXBuildFile; fileRef = 008DB35F22EA7481003F458C /* SDLGetInteriorVehicleDataConsent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		008DB36222EA7482003F458C /* SDLGetInteriorVehicleDataConsent.m in Sources */ = {isa = PBXBuildFile; fileRef = 008DB36022EA7481003F458C /* SDLGetInteriorVehicleDataConsent.m */; };
@@ -1738,6 +1739,7 @@
 		000DD57322EF0957005AB7A7 /* SDLReleaseInteriorVehicleDataModuleSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLReleaseInteriorVehicleDataModuleSpec.m; sourceTree = "<group>"; };
 		000DD57522EF0971005AB7A7 /* SDLReleaseInteriorVehicleDataModuleResponseSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLReleaseInteriorVehicleDataModuleResponseSpec.m; sourceTree = "<group>"; };
 		001A08B32321ADD30078A31E /* SDLServiceEncryptionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLServiceEncryptionDelegate.h; sourceTree = "<group>"; };
+		004A6915249375CC0000FC68 /* SDLScreenModeSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLScreenModeSpec.m; sourceTree = "<group>"; };
 		0055412422D40DAB003194D3 /* SDLModuleInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLModuleInfo.h; sourceTree = "<group>"; };
 		0055412522D40DAB003194D3 /* SDLModuleInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLModuleInfo.m; sourceTree = "<group>"; };
 		0055412822D5DC0B003194D3 /* SDLGrid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLGrid.h; sourceTree = "<group>"; };
@@ -3599,6 +3601,7 @@
 				162E820E1A9BDE8A00906325 /* SDLRequestTypeSpec.m */,
 				162E820F1A9BDE8A00906325 /* SDLResultSpec.m */,
 				162E82111A9BDE8A00906325 /* SDLSamplingRateSpec.m */,
+				004A6915249375CC0000FC68 /* SDLScreenModeSpec.m */,
 				8831FA3C220207DA00B8FFB7 /* SDLServiceUpdateReasonSpec.m */,
 				162E82121A9BDE8A00906325 /* SDLSoftButtonTypeSpec.m */,
 				162E82131A9BDE8A00906325 /* SDLSpeechCapabilitiesSpec.m */,
@@ -7973,6 +7976,7 @@
 				5D76E3291D3D0A8800647CFA /* SDLFakeViewControllerPresenter.m in Sources */,
 				9FA0D00622DF06D3009CF344 /* SDLDisplayCapabilitySpec.m in Sources */,
 				5DB2022A1F5F38B60061D189 /* SDLFakeStreamingManagerDataSource.m in Sources */,
+				004A6916249375CC0000FC68 /* SDLScreenModeSpec.m in Sources */,
 				000DD56C22EEF8E4005AB7A7 /* SDLSeatLocationCapabilitySpec.m in Sources */,
 				5D92935020AF526200FCC775 /* SDLRGBColorSpec.m in Sources */,
 				162E83331A9BDE8B00906325 /* SDLPerformInteractionSpec.m in Sources */,
