@@ -261,11 +261,11 @@ NSString *const Sync4String = @"SYNC 4";
         self.proxy = [SDLProxy iapProxyWithListener:self.notificationDispatcher secondaryTransportManager:self.secondaryTransportManager encryptionLifecycleManager:self.encryptionLifecycleManager marketplaceApp:self.marketplaceApp];
         if ([self.class sdl_isStreamingConfiguration:self.configuration]) {
             // Reuse the queue to run the secondary transport manager's state machine
-            self.secondaryTransportManager = [[SDLSecondaryTransportManager alloc] initWithStreamingProtocolDelegate:(id<SDLStreamingProtocolDelegate>)self.streamManager serialQueue:self.lifecycleQueue];
+            self.secondaryTransportManager = [[SDLSecondaryTransportManager alloc] initWithStreamingProtocolDelegate:(id<SDLStreamingProtocolDelegate>)self.streamManager serialQueue:self.lifecycleQueue marketplaceApp:self.marketplaceApp];
             self.streamManager.secondaryTransportManager = self.secondaryTransportManager;
         }
 
-        self.proxy = [SDLProxy iapProxyWithListener:self.notificationDispatcher secondaryTransportManager:self.secondaryTransportManager encryptionLifecycleManager:self.encryptionLifecycleManager];
+        self.proxy = [SDLProxy iapProxyWithListener:self.notificationDispatcher secondaryTransportManager:self.secondaryTransportManager encryptionLifecycleManager:self.encryptionLifecycleManager marketplaceApp:self.marketplaceApp];
     }
 #pragma clang diagnostic pop
 }

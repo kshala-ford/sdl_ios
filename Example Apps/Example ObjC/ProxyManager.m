@@ -117,7 +117,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     SDLLockScreenConfiguration *lockScreenConfiguration = [SDLLockScreenConfiguration enabledConfigurationWithAppIcon:[UIImage imageNamed:ExampleAppLogoName] backgroundColor:nil];
     SDLConfiguration *config = [[SDLConfiguration alloc] initWithLifecycle:lifecycleConfiguration lockScreen:lockScreenConfiguration logging:[self.class sdlex_logConfiguration] fileManager:[SDLFileManagerConfiguration defaultConfiguration] encryption:[SDLEncryptionConfiguration defaultConfiguration]];
-    self.sdlManager = [[SDLManager alloc] initWithConfiguration:config delegate:self];
+    self.sdlManager = [[SDLManager alloc] initWithConfiguration:config delegate:self marketplaceApp:false];
     [self sdlex_startManager];
 }
 
