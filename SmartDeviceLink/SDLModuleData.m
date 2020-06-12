@@ -95,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
         return nil;
     }
 
-    self.moduleType = SDLModuleTypeSeat;
+    self.moduleType = SDLModuleTypeObssh;
     self.obsshControlData = obsshControlData;
 
     return self;
