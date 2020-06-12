@@ -8,7 +8,7 @@
 
 #import "SDLTailLightMode.h"
 
-SDLTailLightMode const SDLTailLightModeActiveObs = @"INACTIVE";
-SDLTailLightMode const SDLTailLightModeActiveSmt = @"OBS_ACTIVE";
-SDLTailLightMode const SDLTailLightModeActiveWdh = @"ADM_ACTIVE";
-SDLTailLightMode const SDLTailLightModeDeactiveAll = @"WDH_ACTIVE";
+SDLTailLightMode const SDLTailLightModeActiveObs = @"ACTIVATE_OBS";
+SDLTailLightMode const SDLTailLightModeActiveSmt = @"ACTIVATE_SMT";
+SDLTailLightMode const SDLTailLightModeActiveWdh = @"ACTIVATE_WDH";
+SDLTailLightMode const SDLTailLightModeDeactiveAll = @"DEACTIVATE_ALL";
