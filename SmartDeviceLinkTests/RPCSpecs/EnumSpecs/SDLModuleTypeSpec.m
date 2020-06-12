@@ -17,6 +17,7 @@ describe(@"Individual Enum Value Tests", ^ {
         expect(SDLModuleTypeRadio).to(equal(@"RADIO"));
         expect(SDLModuleTypeClimate).to(equal(@"CLIMATE"));
         expect(SDLModuleTypeSeat).to(equal(@"SEAT"));
+        expect(SDLModuleTypeObssh).to(equal(@"OBSSH"));
     });
 });
 
