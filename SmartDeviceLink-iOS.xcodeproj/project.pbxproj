@@ -21,6 +21,7 @@
 		004A691E24937CC30000FC68 /* SDLTailLightModeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A691D24937CC30000FC68 /* SDLTailLightModeSpec.m */; };
 		004A692024937D870000FC68 /* SDLFrontAxleLoadRestorationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A691F24937D870000FC68 /* SDLFrontAxleLoadRestorationSpec.m */; };
 		004A692224937E050000FC68 /* SDLObsshDisplayUnitSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A692124937E050000FC68 /* SDLObsshDisplayUnitSpec.m */; };
+		004A6924249383CE0000FC68 /* SDLObsshControlDataSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004A6923249383CE0000FC68 /* SDLObsshControlDataSpec.m */; };
 		0055412622D40DAB003194D3 /* SDLModuleInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0055412422D40DAB003194D3 /* SDLModuleInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0055412722D40DAB003194D3 /* SDLModuleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0055412522D40DAB003194D3 /* SDLModuleInfo.m */; };
 		0055412A22D5DC0B003194D3 /* SDLGrid.h in Headers */ = {isa = PBXBuildFile; fileRef = 0055412822D5DC0B003194D3 /* SDLGrid.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1752,6 +1753,7 @@
 		004A691D24937CC30000FC68 /* SDLTailLightModeSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLTailLightModeSpec.m; sourceTree = "<group>"; };
 		004A691F24937D870000FC68 /* SDLFrontAxleLoadRestorationSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLFrontAxleLoadRestorationSpec.m; sourceTree = "<group>"; };
 		004A692124937E050000FC68 /* SDLObsshDisplayUnitSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLObsshDisplayUnitSpec.m; sourceTree = "<group>"; };
+		004A6923249383CE0000FC68 /* SDLObsshControlDataSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLObsshControlDataSpec.m; sourceTree = "<group>"; };
 		0055412422D40DAB003194D3 /* SDLModuleInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLModuleInfo.h; sourceTree = "<group>"; };
 		0055412522D40DAB003194D3 /* SDLModuleInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLModuleInfo.m; sourceTree = "<group>"; };
 		0055412822D5DC0B003194D3 /* SDLGrid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLGrid.h; sourceTree = "<group>"; };
@@ -3943,6 +3945,7 @@
 				000DD56D22EF01FC005AB7A7 /* SDLSeatLocationSpec.m */,
 				9FA0CFFF22DF06A0009CF344 /* SDLWindowCapabilitySpec.m */,
 				9FA0D00222DF06B9009CF344 /* SDLWindowTypeCapabilitiesSpec.m */,
+				004A6923249383CE0000FC68 /* SDLObsshControlDataSpec.m */,
 			);
 			path = StructSpecs;
 			sourceTree = "<group>";
@@ -7967,6 +7970,7 @@
 				88EF8EBA22D8F48300CB06C2 /* SDLCancelInteractionSpec.m in Sources */,
 				162E83041A9BDE8B00906325 /* SDLUpdateModeSpec.m in Sources */,
 				8855F9E0220C93B700A5C897 /* SDLWeatherDataSpec.m in Sources */,
+				004A6924249383CE0000FC68 /* SDLObsshControlDataSpec.m in Sources */,
 				88DF998D22035CC600477AC1 /* EAAccessory+OCMock.m in Sources */,
 				162E83801A9BDE8B00906325 /* SDLHMIPermissionsSpec.m in Sources */,
 				1EAA476C2036A52F000FE74B /* SDLLightCapabilitiesSpec.m in Sources */,

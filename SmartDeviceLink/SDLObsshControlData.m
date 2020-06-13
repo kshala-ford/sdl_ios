@@ -63,6 +63,11 @@
     self.frontAxleLoadRestorationUppr = frontAxleLoadRestorationUppr;
     self.frontAxleLoadRestorationLwr = frontAxleLoadRestorationLwr;
     self.screenModeStatus = screenModeStatus;
+    self.tareStatus = tareStatus;
+    self.tailLightModeStatus = tailLightModeStatus;
+    self.trailerWeightStatus = trailerWeightStatus;
+    self.frontAxleLoadRestorationStatus = frontAxleLoadRestorationStatus;
+    self.screenMode = screenMode;
     self.tare = tare;
     self.tailLightMode = tailLightMode;
     self.trailerWeight = trailerWeight;
@@ -236,7 +241,7 @@
     return [self.store sdl_objectForName:SDLRPCParameterNameFrontAxleLoadRestorationLwr ofClass:NSNumber.class error:&error];
 }
 
-- (void)setScreenStatusMode:(SDLScreenMode)screenModeStatus {
+- (void)setScreenModeStatus:(SDLScreenMode)screenModeStatus {
     [self.store sdl_setObject:screenModeStatus forName:SDLRPCParameterNameScreenModeStatus];
 }
 
