@@ -12,7 +12,7 @@
 
 @implementation SDLObsshControlCapabilities
 
-- (instancetype)initWithModuleName:(NSString *)moduleName checkGearAvailable:(nullable NSNumber<SDLBool> *)checkGearAvailable checkSteeringWheelAvailable:(nullable NSNumber<SDLBool> *)checkSteeringWheelAvailable checkFlatSurfaceAvailable:(nullable NSNumber<SDLBool> *)checkFlatSurfaceAvailable checkTirePressureAvailable:(nullable NSNumber<SDLBool> *)checkTirePressureAvailable payloadAvailable:(nullable NSNumber<SDLBool> *)payloadAvailable payloadPercentAvailable:(nullable NSNumber<SDLBool> *)payloadPercentAvailable taredPayloadAvailable:(nullable NSNumber<SDLBool> *)taredPayloadAvailable trailerTongueLoadAvailable:()trailerTongueLoadAvailable trailerTongueLoadPercentAvailable:(nullable NSNumber<SDLBool> *)trailerTongueLoadPercentAvailable frontAxleLoadRestorationPercentAvailable:(nullable NSNumber<SDLBool> *)frontAxleLoadRestorationPercentAvailable factoryCurbWeightAvailable:(nullable NSNumber<SDLBool> *)factoryCurbWeightAvailable grossVehicleWeightRatingAvailable:(nullable NSNumber<SDLBool> *)grossVehicleWeightRatingAvailable frontGrossAxleWeightRatingAvailable:(nullable NSNumber<SDLBool> *)frontGrossAxleWeightRatingAvailable rearGrossAxleWeightRatingAvailable:(nullable NSNumber<SDLBool> *)rearGrossAxleWeightRatingAvailable maxHitchTrailerWeightAvailable:(nullable NSNumber<SDLBool> *)maxHitchTrailerWeightAvailable maxBedTrailerWeightAvailable:(nullable NSNumber<SDLBool> *)maxBedTrailerWeightAvailable frontAxleLoadRestorationUpprAvailable:(nullable NSNumber<SDLBool> *)frontAxleLoadRestorationUpprAvailable frontAxleLoadRestorationLwrAvailable:(nullable NSNumber<SDLBool> *)frontAxleLoadRestorationLwrAvailable screenModeStatusAvailable:(nullable NSNumber<SDLBool> *)screenModeStatusAvailable tareStatusAvailable:(nullable NSNumber<SDLBool> *)tareStatusAvailable tailLightModeStatusAvailable:(nullable NSNumber<SDLBool> *)tailLightModeStatusAvailable trailerWeightStatusAvailable:(nullable NSNumber<SDLBool> *)trailerWeightStatusAvailable frontAxleLoadRestorationStatusAvailable:(nullable NSNumber<SDLBool> *)frontAxleLoadRestorationStatusAvailable screenModeAvailable:(nullable NSNumber<SDLBool> *)screenModeAvailable tareAvailable:(nullable NSNumber<SDLBool> *)tareAvailable tailLightModeAvailable:(nullable NSNumber<SDLBool> *)tailLightModeAvailable trailerWeightAvailable:(nullable NSNumber<SDLBool> *)trailerWeightAvailable frontAxleLoadRestorationAvailable:(nullable NSNumber<SDLBool> *)frontAxleLoadRestorationAvailable displayUnitAvailable:(nullable NSNumber<SDLBool> *)displayUnitAvailable passengerWeightAvailable:(nullable NSNumber<SDLBool> *)passengerWeightAvailable screenStepAvailable:(nullable NSNumber<SDLBool> *)screenStepAvailable {
+- (instancetype)initWithModuleName:(NSString *)moduleName checkGearAvailable:(nullable NSNumber<SDLBool> *)checkGearAvailable checkSteeringWheelAvailable:(nullable NSNumber<SDLBool> *)checkSteeringWheelAvailable checkFlatSurfaceAvailable:(nullable NSNumber<SDLBool> *)checkFlatSurfaceAvailable checkTirePressureAvailable:(nullable NSNumber<SDLBool> *)checkTirePressureAvailable payloadAvailable:(nullable NSNumber<SDLBool> *)payloadAvailable payloadPercentAvailable:(nullable NSNumber<SDLBool> *)payloadPercentAvailable taredPayloadAvailable:(nullable NSNumber<SDLBool> *)taredPayloadAvailable trailerTongueLoadAvailable:(nullable NSNumber<SDLBool> *)trailerTongueLoadAvailable trailerTongueLoadPercentAvailable:(nullable NSNumber<SDLBool> *)trailerTongueLoadPercentAvailable frontAxleLoadRestorationPercentAvailable:(nullable NSNumber<SDLBool> *)frontAxleLoadRestorationPercentAvailable factoryCurbWeightAvailable:(nullable NSNumber<SDLBool> *)factoryCurbWeightAvailable grossVehicleWeightRatingAvailable:(nullable NSNumber<SDLBool> *)grossVehicleWeightRatingAvailable frontGrossAxleWeightRatingAvailable:(nullable NSNumber<SDLBool> *)frontGrossAxleWeightRatingAvailable rearGrossAxleWeightRatingAvailable:(nullable NSNumber<SDLBool> *)rearGrossAxleWeightRatingAvailable maxHitchTrailerWeightAvailable:(nullable NSNumber<SDLBool> *)maxHitchTrailerWeightAvailable maxBedTrailerWeightAvailable:(nullable NSNumber<SDLBool> *)maxBedTrailerWeightAvailable frontAxleLoadRestorationUpprAvailable:(nullable NSNumber<SDLBool> *)frontAxleLoadRestorationUpprAvailable frontAxleLoadRestorationLwrAvailable:(nullable NSNumber<SDLBool> *)frontAxleLoadRestorationLwrAvailable screenModeStatusAvailable:(nullable NSNumber<SDLBool> *)screenModeStatusAvailable tareStatusAvailable:(nullable NSNumber<SDLBool> *)tareStatusAvailable tailLightModeStatusAvailable:(nullable NSNumber<SDLBool> *)tailLightModeStatusAvailable trailerWeightStatusAvailable:(nullable NSNumber<SDLBool> *)trailerWeightStatusAvailable frontAxleLoadRestorationStatusAvailable:(nullable NSNumber<SDLBool> *)frontAxleLoadRestorationStatusAvailable screenModeAvailable:(nullable NSNumber<SDLBool> *)screenModeAvailable tareAvailable:(nullable NSNumber<SDLBool> *)tareAvailable tailLightModeAvailable:(nullable NSNumber<SDLBool> *)tailLightModeAvailable trailerWeightAvailable:(nullable NSNumber<SDLBool> *)trailerWeightAvailable frontAxleLoadRestorationAvailable:(nullable NSNumber<SDLBool> *)frontAxleLoadRestorationAvailable displayUnitAvailable:(nullable NSNumber<SDLBool> *)displayUnitAvailable passengerWeightAvailable:(nullable NSNumber<SDLBool> *)passengerWeightAvailable screenStepAvailable:(nullable NSNumber<SDLBool> *)screenStepAvailable {
     self = [self init];
     if(!self) {
         return nil;
@@ -37,7 +37,12 @@
     self.maxBedTrailerWeightAvailable = maxBedTrailerWeightAvailable;
     self.frontAxleLoadRestorationUpprAvailable = frontAxleLoadRestorationUpprAvailable;
     self.frontAxleLoadRestorationLwrAvailable = frontAxleLoadRestorationLwrAvailable;
-    self.screenModeStatusAvailable = screenModeStatusAvailable;
+    self.tareStatusAvailable = tareStatusAvailable;
+    self.tailLightModeAvailable = tailLightModeAvailable;
+    self.tailLightModeStatusAvailable = tailLightModeStatusAvailable;
+    self.trailerWeightStatusAvailable = trailerWeightStatusAvailable;
+    self.frontAxleLoadRestorationStatusAvailable = frontAxleLoadRestorationStatusAvailable;
+    self.screenModeAvailable = screenModeAvailable;
     self.tareAvailable = tareAvailable;
     self.tailLightModeAvailable = tailLightModeAvailable;
     self.trailerWeightAvailable = trailerWeightAvailable;
@@ -45,6 +50,7 @@
     self.displayUnitAvailable = displayUnitAvailable;
     self.passengerWeightAvailable = passengerWeightAvailable;
     self.screenStepAvailable = screenStepAvailable;
+    self.screenModeStatusAvailable = screenModeStatusAvailable;
 
     return self;
 }
@@ -220,7 +226,7 @@
     return [self.store sdl_objectForName:SDLRPCParameterNameFrontAxleLoadRestorationLwrAvailable ofClass:NSNumber.class error:&error];
 }
 
-- (void)setScreenStatusModeAvailable:(NSNumber<SDLBool> *)screenModeStatusAvailable {
+- (void)setScreenModeStatusAvailable:(NSNumber<SDLBool> *)screenModeStatusAvailable {
     [self.store sdl_setObject:screenModeStatusAvailable forName:SDLRPCParameterNameScreenModeStatusAvailable];
 }
 
