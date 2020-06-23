@@ -256,9 +256,6 @@ NSString *const Sync4String = @"SYNC 4";
     } else if (self.configuration.lifecycleConfig.allowedSecondaryTransports == SDLSecondaryTransportsNone) {
         self.proxy = [SDLProxy iapProxyWithListener:self.notificationDispatcher secondaryTransportManager:nil encryptionLifecycleManager:self.encryptionLifecycleManager marketplaceApp:self.marketplaceApp];
     } else {
-        // We reuse our queue to run secondary transport manager's state machine
-        self.secondaryTransportManager = [[SDLSecondaryTransportManager alloc] initWithStreamingProtocolDelegate:self serialQueue:self.lifecycleQueue marketplaceApp:self.marketplaceApp];
-        self.proxy = [SDLProxy iapProxyWithListener:self.notificationDispatcher secondaryTransportManager:self.secondaryTransportManager encryptionLifecycleManager:self.encryptionLifecycleManager marketplaceApp:self.marketplaceApp];
         if ([self.class sdl_isStreamingConfiguration:self.configuration]) {
             // Reuse the queue to run the secondary transport manager's state machine
             self.secondaryTransportManager = [[SDLSecondaryTransportManager alloc] initWithStreamingProtocolDelegate:(id<SDLStreamingProtocolDelegate>)self.streamManager serialQueue:self.lifecycleQueue marketplaceApp:self.marketplaceApp];
