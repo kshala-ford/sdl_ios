@@ -7,6 +7,8 @@
 #import "SDLMutableDataQueue.h"
 #import "SDLTimer.h"
 
+#import "SDLACVLLogging.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SDLIAPSession ()
@@ -23,7 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithAccessory:(nullable EAAccessory *)accessory forProtocol:(NSString *)protocol {
     SDLLogD(@"SDLIAPSession init with accessory:%@ for protocol:%@", accessory.name, protocol);
-
+    
+#if DEBUG
+    NSString *logMessage = [NSString stringWithFormat:@"SDLIAPSession init with accessory:%@ for protocol:%@", accessory.name, protocol];
+    [SDLACVLLogging logMessage:logMessage];
+#endif
+    
     self = [super init];
     if (!self) { return nil; }
 
@@ -61,10 +68,12 @@ NS_ASSUME_NONNULL_BEGIN
     if (status1 != NSStreamStatusNotOpen &&
         status1 != NSStreamStatusClosed) {
         [stream close];
+    } else if (status1 == NSStreamStatusNotOpen) {
+        // It's implicitly removed from the stream when it's closed, but not if it was never opened.
+        // When the USB cable is disconnected, the app will will call this method after the `NSStreamEventEndEncountered` event. The stream will already be in the closed state but it still needs to be removed from the run loop.
+        [stream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     }
 
-    // When the USB cable is disconnected, the app will will call this method after the `NSStreamEventEndEncountered` event. The stream will already be in the closed state but it still needs to be removed from the run loop.
-    [stream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [stream setDelegate:nil];
 
     NSUInteger status2 = stream.streamStatus;

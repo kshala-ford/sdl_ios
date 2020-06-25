@@ -12,7 +12,6 @@
 #import "SDLLifecycleManager.h"
 #import "SDLLockScreenConfiguration.h"
 #import "SDLLockScreenManager.h"
-#import "SDLLockScreenPresenter.h"
 #import "SDLLogConfiguration.h"
 #import "SDLManagerDelegate.h"
 #import "SDLNotificationDispatcher.h"
@@ -70,6 +69,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 #pragma mark - Passthrough getters / setters
+
+- (BOOL )isSync4 {
+    return self.lifecycleManager.isSync4;
+}
 
 - (SDLConfiguration *)configuration {
     return self.lifecycleManager.configuration;

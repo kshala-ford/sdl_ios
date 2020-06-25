@@ -16,14 +16,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 NSString *const TCPIOThreadName = @"com.smartdevicelink.tcpiothread";
-NSTimeInterval const IOThreadWaitSecs = 1.0;
 NSUInteger const DefaultReceiveBufferSize = 16 * 1024;
 NSTimeInterval ConnectionTimeoutSecs = 30.0;
 
 @interface SDLTCPTransport ()
 
 @property (nullable, nonatomic, strong) NSThread *ioThread;
-@property (nonatomic, strong) dispatch_semaphore_t ioThreadStoppedSemaphore;
 @property (nonatomic, assign) NSUInteger receiveBufferSize;
 @property (nonatomic, strong) SDLMutableDataQueue *sendDataQueue;
 @property (nullable, nonatomic, strong) NSInputStream *inputStream;
@@ -55,8 +53,7 @@ NSTimeInterval ConnectionTimeoutSecs = 30.0;
 }
 
 - (void)dealloc {
-    SDLLogD(@"SDLTCPTransport dealloc");
-    [self disconnect];
+    SDLLogV(@"dealloc");
 }
 
 #pragma mark - Stream Lifecycle
@@ -67,6 +64,8 @@ NSTimeInterval ConnectionTimeoutSecs = 30.0;
         SDLLogW(@"TCP transport is already connected");
         return;
     }
+
+    SDLLogD(@"Attempting to connect");
 
     unsigned int port;
     int num = [self.portNumber intValue];
@@ -79,7 +78,6 @@ NSTimeInterval ConnectionTimeoutSecs = 30.0;
 
     self.ioThread = [[NSThread alloc] initWithTarget:self selector:@selector(sdl_tcpTransportEventLoop) object:nil];
     self.ioThread.name = TCPIOThreadName;
-    self.ioThreadStoppedSemaphore = dispatch_semaphore_create(0);
 
     CFReadStreamRef readStream = NULL;
     CFWriteStreamRef writeStream = NULL;
@@ -99,28 +97,18 @@ NSTimeInterval ConnectionTimeoutSecs = 30.0;
 
 - (void)disconnect {
     if (self.ioThread == nil) {
-        // already disconnected
+        SDLLogV(@"TCP transport thread already disconnected");
         return;
     }
 
-    SDLLogD(@"Disconnecting TCP transport");
-
-    [self sdl_cancelIOThread];
-
-    long ret = dispatch_semaphore_wait(self.ioThreadStoppedSemaphore, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(IOThreadWaitSecs * NSEC_PER_SEC)));
-    if (ret == 0) {
-        SDLLogD(@"TCP transport thread stopped");
-    } else {
-        SDLLogE(@"Failed to stop TCP transport thread");
-    }
-    self.ioThread = nil;
-
-    self.inputStream = nil;
-    self.outputStream = nil;
+    SDLLogD(@"Disconnecting");
 
     [self.sendDataQueue removeAllObjects];
     self.transportErrorNotified = NO;
     self.transportConnected = NO;
+
+    // Attempt to cancel the `ioThread`. Once the thread realizes it has been cancelled, it will cleanup the input/output streams.
+    [self sdl_cancelIOThread];
 }
 
 #pragma mark SDLTransportTypeProtocol
@@ -152,7 +140,7 @@ NSTimeInterval ConnectionTimeoutSecs = 30.0;
         [self.inputStream open];
         [self.outputStream open];
 
-        while (![self.ioThread isCancelled]) {
+        while (self.ioThread != nil && ![self.ioThread isCancelled]) {
             BOOL ret = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
             if (!ret) {
                 SDLLogW(@"Failed to start TCP transport run loop");
@@ -164,9 +152,7 @@ NSTimeInterval ConnectionTimeoutSecs = 30.0;
         [self sdl_teardownStream:self.inputStream];
         [self sdl_teardownStream:self.outputStream];
 
-        [self.connectionTimer invalidate];
-
-        dispatch_semaphore_signal(self.ioThreadStoppedSemaphore);
+        [self sdl_cancelConnectionTimer];
     }
 }
 
@@ -186,8 +172,16 @@ NSTimeInterval ConnectionTimeoutSecs = 30.0;
 
 - (void)sdl_cancelIOThread {
     [self.ioThread cancel];
-    // wake up the run loop in case we don't have any I/O event
+
+    // Wake up the run loop in case we don't have any I/O event
     [self performSelector:@selector(sdl_doNothing) onThread:self.ioThread withObject:nil waitUntilDone:NO];
+}
+
+/// Cancels the connection timer for establishing a TCP socket with the accessory.
+- (void)sdl_cancelConnectionTimer {
+    if (self.connectionTimer == nil) { return; }
+    [self.connectionTimer invalidate];
+    self.connectionTimer = nil;
 }
 
 #pragma mark - NSStreamDelegate
@@ -202,7 +196,7 @@ NSTimeInterval ConnectionTimeoutSecs = 30.0;
             // We will get two NSStreamEventOpenCompleted events (for both input and output streams) and we don't need both. Let's use the one of output stream since we need to make sure that output stream is ready before Proxy sending Start Service frame.
             if (aStream == self.outputStream) {
                 SDLLogD(@"TCP transport connected");
-                [self.connectionTimer invalidate];
+                [self sdl_cancelConnectionTimer];
                 self.transportConnected = YES;
                 [self.delegate onTransportConnected];
             }
@@ -316,24 +310,23 @@ NSTimeInterval ConnectionTimeoutSecs = 30.0;
         NSError *error;
         switch (stream.streamError.code) {
             case ECONNREFUSED: {
-                SDLLogD(@"TCP connection error: ECONNREFUSED");
+                SDLLogE(@"TCP connection error: ECONNREFUSED (connection refused)");
                 error = [NSError sdl_transport_connectionRefusedError];
             } break;
             case ETIMEDOUT: {
-                SDLLogD(@"TCP connection error: ETIMEDOUT");
+                SDLLogE(@"TCP connection error: ETIMEDOUT (connection timed out)");
                 error = [NSError sdl_transport_connectionTimedOutError];
             } break;
             case ENETDOWN: {
-                SDLLogD(@"TCP connection error: ENETDOWN");
+                SDLLogE(@"TCP connection error: ENETDOWN (network down)");
                 error = [NSError sdl_transport_networkDownError];
             } break;
             case ENETUNREACH: {
-                // This is just for safe. I did not observe ENETUNREACH error on iPhone.
-                SDLLogD(@"TCP connection error: ENETUNREACH");
+                SDLLogE(@"TCP connection error: ENETUNREACH (network unreachable)");
                 error = [NSError sdl_transport_networkDownError];
             } break;
             default: {
-                SDLLogD(@"TCP connection error: unknown error %ld", (long)stream.streamError.code);
+                SDLLogE(@"TCP connection error: unknown error %ld", (long)stream.streamError.code);
                 error = [NSError sdl_transport_unknownError];
             } break;
         }
@@ -345,6 +338,7 @@ NSTimeInterval ConnectionTimeoutSecs = 30.0;
 }
 
 - (void)sdl_onStreamEnd:(NSStream *)stream {
+    SDLLogD(@"Stream ended");
     NSAssert([[NSThread currentThread] isEqual:self.ioThread], @"sdl_onStreamEnd is called on a wrong thread!");
 
     [self sdl_cancelIOThread];
