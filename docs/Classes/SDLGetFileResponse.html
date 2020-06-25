@@ -12,7 +12,9 @@
 
 <h3>Overview</h3>
 
-<p>Undocumented</p>
+<p>Response to GetFiles</p>
+
+<p>@since RPC 5.1</p>
 
 
 <section class="section task-group-section">
@@ -58,12 +60,12 @@
   
   <p>Optional offset in bytes for resuming partial data chunks.</p>
 
-<p>Integer, Optional, minvalue=<q>0</q> maxvalue=<q>2000000000</q></p>
+<p>Integer, Optional, minvalue=&ldquo;0&rdquo; maxvalue=&ldquo;2000000000&rdquo;</p>
 
   
   
   <h4>Objective-C</h4>
-  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSNumber</span><span class="o">&lt;</span><span class="n"><a href="../Protocols.html#/c:objc(pl)SDLUInt">SDLUInt</a></span><span class="o">&gt;</span> <span class="o">*</span><span class="n">offset</span><span class="p">;</span></code></pre>
+  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSNumber</span><span class="o">&lt;</span><span class="n"><a href="../Protocols.html#/c:objc(pl)SDLUInt">SDLUInt</a></span><span class="o">&gt;</span> <span class="o">*</span><span class="n">offset</span><span class="p">;</span></code></pre>
 
   
   <h4>Swift</h4>
@@ -78,12 +80,12 @@
   
   <p>Optional length in bytes for resuming partial data chunks. If offset is set to 0, then length is the total length of the file to be downloaded.</p>
 
-<p>Integer, Optional, minvalue=<q>0</q> maxvalue=<q>2000000000</q></p>
+<p>Integer, Optional, minvalue=&ldquo;0&rdquo; maxvalue=&ldquo;2000000000&rdquo;</p>
 
   
   
   <h4>Objective-C</h4>
-  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSNumber</span><span class="o">&lt;</span><span class="n"><a href="../Protocols.html#/c:objc(pl)SDLUInt">SDLUInt</a></span><span class="o">&gt;</span> <span class="o">*</span><span class="n">length</span><span class="p">;</span></code></pre>
+  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSNumber</span><span class="o">&lt;</span><span class="n"><a href="../Protocols.html#/c:objc(pl)SDLUInt">SDLUInt</a></span><span class="o">&gt;</span> <span class="o">*</span><span class="n">length</span><span class="p">;</span></code></pre>
 
   
   <h4>Swift</h4>
@@ -103,7 +105,7 @@
   
   
   <h4>Objective-C</h4>
-  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n"><a href="../Type%20Definitions.html#/c:SDLFileType.h@T@SDLFileType">SDLFileType</a></span> <span class="n">fileType</span><span class="p">;</span></code></pre>
+  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n"><a href="../Type%20Definitions.html#/c:SDLFileType.h@T@SDLFileType">SDLFileType</a></span> <span class="n">fileType</span><span class="p">;</span></code></pre>
 
   
   <h4>Swift</h4>
@@ -118,12 +120,12 @@
   
   <p>Additional CRC32 checksum to protect data integrity up to 512 Mbits.</p>
 
-<p>Integer, Optional, minvalue=<q>0</q> maxvalue=<q>4294967295</q></p>
+<p>Integer, Optional, minvalue=&ldquo;0&rdquo; maxvalue=&ldquo;4294967295&rdquo;</p>
 
   
   
   <h4>Objective-C</h4>
-  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSNumber</span><span class="o">&lt;</span><span class="n"><a href="../Protocols.html#/c:objc(pl)SDLUInt">SDLUInt</a></span><span class="o">&gt;</span> <span class="o">*</span><span class="n">crc</span><span class="p">;</span></code></pre>
+  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSNumber</span><span class="o">&lt;</span><span class="n"><a href="../Protocols.html#/c:objc(pl)SDLUInt">SDLUInt</a></span><span class="o">&gt;</span> <span class="o">*</span><span class="n">crc</span><span class="p">;</span></code></pre>
 
   
   <h4>Swift</h4>

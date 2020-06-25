@@ -38,6 +38,12 @@ typedef void (^SDLManagerReadyBlock)(BOOL success, NSError *_Nullable error);
 @interface SDLManager : NSObject
 
 /**
+ *  Boolean representing if the vehicle is a Sync4 system
+ */
+@property (nonatomic, readonly) BOOL isSync4;
+
+
+/**
  *  The configuration the manager was set up with.
  */
 @property (copy, nonatomic, readonly) SDLConfiguration *configuration;
