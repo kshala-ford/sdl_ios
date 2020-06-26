@@ -1,4 +1,60 @@
 # Changelog
+## 6.6.0
+### Versions
+* Supports [SDL RPC Spec 6.0.0](https://github.com/smartdevicelink/rpc_spec/releases/tag/6.0.0) and [SDL Protocol Spec 5.2.0](https://github.com/smartdevicelink/protocol_spec/releases/tag/5.2.0).
+
+### Enhancements
+* The secondary transport now starts only when the app has been brought to HMI Full (https://www.github.com/smartdevicelink/sdl_ios/issues/1145).
+* Added RPC generator script – though it is not currently used (https://www.github.com/smartdevicelink/sdl_ios/issues/1298).
+* Added helpful convenience initializers to `SDLRadioControlData` (https://www.github.com/smartdevicelink/sdl_ios/issues/1206).
+* `SDLSystemCapabilityManager` enhancements and alignment with Java Suite ((https://www.github.com/smartdevicelink/sdl_ios/issues/1535).
+* The `SDLManagerDelegate` now has a `videoStreamingState` callback (https://www.github.com/smartdevicelink/sdl_ios/issues/1546).
+* The secondary transport will no longer be immediately shut down when the app goes to the background (https://www.github.com/smartdevicelink/sdl_ios/issues/1560).
+* Deprecated `SyncPData` and `EncodedSyncPData` RPCs (https://www.github.com/smartdevicelink/sdl_ios/issues/1599).
+* Deprecated `OnLockScreenStatus` and `LockScreenStatus` fake RPCs (https://www.github.com/smartdevicelink/sdl_ios/issues/1601).
+
+### Bug Fixes
+* Fix video streaming timeout when app goes from background to foreground (https://www.github.com/smartdevicelink/sdl_ios/issues/1471).
+* Many lock screen fixes (https://www.github.com/smartdevicelink/sdl_ios/issues/1504, https://www.github.com/smartdevicelink/sdl_ios/issues/1523, https://www.github.com/smartdevicelink/sdl_ios/issues/1545, https://www.github.com/smartdevicelink/sdl_ios/issues/1565).
+* Threading fixes around the response handler map (https://www.github.com/smartdevicelink/sdl_ios/issues/1515).
+* Fixed some warnings emitted from the lock screen storyboard (https://www.github.com/smartdevicelink/sdl_ios/issues/1521).
+* Fix potential race condition in shutting down and starting up `SDLProxy` (https://www.github.com/smartdevicelink/sdl_ios/issues/1532).
+* Fix `SDLTouch` to better handle `NSNull` (https://www.github.com/smartdevicelink/sdl_ios/issues/1534).
+* Fix empty `SetDisplayLayout.displayCapabilities` breaks the screen manager (https://www.github.com/smartdevicelink/sdl_ios/issues/1536).
+* Many secondary transport fixes (https://www.github.com/smartdevicelink/sdl_ios/issues/1551, https://www.github.com/smartdevicelink/sdl_ios/issues/1561).
+* Revert deprecations in RPCs relating to `NSDictionary` (https://www.github.com/smartdevicelink/sdl_ios/issues/1557).
+* Change how the audio pass thru handler is called to allow sending a new one in the response handler (https://www.github.com/smartdevicelink/sdl_ios/issues/1559).
+* Threading fixes around the lifecycle manager `correlationId` (https://www.github.com/smartdevicelink/sdl_ios/issues/1564).
+* Fix `SDLStreamingMediaManager` returning an incorrect value for `isStreamingSupported` (https://www.github.com/smartdevicelink/sdl_ios/issues/1569).
+* Fix using incorrect MTU sizes for non-RPC services (https://www.github.com/smartdevicelink/sdl_ios/issues/1577).
+* Fix IAP crash when the output stream closes (https://www.github.com/smartdevicelink/sdl_ios/issues/1583).
+* Fix potential threading crash in `SDLChoiceSetManager` (https://www.github.com/smartdevicelink/sdl_ios/issues/1584).
+* Adding some documentation (https://www.github.com/smartdevicelink/sdl_ios/issues/1587).
+* Fix a potential race condition crash in the text and graphic manager (https://www.github.com/smartdevicelink/sdl_ios/issues/1595).
+* Fix `SDLImageField` initializer (https://www.github.com/smartdevicelink/sdl_ios/issues/1625).
+
+### Example Apps
+* They now show a warning message if the slider or scrollable message time out (https://www.github.com/smartdevicelink/sdl_ios/issues/1526).
+* Remove example app logic for checking first HMI FULL (https://www.github.com/smartdevicelink/sdl_ios/issues/1554).
+* Example app no longer uses deprecated `SDLConfiguration` (https://www.github.com/smartdevicelink/sdl_ios/issues/1607).
+
+## 6.5.0 (Since RC 1)
+### Bug Fixes
+* Update testing dependencies and fix a few tests that fail after updating OCMock to 3.5.0 due to mocks not being used properly in a test (https://www.github.com/smartdevicelink/sdl_ios/issues/1517).
+
+## 6.5.0 Release Candidate 1
+### Bug Fixes
+* Fix the `SDLSystemCapabilityManager subscribeToCapabilityType:withObserver:selector:` not returning a BOOL as was declared (https://www.github.com/smartdevicelink/sdl_ios/issues/1465).
+* Fix the Soft Button Manager failing if the template is changed and the new template does not support soft buttons (https://www.github.com/smartdevicelink/sdl_ios/issues/1474).
+* Objective-C++ projects that previously saw APIs that caused a compiler failure due to keyword restrictions will now no longer see those APIs and will see different APIs instead. All non-Objective-C++ projects will be unchanged. Because the previous release was un-compilable, we are considering this a minor change instead of a major change due to adding APIs (https://www.github.com/smartdevicelink/sdl_ios/issues/1478).
+* In some cases the lock screen would show status bar rotation even though the view controller didn't rotate (https://www.github.com/smartdevicelink/sdl_ios/issues/1480).
+* Fix the security manager not being set when using a secondary transport in certain cases (https://www.github.com/smartdevicelink/sdl_ios/issues/1482).
+* Fix `Show.templateConfiguration` RPC parameter not getting set properly (https://www.github.com/smartdevicelink/sdl_ios/issues/1486).
+* In some cases the lock screen window would cause the app's window to display incorrectly when dismissed (https://www.github.com/smartdevicelink/sdl_ios/issues/1492).
+* Attempt to fix a background crash when disconnecting – note that your app will still close due to iOS' background restrictions (https://www.github.com/smartdevicelink/sdl_ios/issues/1494).
+* In some cases the lock screen window would continue to hide the app's window when dismissed (https://www.github.com/smartdevicelink/sdl_ios/issues/1496).
+* When the app runs more than one `UIWindow`, the lock screen manager would sometimes choose the wrong window to display when the lock window is dismissed (https://www.github.com/smartdevicelink/sdl_ios/issues/1501).
+
 ## 6.4.1
 ### Bug Fixes
 * Update code documentation (https://www.github.com/smartdevicelink/sdl_ios/issues/983).

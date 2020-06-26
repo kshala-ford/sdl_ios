@@ -310,7 +310,10 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param response A SDLEncodedSyncPDataResponse object
  */
-- (void)onEncodedSyncPDataResponse:(SDLEncodedSyncPDataResponse *)response;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (void)onEncodedSyncPDataResponse:(SDLEncodedSyncPDataResponse *)response __deprecated;
+#pragma clang diagnostic pop
 
 /**
  *  Called when an End Audio Pass Thru Response is received from Core
@@ -590,7 +593,10 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param response A SDLSyncPDataResponse object
  */
-- (void)onSyncPDataResponse:(SDLSyncPDataResponse *)response;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (void)onSyncPDataResponse:(SDLSyncPDataResponse *)response __deprecated;
+#pragma clang diagnostic pop
 
 /**
  *  Called when an Update Turn List Response is received from Core
@@ -760,7 +766,10 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param request A SDLEncodedSyncPData object
  */
-- (void)onEncodedSyncPData:(SDLEncodedSyncPData *)request;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (void)onEncodedSyncPData:(SDLEncodedSyncPData *)request __deprecated;
+#pragma clang diagnostic pop
 
 /**
  *  Called when a `EndAudioPassThru` request is received from Core
@@ -1026,7 +1035,10 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param request A SDLSyncPData object
  */
-- (void)onSyncPData:(SDLSyncPData *)request;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (void)onSyncPData:(SDLSyncPData *)request __deprecated;
+#pragma clang diagnostic pop
 
 /**
  *  Called when a `SystemRequest` request is received from Core
@@ -1127,7 +1139,10 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param notification A SDLOnEncodedSyncPData object
  */
-- (void)onOnEncodedSyncPData:(SDLOnEncodedSyncPData *)notification;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (void)onOnEncodedSyncPData:(SDLOnEncodedSyncPData *)notification __deprecated;
+#pragma clang diagnostic pop
 
 /**
  *  Called when an On Hash Change notification is received from Core
@@ -1164,7 +1179,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-- (void)onOnLockScreenNotification:(SDLOnLockScreenStatus *)notification;
+- (void)onOnLockScreenNotification:(SDLOnLockScreenStatus *)notification __deprecated;
 #pragma clang diagnostic pop
 
 /**
@@ -1186,7 +1201,10 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param notification A SDLOnSyncPData object
  */
-- (void)onOnSyncPData:(SDLOnSyncPData *)notification;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (void)onOnSyncPData:(SDLOnSyncPData *)notification __deprecated;
+#pragma clang diagnostic pop
 
 /**
  *  Called when an `OnSystemCapabilityUpdated` notification is received from Core

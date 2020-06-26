@@ -17,3 +17,5 @@ Change List:
 [Expose SDLSytemRequestResponse](https://github.ford.com/FordMobile/sdl_ios/pull/7)
 
 [Add XEVO Markeplace Support](https://github.ford.com/FordMobile/sdl_ios/pull/9)
+
+[Add SYNC 4 Property](https://github.ford.com/FordMobile/sdl_ag/pull/26)
