@@ -10,6 +10,7 @@
 #import "SDLAudioControlData.h"
 #import "SDLLightControlData.h"
 #import "SDLHMISettingsControlData.h"
+#import "SDLObsshControlData.h"
 #import "NSMutableDictionary+Store.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -88,6 +89,18 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (instancetype)initWithObsshControlData:(SDLObsshControlData *)obsshControlData {
+    self = [self init];
+    if(!self){
+        return nil;
+    }
+
+    self.moduleType = SDLModuleTypeObssh;
+    self.obsshControlData = obsshControlData;
+
+    return self;
+}
+
 - (void)setModuleType:(SDLModuleType)moduleType {
     [self.store sdl_setObject:moduleType forName:SDLRPCParameterNameModuleType];
 }
@@ -152,6 +165,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable SDLHMISettingsControlData *)hmiSettingsControlData {
     return [self.store sdl_objectForName:SDLRPCParameterNameHmiSettingsControlData ofClass:SDLHMISettingsControlData.class error:nil];
+}
+
+- (void)setObsshControlData:(nullable SDLObsshControlData *)obsshControlData {
+    [self.store sdl_setObject:obsshControlData forName:SDLRPCParameterNameObsshControlData];
+}
+
+- (nullable SDLObsshControlData *)obsshControlData {
+    return [self.store sdl_objectForName:SDLRPCParameterNameObsshControlData ofClass:SDLObsshControlData.class error:nil];
 }
 
 @end

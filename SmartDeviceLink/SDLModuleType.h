@@ -39,3 +39,7 @@ extern SDLModuleType const SDLModuleTypeLight;
  */
 extern SDLModuleType const SDLModuleTypeHMISettings;
 
+/**
+ * A SDLModuleType with the value of *OBSSH*
+ */
+extern SDLModuleType const SDLModuleTypeObssh;

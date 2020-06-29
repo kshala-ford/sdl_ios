@@ -7,6 +7,7 @@
 #import "SDLClimateControlCapabilities.h"
 #import "SDLHMISettingsControlCapabilities.h"
 #import "SDLLightControlCapabilities.h"
+#import "SDLObsshControlCapabilities.h"
 #import "SDLRemoteControlCapabilities.h"
 #import "SDLRadioControlCapabilities.h"
 #import "SDLSeatControlCapabilities.h"
@@ -35,6 +36,24 @@ NS_ASSUME_NONNULL_BEGIN
     self.audioControlCapabilities = audioControlCapabilities;
     self.hmiSettingsControlCapabilities = hmiSettingsControlCapabilities;
     self.lightControlCapabilities = lightControlCapabilities;
+
+    return self;
+}
+
+- (instancetype)initWithClimateControlCapabilities:(nullable NSArray<SDLClimateControlCapabilities *> *)climateControlCapabilities radioControlCapabilities:(nullable NSArray<SDLRadioControlCapabilities *> *)radioControlCapabilities buttonCapabilities:(nullable NSArray<SDLButtonCapabilities *> *)buttonCapabilities seatControlCapabilities:(nullable NSArray<SDLSeatControlCapabilities *> *)seatControlCapabilities audioControlCapabilities:(nullable NSArray<SDLAudioControlCapabilities *> *)audioControlCapabilities hmiSettingsControlCapabilities:(nullable NSArray<SDLHMISettingsControlCapabilities *> *)hmiSettingsControlCapabilities lightControlCapabilities:(nullable NSArray<SDLLightControlCapabilities *> *)lightControlCapabilities obsshControlCapabilities:(nullable NSArray<SDLObsshControlCapabilities *> *)obsshControlCapabilities {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+
+    self.climateControlCapabilities = climateControlCapabilities;
+    self.radioControlCapabilities = radioControlCapabilities;
+    self.buttonCapabilities = buttonCapabilities;
+    self.seatControlCapabilities = seatControlCapabilities;
+    self.audioControlCapabilities = audioControlCapabilities;
+    self.hmiSettingsControlCapabilities = hmiSettingsControlCapabilities;
+    self.lightControlCapabilities = lightControlCapabilities;
+    self.obsshControlCapabilities = obsshControlCapabilities;
 
     return self;
 }
@@ -112,6 +131,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable NSArray<SDLLightControlCapabilities *> *)lightControlCapabilities {
     SDLLightControlCapabilities *capability = [self.store sdl_objectForName:SDLRPCParameterNameLightControlCapabilities ofClass:SDLLightControlCapabilities.class error:nil];
+    if (capability == nil) { return nil; }
+
+    return @[capability];
+}
+
+- (void)setObsshControlCapabilities:(nullable NSArray<SDLObsshControlCapabilities *> *)obsshControlCapabilities {
+    if (obsshControlCapabilities.count == 0) {
+        [self.store sdl_setObject:nil forName:SDLRPCParameterNameObsshControlCapabilities];
+        return;
+    }
+
+    SDLObsshControlCapabilities *capability = obsshControlCapabilities.firstObject;
+
+    [self.store sdl_setObject:capability forName:SDLRPCParameterNameObsshControlCapabilities];
+}
+
+- (nullable NSArray<SDLObsshControlCapabilities *> *)obsshControlCapabilities {
+    SDLObsshControlCapabilities *capability = [self.store sdl_objectForName:SDLRPCParameterNameObsshControlCapabilities ofClass:SDLObsshControlCapabilities.class error:nil];
     if (capability == nil) { return nil; }
 
     return @[capability];

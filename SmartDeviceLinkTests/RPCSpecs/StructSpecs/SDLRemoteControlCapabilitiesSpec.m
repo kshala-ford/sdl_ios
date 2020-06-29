@@ -15,6 +15,7 @@
 #import "SDLHMISettingsControlCapabilities.h"
 #import "SDLRadioControlCapabilities.h"
 #import "SDLSeatControlCapabilities.h"
+#import "SDLObsshControlCapabilities.h"
 #import "SDLButtonCapabilities.h"
 #import "SDLRPCParameterNames.h"
 
@@ -27,7 +28,7 @@ __block SDLSeatControlCapabilities* someSeatControlCapabilities = [[SDLSeatContr
 __block SDLAudioControlCapabilities* someAudioControlCapabilities = [[SDLAudioControlCapabilities alloc] init];
 __block SDLLightControlCapabilities* someLightControlCapabilities = [[SDLLightControlCapabilities alloc] init];
 __block SDLHMISettingsControlCapabilities* someHMISettingsControlCapabilities = [[SDLHMISettingsControlCapabilities alloc] init];
-
+__block SDLObsshControlCapabilities* someObsshControlCapabilities = [[SDLObsshControlCapabilities alloc] init];
 
 describe(@"Initialization tests", ^{
     it(@"should properly initialize init", ^{
@@ -40,7 +41,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.audioControlCapabilities).to(beNil());
         expect(testStruct.hmiSettingsControlCapabilities).to(beNil());
         expect(testStruct.lightControlCapabilities).to(beNil());
-
+        expect(testStruct.obsshControlCapabilities).to(beNil());
     });
     
     it(@"should properly initialize initWithDictionary", ^{
@@ -49,8 +50,9 @@ describe(@"Initialization tests", ^{
                                        SDLRPCParameterNameButtonCapabilities:@[someButtonControlCapabilities],
                                        SDLRPCParameterNameSeatControlCapabilities:@[someSeatControlCapabilities],
                                        SDLRPCParameterNameAudioControlCapabilities:@[someAudioControlCapabilities],
+                                       SDLRPCParameterNameObsshControlCapabilities:someObsshControlCapabilities,
                                        SDLRPCParameterNameLightControlCapabilities:someLightControlCapabilities,
-                                       SDLRPCParameterNameHmiSettingsControlCapabilities:someHMISettingsControlCapabilities
+                                       SDLRPCParameterNameHmiSettingsControlCapabilities:someHMISettingsControlCapabilities,
                                        };
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -64,6 +66,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.audioControlCapabilities).to(equal([@[someAudioControlCapabilities] copy]));
         expect(testStruct.hmiSettingsControlCapabilities).to(equal([@[someHMISettingsControlCapabilities] copy]));
         expect(testStruct.lightControlCapabilities).to(equal([@[someLightControlCapabilities] copy]));
+        expect(testStruct.obsshControlCapabilities).to(equal([@[someObsshControlCapabilities] copy]));
     });
     
     it(@"Should set and get correctly", ^{
@@ -74,9 +77,10 @@ describe(@"Initialization tests", ^{
         testStruct.radioControlCapabilities = [@[someRadioControlCapabilities] copy];
         testStruct.buttonCapabilities = [@[someButtonControlCapabilities] copy];
         testStruct.audioControlCapabilities = [@[someAudioControlCapabilities] copy];
-        testStruct.hmiSettingsControlCapabilities = [@[someHMISettingsControlCapabilities]copy];
-        testStruct.lightControlCapabilities = [@[someLightControlCapabilities]copy];
-        
+        testStruct.hmiSettingsControlCapabilities = [@[someHMISettingsControlCapabilities] copy];
+        testStruct.lightControlCapabilities = [@[someLightControlCapabilities] copy];
+        testStruct.obsshControlCapabilities = [@[someObsshControlCapabilities] copy];
+
         expect(testStruct.seatControlCapabilities).to(equal([@[someSeatControlCapabilities] copy]));
         expect(testStruct.climateControlCapabilities).to(equal(([@[someClimateControlCapabilities] copy])));
         expect(testStruct.radioControlCapabilities).to(equal([@[someRadioControlCapabilities] copy]));
@@ -84,6 +88,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.audioControlCapabilities).to(equal([@[someAudioControlCapabilities] copy]));
         expect(testStruct.hmiSettingsControlCapabilities).to(equal([@[someHMISettingsControlCapabilities] copy]));
         expect(testStruct.lightControlCapabilities).to(equal([@[someLightControlCapabilities] copy]));
+        expect(testStruct.obsshControlCapabilities).to(equal([@[someObsshControlCapabilities] copy]));
     });
 
     it(@"Should get correctly when initialized with climateControlCapabilities and other RemoteControlCapabilities parameters", ^ {
@@ -99,6 +104,8 @@ describe(@"Initialization tests", ^{
     });
 
     it(@"Should get correctly when initialized with climateControlCapabilities and other RemoteControlCapabilities parameters", ^ {
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         SDLRemoteControlCapabilities* testStruct = [[SDLRemoteControlCapabilities alloc] initWithClimateControlCapabilities:[@[someClimateControlCapabilities] copy] radioControlCapabilities:[@[someRadioControlCapabilities] copy] buttonCapabilities:[@[someButtonControlCapabilities]  copy] seatControlCapabilities:[@[someSeatControlCapabilities] copy] audioControlCapabilities:[@[someAudioControlCapabilities] copy] hmiSettingsControlCapabilities:[@[someHMISettingsControlCapabilities] copy] lightControlCapabilities:[@[someLightControlCapabilities] copy]];
 
         expect(testStruct.climateControlCapabilities).to(equal(([@[someClimateControlCapabilities] copy])));
@@ -107,7 +114,21 @@ describe(@"Initialization tests", ^{
         expect(testStruct.audioControlCapabilities).to(equal([@[someAudioControlCapabilities] copy]));
         expect(testStruct.hmiSettingsControlCapabilities).to(equal([@[someHMISettingsControlCapabilities] copy]));
         expect(testStruct.lightControlCapabilities).to(equal([@[someLightControlCapabilities] copy]));
+        #pragma clang diagnostic pop
     });
+
+     it(@"Should get correctly when initialized with climateControlCapabilities and other RemoteControlCapabilities parameters", ^ {
+         SDLRemoteControlCapabilities* testStruct = [[SDLRemoteControlCapabilities alloc] initWithClimateControlCapabilities:[@[someClimateControlCapabilities] copy] radioControlCapabilities:[@[someRadioControlCapabilities] copy] buttonCapabilities:[@[someButtonControlCapabilities]  copy] seatControlCapabilities:[@[someSeatControlCapabilities] copy] audioControlCapabilities:[@[someAudioControlCapabilities] copy] hmiSettingsControlCapabilities:[@[someHMISettingsControlCapabilities] copy] lightControlCapabilities:[@[someLightControlCapabilities] copy] obsshControlCapabilities:[@[someObsshControlCapabilities] copy]];
+
+         expect(testStruct.climateControlCapabilities).to(equal(([@[someClimateControlCapabilities] copy])));
+         expect(testStruct.radioControlCapabilities).to(equal([@[someRadioControlCapabilities] copy]));
+         expect(testStruct.buttonCapabilities).to(equal([@[someButtonControlCapabilities] copy]));
+         expect(testStruct.audioControlCapabilities).to(equal([@[someAudioControlCapabilities] copy]));
+         expect(testStruct.hmiSettingsControlCapabilities).to(equal([@[someHMISettingsControlCapabilities] copy]));
+         expect(testStruct.lightControlCapabilities).to(equal([@[someLightControlCapabilities] copy]));
+         expect(testStruct.obsshControlCapabilities).to(equal([@[someObsshControlCapabilities] copy]));
+     });
+
 });
 
 QuickSpecEnd
