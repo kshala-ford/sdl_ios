@@ -184,7 +184,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.lightControlData).to(beNil());
         expect(testStruct.hmiSettingsControlData).to(beNil());
         expect(testStruct.pttbControlData).to(equal(somePttbData));
-        expect(testStruct.obsshControlData).to(equal(someObsshData));
+        expect(testStruct.obsshControlData).to(beNil());
         expect(testStruct.moduleId).to(beNil());
     });
 });

@@ -84,9 +84,10 @@ NS_ASSUME_NONNULL_BEGIN
  @return An instance of the SDLModuleData class
  */
 - (instancetype)initWithPttbControlData:(SDLPttbControlData *)pttbControlData;
- Constructs a newly allocated SDLModuleData object with obssh control data
 
 /**
+ Constructs a newly allocated SDLModuleData object with obssh control data
+
  @param obsshControlData The seat control data
  @return An instance of the SDLModuleData class
  */
