@@ -10,4 +10,5 @@ SDLModuleType const SDLModuleTypeSeat = @"SEAT";
 SDLModuleType const SDLModuleTypeAudio = @"AUDIO";
 SDLModuleType const SDLModuleTypeLight = @"LIGHT";
 SDLModuleType const SDLModuleTypeHMISettings = @"HMI_SETTINGS";
+SDLModuleType const SDLModuleTypePttb = @"PTTB";
 SDLModuleType const SDLModuleTypeObssh = @"OBSSH";

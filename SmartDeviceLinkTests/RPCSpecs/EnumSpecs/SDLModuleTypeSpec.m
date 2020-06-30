@@ -17,6 +17,10 @@ describe(@"Individual Enum Value Tests", ^ {
         expect(SDLModuleTypeRadio).to(equal(@"RADIO"));
         expect(SDLModuleTypeClimate).to(equal(@"CLIMATE"));
         expect(SDLModuleTypeSeat).to(equal(@"SEAT"));
+        expect(SDLModuleTypeAudio).to(equal(@"AUDIO"));
+        expect(SDLModuleTypeLight).to(equal(@"LIGHT"));
+        expect(SDLModuleTypeHMISettings).to(equal(@"HMI_SETTINGS"));
+        expect(SDLModuleTypePttb).to(equal(@"PTTB"));
         expect(SDLModuleTypeObssh).to(equal(@"OBSSH"));
     });
 });
