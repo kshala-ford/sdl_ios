@@ -22,6 +22,7 @@
 @class SDLHeadLampStatus;
 @class SDLMyKey;
 @class SDLTireStatus;
+@class SDLEmergencyEventTrigger;
 
 
 /**
@@ -205,6 +206,11 @@ NS_ASSUME_NONNULL_BEGIN
   Added in SmartDeviceLink 6.0
  */
 - (nullable NSObject *)getOEMCustomVehicleData:(NSString *)vehicleDataName;
+
+/**
+ Additional signal Information related to an emergency event triggers
+ */
+@property (nullable, strong, nonatomic) SDLEmergencyEventTrigger *emergencyEventTrigger;
 
 @end
 

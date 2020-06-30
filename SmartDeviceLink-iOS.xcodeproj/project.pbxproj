@@ -14,6 +14,12 @@
 		000DD57422EF0957005AB7A7 /* SDLReleaseInteriorVehicleDataModuleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 000DD57322EF0957005AB7A7 /* SDLReleaseInteriorVehicleDataModuleSpec.m */; };
 		000DD57622EF0971005AB7A7 /* SDLReleaseInteriorVehicleDataModuleResponseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 000DD57522EF0971005AB7A7 /* SDLReleaseInteriorVehicleDataModuleResponseSpec.m */; };
 		001A08B52321ADD30078A31E /* SDLServiceEncryptionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 001A08B32321ADD30078A31E /* SDLServiceEncryptionDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		004D520424636FEF002F9889 /* SDLEmergencyEventTrigger.h in Headers */ = {isa = PBXBuildFile; fileRef = 004D520224636FEF002F9889 /* SDLEmergencyEventTrigger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		004D520524636FEF002F9889 /* SDLEmergencyEventTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 004D520324636FEF002F9889 /* SDLEmergencyEventTrigger.m */; };
+		004D5208246372CB002F9889 /* SDLEmergencyEventTriggerType.h in Headers */ = {isa = PBXBuildFile; fileRef = 004D5206246372CB002F9889 /* SDLEmergencyEventTriggerType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		004D5209246372CB002F9889 /* SDLEmergencyEventTriggerType.m in Sources */ = {isa = PBXBuildFile; fileRef = 004D5207246372CB002F9889 /* SDLEmergencyEventTriggerType.m */; };
+		004D520B24639766002F9889 /* SDLEmergencyEventTriggerTypeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004D520A24639766002F9889 /* SDLEmergencyEventTriggerTypeSpec.m */; };
+		004D520D24639BD1002F9889 /* SDLEmergencyEventTriggerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004D520C24639BD1002F9889 /* SDLEmergencyEventTriggerSpec.m */; };
 		004D51F5244BE989002F9889 /* SDLPttbPowerStateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004D51F4244BE989002F9889 /* SDLPttbPowerStateSpec.m */; };
 		004D51F7244BEAF7002F9889 /* SDLPttbEngOnMsgSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004D51F6244BEAF7002F9889 /* SDLPttbEngOnMsgSpec.m */; };
 		004D51F9244BECC1002F9889 /* SDLPttbFaltMsgSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 004D51F8244BECC1002F9889 /* SDLPttbFaltMsgSpec.m */; };
@@ -1775,6 +1781,12 @@
 		000DD57322EF0957005AB7A7 /* SDLReleaseInteriorVehicleDataModuleSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLReleaseInteriorVehicleDataModuleSpec.m; sourceTree = "<group>"; };
 		000DD57522EF0971005AB7A7 /* SDLReleaseInteriorVehicleDataModuleResponseSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLReleaseInteriorVehicleDataModuleResponseSpec.m; sourceTree = "<group>"; };
 		001A08B32321ADD30078A31E /* SDLServiceEncryptionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLServiceEncryptionDelegate.h; sourceTree = "<group>"; };
+		004D520224636FEF002F9889 /* SDLEmergencyEventTrigger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLEmergencyEventTrigger.h; sourceTree = "<group>"; };
+		004D520324636FEF002F9889 /* SDLEmergencyEventTrigger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLEmergencyEventTrigger.m; sourceTree = "<group>"; };
+		004D5206246372CB002F9889 /* SDLEmergencyEventTriggerType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLEmergencyEventTriggerType.h; sourceTree = "<group>"; };
+		004D5207246372CB002F9889 /* SDLEmergencyEventTriggerType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLEmergencyEventTriggerType.m; sourceTree = "<group>"; };
+		004D520A24639766002F9889 /* SDLEmergencyEventTriggerTypeSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLEmergencyEventTriggerTypeSpec.m; sourceTree = "<group>"; };
+		004D520C24639BD1002F9889 /* SDLEmergencyEventTriggerSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLEmergencyEventTriggerSpec.m; sourceTree = "<group>"; };
 		004D51F4244BE989002F9889 /* SDLPttbPowerStateSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLPttbPowerStateSpec.m; sourceTree = "<group>"; };
 		004D51F6244BEAF7002F9889 /* SDLPttbEngOnMsgSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLPttbEngOnMsgSpec.m; sourceTree = "<group>"; };
 		004D51F8244BECC1002F9889 /* SDLPttbFaltMsgSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLPttbFaltMsgSpec.m; sourceTree = "<group>"; };
@@ -3646,6 +3658,7 @@
 				162E81F21A9BDE8A00906325 /* SDLDriverDistractionStateSpec.m */,
 				162E81F31A9BDE8A00906325 /* SDLECallConfirmationStatusSpec.m */,
 				5DD8406420FCE21A0082CE04 /* SDLElectronicParkBrakeStatusSpec.m */,
+				004D520A24639766002F9889 /* SDLEmergencyEventTriggerTypeSpec.m */,
 				162E81F41A9BDE8A00906325 /* SDLEmergencyEventTypeSpec.m */,
 				162E81F51A9BDE8A00906325 /* SDLFileTypeSpec.m */,
 				004A691F24937D870000FC68 /* SDLFrontAxleLoadRestorationSpec.m */,
@@ -3948,6 +3961,7 @@
 				162E82991A9BDE8A00906325 /* SDLDisplayCapabilitiesSpec.m */,
 				162E829A1A9BDE8A00906325 /* SDLECallInfoSpec.m */,
 				162E829B1A9BDE8A00906325 /* SDLEmergencyEventSpec.m */,
+				004D520C24639BD1002F9889 /* SDLEmergencyEventTriggerSpec.m */,
 				88B3BFA120DA911E00943565 /* SDLFuelRangeSpec.m */,
 				1EAA47752036B847000FE74B /* SDLEqualizerSettingsSpec.m */,
 				162E829C1A9BDE8A00906325 /* SDLGPSDataSpec.m */,
@@ -4856,6 +4870,8 @@
 				5D61FAAC1A84238A00846EE7 /* SDLECallInfo.m */,
 				5D61FAAD1A84238A00846EE7 /* SDLEmergencyEvent.h */,
 				5D61FAAE1A84238A00846EE7 /* SDLEmergencyEvent.m */,
+				004D520224636FEF002F9889 /* SDLEmergencyEventTrigger.h */,
+				004D520324636FEF002F9889 /* SDLEmergencyEventTrigger.m */,
 				88B3BF9A20DA8BBC00943565 /* SDLFuelRange.h */,
 				88B3BF9B20DA8BBC00943565 /* SDLFuelRange.m */,
 				1EAA4723203416D3000FE74B /* SDLEqualizerSettings.h */,
@@ -5083,6 +5099,8 @@
 				5D61FAAA1A84238A00846EE7 /* SDLECallConfirmationStatus.m */,
 				5DD8406020FCD6C10082CE04 /* SDLElectronicParkBrakeStatus.h */,
 				5DD8406120FCD6C10082CE04 /* SDLElectronicParkBrakeStatus.m */,
+				004D5206246372CB002F9889 /* SDLEmergencyEventTriggerType.h */,
+				004D5207246372CB002F9889 /* SDLEmergencyEventTriggerType.m */,
 				5D61FAAF1A84238A00846EE7 /* SDLEmergencyEventType.h */,
 				5D61FAB01A84238A00846EE7 /* SDLEmergencyEventType.m */,
 				5D61FABC1A84238A00846EE7 /* SDLFileType.h */,
@@ -6744,6 +6762,7 @@
 				1EAA473D203554B5000FE74B /* SDLLightState.h in Headers */,
 				1EAA4749203567FA000FE74B /* SDLHMISettingsControlCapabilities.h in Headers */,
 				1EAA47452035623B000FE74B /* SDLLightControlData.h in Headers */,
+				004D5208246372CB002F9889 /* SDLEmergencyEventTriggerType.h in Headers */,
 				1EAA474120355FF3000FE74B /* SDLLightControlCapabilities.h in Headers */,
 				008DB36522EA7F6F003F458C /* SDLGetInteriorVehicleDataConsentResponse.h in Headers */,
 				1EAA473920345B7A000FE74B /* SDLLightCapabilities.h in Headers */,
@@ -7217,6 +7236,7 @@
 				5D61FC431A84238C00846EE7 /* SDLAppInterfaceUnregisteredReason.h in Headers */,
 				5D61FA211A84237100846EE7 /* SmartDeviceLink.h in Headers */,
 				5D61FD711A84238C00846EE7 /* SDLRPCRequest.h in Headers */,
+				004D520424636FEF002F9889 /* SDLEmergencyEventTrigger.h in Headers */,
 				5D61FD6D1A84238C00846EE7 /* SDLRPCNotification.h in Headers */,
 				5D0A7374203F0C730001595D /* SDLTextAndGraphicManager.h in Headers */,
 				5D61FD691A84238C00846EE7 /* SDLRPCMessage.h in Headers */,
@@ -7857,6 +7877,7 @@
 				5DA150CE2271FE180032928D /* SDLSoftButtonReplaceOperation.m in Sources */,
 				88EF8EBE22D8FE5800CB06C2 /* SDLCancelInteractionResponse.m in Sources */,
 				5DE372A21ACB2ED300849FAA /* SDLHMICapabilities.m in Sources */,
+				004D520524636FEF002F9889 /* SDLEmergencyEventTrigger.m in Sources */,
 				005295BE244682E100E65B76 /* SDLPttbFaltMsg.m in Sources */,
 				5D61FDD41A84238C00846EE7 /* SDLTouchEvent.m in Sources */,
 				5D61FD881A84238C00846EE7 /* SDLSetGlobalProperties.m in Sources */,
@@ -7986,6 +8007,7 @@
 				DA318C201DD0F06C00C035AC /* NSMutableDictionary+Store.m in Sources */,
 				9F425ACF22DD97DE00BE3245 /* SDLTemplateConfiguration.m in Sources */,
 				5D7F87EC1CE3C1A1002DD7C4 /* SDLDeleteFileOperation.m in Sources */,
+				004D5209246372CB002F9889 /* SDLEmergencyEventTriggerType.m in Sources */,
 				1EB59CBC202DA1B400343A61 /* SDLSupportedSeat.m in Sources */,
 				97E26DED1E807AD70074A3C7 /* SDLMutableDataQueue.m in Sources */,
 				005295B72446810700E65B76 /* SDLPttbHwConfig.m in Sources */,
@@ -8106,6 +8128,7 @@
 				5D6EB4CC1BF28DC600693731 /* NSMapTable+SubscriptingSpec.m in Sources */,
 				88F37A4D226F84BE00DF119B /* SDLIAPDataSessionSpec.m in Sources */,
 				9FA0D00322DF06B9009CF344 /* SDLWindowTypeCapabilitiesSpec.m in Sources */,
+				004D520D24639BD1002F9889 /* SDLEmergencyEventTriggerSpec.m in Sources */,
 				162E83051A9BDE8B00906325 /* SDLVehicleDataActiveStatusSpec.m in Sources */,
 				162E82E61A9BDE8B00906325 /* SDLInteractionModeSpec.m in Sources */,
 				888F8700221DF4880052FE4C /* SDLAsynchronousRPCOperationSpec.m in Sources */,
@@ -8535,6 +8558,7 @@
 				162E83861A9BDE8B00906325 /* SDLParameterPermissionsSpec.m in Sources */,
 				9FA0CFF722DF0632009CF344 /* SDLWindowTypeSpec.m in Sources */,
 				162E831B1A9BDE8B00906325 /* SDLOnPermissionsChangeSpec.m in Sources */,
+				004D520B24639766002F9889 /* SDLEmergencyEventTriggerTypeSpec.m in Sources */,
 				162E83711A9BDE8B00906325 /* SDLAirbagStatusSpec.m in Sources */,
 				885468322225BF2800994D8D /* SDLHybridAppPreferenceSpec.m in Sources */,
 				1EE8C44A1F3846D300FDC2CF /* SDLRadioControlDataSpec.m in Sources */,

@@ -25,6 +25,7 @@ describe(@"Getter/Setter Tests", ^ {
     __block SDLECallInfo* eCall = nil;
     __block SDLAirbagStatus* airbag = nil;
     __block SDLEmergencyEvent* event = nil;
+    __block SDLEmergencyEventTrigger* emergencyEventTrigger = nil;
     __block SDLClusterModeStatus* clusterMode = nil;
     __block SDLMyKey* myKey = nil;
     __block SDLFuelRange* fuelRange = nil;
@@ -40,6 +41,7 @@ describe(@"Getter/Setter Tests", ^ {
         eCall = [[SDLECallInfo alloc] init];
         airbag = [[SDLAirbagStatus alloc] init];
         event = [[SDLEmergencyEvent alloc] init];
+        emergencyEventTrigger = [[SDLEmergencyEventTrigger alloc] init];
         clusterMode = [[SDLClusterModeStatus alloc] init];
         myKey = [[SDLMyKey alloc] init];
         fuelRange = [[SDLFuelRange alloc] init];
@@ -60,6 +62,7 @@ describe(@"Getter/Setter Tests", ^ {
         testNotification.eCallInfo = eCall;
         testNotification.electronicParkBrakeStatus = SDLElectronicParkBrakeStatusDriveActive;
         testNotification.emergencyEvent = event;
+        testNotification.emergencyEventTrigger = emergencyEventTrigger;
         testNotification.engineOilLife = @34.45;
         testNotification.engineTorque = @-200.124;
         testNotification.externalTemperature = @-10;
@@ -91,6 +94,7 @@ describe(@"Getter/Setter Tests", ^ {
         expect(testNotification.eCallInfo).to(equal(eCall));
         expect(testNotification.electronicParkBrakeStatus).to(equal(SDLElectronicParkBrakeStatusDriveActive));
         expect(testNotification.emergencyEvent).to(equal(event));
+        expect(testNotification.emergencyEventTrigger).to(equal(emergencyEventTrigger));
         expect(testNotification.engineOilLife).to(equal(@34.45));
         expect(testNotification.engineTorque).to(equal(@-200.124));
         expect(testNotification.externalTemperature).to(equal(@-10));
@@ -126,6 +130,7 @@ describe(@"Getter/Setter Tests", ^ {
                                            SDLRPCParameterNameECallInfo:eCall,
                                            SDLRPCParameterNameElectronicParkBrakeStatus:SDLElectronicParkBrakeStatusDriveActive,
                                            SDLRPCParameterNameEmergencyEvent:event,
+                                           SDLRPCParameterNameEmergencyEventTrigger:emergencyEventTrigger,
                                            SDLRPCParameterNameEngineOilLife:@45.1,
                                            SDLRPCParameterNameEngineTorque:@-200.124,
                                            SDLRPCParameterNameExternalTemperature:@-10,
@@ -162,6 +167,7 @@ describe(@"Getter/Setter Tests", ^ {
         expect(testNotification.eCallInfo).to(equal(eCall));
         expect(testNotification.electronicParkBrakeStatus).to(equal(SDLElectronicParkBrakeStatusDriveActive));
         expect(testNotification.emergencyEvent).to(equal(event));
+        expect(testNotification.emergencyEventTrigger).to(equal(emergencyEventTrigger));
         expect(testNotification.engineOilLife).to(equal(@45.1));
         expect(testNotification.engineTorque).to(equal(@-200.124));
         expect(testNotification.externalTemperature).to(equal(@-10));
@@ -197,6 +203,7 @@ describe(@"Getter/Setter Tests", ^ {
         expect(testNotification.eCallInfo).to(beNil());
         expect(testNotification.electronicParkBrakeStatus).to(beNil());
         expect(testNotification.emergencyEvent).to(beNil());
+        expect(testNotification.emergencyEventTrigger).to(beNil());
         expect(testNotification.engineOilLife).to(beNil());
         expect(testNotification.engineTorque).to(beNil());
         expect(testNotification.externalTemperature).to(beNil());
