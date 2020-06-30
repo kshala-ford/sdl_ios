@@ -21,6 +21,7 @@ describe(@"Individual Enum Value Tests", ^ {
         expect(SDLModuleTypeLight).to(equal(@"LIGHT"));
         expect(SDLModuleTypeHMISettings).to(equal(@"HMI_SETTINGS"));
         expect(SDLModuleTypePttb).to(equal(@"PTTB"));
+        expect(SDLModuleTypeObssh).to(equal(@"OBSSH"));
     });
 });
 

@@ -44,3 +44,7 @@ extern SDLModuleType const SDLModuleTypeHMISettings;
  */
 extern SDLModuleType const SDLModuleTypePttb;
 
+/**
+ * A SDLModuleType with the value of *OBSSH*
+ */
+extern SDLModuleType const SDLModuleTypeObssh;

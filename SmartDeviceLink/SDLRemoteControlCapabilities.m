@@ -8,6 +8,7 @@
 #import "SDLHMISettingsControlCapabilities.h"
 #import "SDLLightControlCapabilities.h"
 #import "SDLPttbControlCapabilities.h"
+#import "SDLObsshControlCapabilities.h"
 #import "SDLRemoteControlCapabilities.h"
 #import "SDLRadioControlCapabilities.h"
 #import "SDLSeatControlCapabilities.h"
@@ -40,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)initWithClimateControlCapabilities:(nullable NSArray<SDLClimateControlCapabilities *> *)climateControlCapabilities radioControlCapabilities:(nullable NSArray<SDLRadioControlCapabilities *> *)radioControlCapabilities buttonCapabilities:(nullable NSArray<SDLButtonCapabilities *> *)buttonCapabilities seatControlCapabilities:(nullable NSArray<SDLSeatControlCapabilities *> *)seatControlCapabilities audioControlCapabilities:(nullable NSArray<SDLAudioControlCapabilities *> *)audioControlCapabilities hmiSettingsControlCapabilities:(nullable NSArray<SDLHMISettingsControlCapabilities *> *)hmiSettingsControlCapabilities lightControlCapabilities:(nullable NSArray<SDLLightControlCapabilities *> *)lightControlCapabilities pttbControlCapabilities:(nullable NSArray<SDLPttbControlCapabilities *> *)pttbControlCapabilities {
+- (instancetype)initWithClimateControlCapabilities:(nullable NSArray<SDLClimateControlCapabilities *> *)climateControlCapabilities radioControlCapabilities:(nullable NSArray<SDLRadioControlCapabilities *> *)radioControlCapabilities buttonCapabilities:(nullable NSArray<SDLButtonCapabilities *> *)buttonCapabilities seatControlCapabilities:(nullable NSArray<SDLSeatControlCapabilities *> *)seatControlCapabilities audioControlCapabilities:(nullable NSArray<SDLAudioControlCapabilities *> *)audioControlCapabilities hmiSettingsControlCapabilities:(nullable NSArray<SDLHMISettingsControlCapabilities *> *)hmiSettingsControlCapabilities lightControlCapabilities:(nullable NSArray<SDLLightControlCapabilities *> *)lightControlCapabilities obsshControlCapabilities:(nullable NSArray<SDLObsshControlCapabilities *> *)obsshControlCapabilities pttbControlCapabilities:(nullable NSArray<SDLPttbControlCapabilities *> *)pttbControlCapabilities {
     self = [super init];
     if (!self) {
         return nil;
@@ -53,6 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.audioControlCapabilities = audioControlCapabilities;
     self.hmiSettingsControlCapabilities = hmiSettingsControlCapabilities;
     self.lightControlCapabilities = lightControlCapabilities;
+    self.obsshControlCapabilities = obsshControlCapabilities;
     self.pttbControlCapabilities = pttbControlCapabilities;
 
     return self;
@@ -150,6 +152,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable NSArray<SDLPttbControlCapabilities *> *)pttbControlCapabilities {
     SDLPttbControlCapabilities *capability = [self.store sdl_objectForName:SDLRPCParameterNamePttbControlCapabilities ofClass:SDLPttbControlCapabilities.class error:nil];
+    if (capability == nil) { return nil; }
+
+    return @[capability];
+}
+
+- (void)setObsshControlCapabilities:(nullable NSArray<SDLObsshControlCapabilities *> *)obsshControlCapabilities {
+    if (obsshControlCapabilities.count == 0) {
+        [self.store sdl_setObject:nil forName:SDLRPCParameterNameObsshControlCapabilities];
+        return;
+    }
+
+    SDLObsshControlCapabilities *capability = obsshControlCapabilities.firstObject;
+
+    [self.store sdl_setObject:capability forName:SDLRPCParameterNameObsshControlCapabilities];
+}
+
+- (nullable NSArray<SDLObsshControlCapabilities *> *)obsshControlCapabilities {
+    SDLObsshControlCapabilities *capability = [self.store sdl_objectForName:SDLRPCParameterNameObsshControlCapabilities ofClass:SDLObsshControlCapabilities.class error:nil];
     if (capability == nil) { return nil; }
 
     return @[capability];

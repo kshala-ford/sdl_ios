@@ -12,7 +12,7 @@
 @class SDLHMISettingsControlData;
 @class SDLLightControlData;
 @class SDLPttbControlData;
-
+@class SDLObsshControlData;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -84,6 +84,13 @@ NS_ASSUME_NONNULL_BEGIN
  @return An instance of the SDLModuleData class
  */
 - (instancetype)initWithPttbControlData:(SDLPttbControlData *)pttbControlData;
+ Constructs a newly allocated SDLModuleData object with obssh control data
+
+/**
+ @param obsshControlData The seat control data
+ @return An instance of the SDLModuleData class
+ */
+- (instancetype)initWithObsshControlData:(SDLObsshControlData *)obsshControlData;
 
 /**
  The moduleType indicates which type of data should be changed and identifies which data object exists in this struct.
@@ -150,6 +157,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nullable, strong, nonatomic) SDLPttbControlData *pttbControlData;
 
+/**
+ The obssh control data
+
+ Optional
+ */
+@property (nullable, strong, nonatomic) SDLObsshControlData *obsshControlData;
 
 @end
 
