@@ -47,12 +47,13 @@ describe(@"Getter/Setter Tests", ^ {
         testResponse.eCallInfo = vehicleDataResult;
         testResponse.airbagStatus = vehicleDataResult;
         testResponse.emergencyEvent = vehicleDataResult;
+        testResponse.emergencyEventTrigger = vehicleDataResult;
         testResponse.clusterModes = vehicleDataResult;
         testResponse.myKey = vehicleDataResult;
         testResponse.electronicParkBrakeStatus = vehicleDataResult;
         testResponse.turnSignal = vehicleDataResult;
         testResponse.cloudAppVehicleID = vehicleDataResult;
-        
+
         expect(testResponse.gps).to(equal(vehicleDataResult));
         expect(testResponse.speed).to(equal(vehicleDataResult));
         expect(testResponse.rpm).to(equal(vehicleDataResult));
@@ -77,6 +78,7 @@ describe(@"Getter/Setter Tests", ^ {
         expect(testResponse.eCallInfo).to(equal(vehicleDataResult));
         expect(testResponse.airbagStatus).to(equal(vehicleDataResult));
         expect(testResponse.emergencyEvent).to(equal(vehicleDataResult));
+        expect(testResponse.emergencyEventTrigger).to(equal(vehicleDataResult));
         expect(testResponse.clusterModes).to(equal(vehicleDataResult));
         expect(testResponse.myKey).to(equal(vehicleDataResult));
         expect(testResponse.electronicParkBrakeStatus).to(equal(vehicleDataResult));
@@ -111,11 +113,12 @@ describe(@"Getter/Setter Tests", ^ {
                                                                    SDLRPCParameterNameECallInfo:vehicleDataResult,
                                                                    SDLRPCParameterNameAirbagStatus:vehicleDataResult,
                                                                    SDLRPCParameterNameEmergencyEvent:vehicleDataResult,
+                                                                   SDLRPCParameterNameEmergencyEventTrigger:vehicleDataResult,
                                                                    SDLRPCParameterNameClusterModes:vehicleDataResult,
                                                                    SDLRPCParameterNameMyKey:vehicleDataResult,
                                                                    SDLRPCParameterNameElectronicParkBrakeStatus:vehicleDataResult,
                                                                    SDLRPCParameterNameTurnSignal:vehicleDataResult,
-                                                                   SDLRPCParameterNameCloudAppVehicleID:vehicleDataResult
+                                                                   SDLRPCParameterNameCloudAppVehicleID:vehicleDataResult,
                                                                    },
                                                              SDLRPCParameterNameOperationName:SDLRPCFunctionNameUnsubscribeVehicleData}} mutableCopy];
 #pragma clang diagnostic push
@@ -147,6 +150,7 @@ describe(@"Getter/Setter Tests", ^ {
         expect(testResponse.eCallInfo).to(equal(vehicleDataResult));
         expect(testResponse.airbagStatus).to(equal(vehicleDataResult));
         expect(testResponse.emergencyEvent).to(equal(vehicleDataResult));
+        expect(testResponse.emergencyEventTrigger).to(equal(vehicleDataResult));
         expect(testResponse.clusterModes).to(equal(vehicleDataResult));
         expect(testResponse.myKey).to(equal(vehicleDataResult));
         expect(testResponse.electronicParkBrakeStatus).to(equal(vehicleDataResult));
@@ -181,6 +185,7 @@ describe(@"Getter/Setter Tests", ^ {
         expect(testResponse.eCallInfo).to(beNil());
         expect(testResponse.airbagStatus).to(beNil());
         expect(testResponse.emergencyEvent).to(beNil());
+        expect(testResponse.emergencyEventTrigger).to(beNil());
         expect(testResponse.clusterModes).to(beNil());
         expect(testResponse.myKey).to(beNil());
         expect(testResponse.electronicParkBrakeStatus).to(beNil());

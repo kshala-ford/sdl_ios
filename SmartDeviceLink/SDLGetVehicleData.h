@@ -120,7 +120,45 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param wiperStatus                 Get wiperStatus data
  *  @return                            A SDLGetVehicleData object
  */
-- (instancetype)initWithAccelerationPedalPosition:(BOOL)accelerationPedalPosition airbagStatus:(BOOL)airbagStatus beltStatus:(BOOL)beltStatus bodyInformation:(BOOL)bodyInformation cloudAppVehicleID:(BOOL)cloudAppVehicleID clusterModeStatus:(BOOL)clusterModeStatus deviceStatus:(BOOL)deviceStatus driverBraking:(BOOL)driverBraking eCallInfo:(BOOL)eCallInfo electronicParkBrakeStatus:(BOOL)electronicParkBrakeStatus emergencyEvent:(BOOL)emergencyEvent engineOilLife:(BOOL)engineOilLife engineTorque:(BOOL)engineTorque externalTemperature:(BOOL)externalTemperature fuelLevel:(BOOL)fuelLevel fuelLevelState:(BOOL)fuelLevelState fuelRange:(BOOL)fuelRange gps:(BOOL)gps headLampStatus:(BOOL)headLampStatus instantFuelConsumption:(BOOL)instantFuelConsumption myKey:(BOOL)myKey odometer:(BOOL)odometer prndl:(BOOL)prndl rpm:(BOOL)rpm speed:(BOOL)speed steeringWheelAngle:(BOOL)steeringWheelAngle tirePressure:(BOOL)tirePressure turnSignal:(BOOL)turnSignal vin:(BOOL)vin wiperStatus:(BOOL)wiperStatus;
+- (instancetype)initWithAccelerationPedalPosition:(BOOL)accelerationPedalPosition airbagStatus:(BOOL)airbagStatus beltStatus:(BOOL)beltStatus bodyInformation:(BOOL)bodyInformation cloudAppVehicleID:(BOOL)cloudAppVehicleID clusterModeStatus:(BOOL)clusterModeStatus deviceStatus:(BOOL)deviceStatus driverBraking:(BOOL)driverBraking eCallInfo:(BOOL)eCallInfo electronicParkBrakeStatus:(BOOL)electronicParkBrakeStatus emergencyEvent:(BOOL)emergencyEvent engineOilLife:(BOOL)engineOilLife engineTorque:(BOOL)engineTorque externalTemperature:(BOOL)externalTemperature fuelLevel:(BOOL)fuelLevel fuelLevelState:(BOOL)fuelLevelState fuelRange:(BOOL)fuelRange gps:(BOOL)gps headLampStatus:(BOOL)headLampStatus instantFuelConsumption:(BOOL)instantFuelConsumption myKey:(BOOL)myKey odometer:(BOOL)odometer prndl:(BOOL)prndl rpm:(BOOL)rpm speed:(BOOL)speed steeringWheelAngle:(BOOL)steeringWheelAngle tirePressure:(BOOL)tirePressure turnSignal:(BOOL)turnSignal vin:(BOOL)vin wiperStatus:(BOOL)wiperStatus __deprecated_msg("Use initWithAccelerationPedalPosition:airbagStatus:beltStatus:bodyInformation:cloudAppVehicleID:clusterModeStatus:deviceStatus:driverBraking:eCallInfo:electronicParkBrakeStatus:emergencyEvent:engineOilLife:engineTorque:externalTemperature:fuelLevel:fuelLevelState:fuelRange:gps:headLampStatus:instantFuelConsumption:myKey:odometer:prndl:rpm:speed:steeringWheelAngle:tirePressure:turnSignal:wiperStatus: emergencyEventTrigger: instead");
+
+/**
+ *  Convenience init for getting data for all possible vehicle data items.
+ *
+ *  @param accelerationPedalPosition   Get accelerationPedalPosition data
+ *  @param airbagStatus                Get airbagStatus data
+ *  @param beltStatus                  Get beltStatus data
+ *  @param bodyInformation             Get bodyInformation data
+ *  @param cloudAppVehicleID           Get cloudAppVehicleID data
+ *  @param clusterModeStatus           Get clusterModeStatus data
+ *  @param deviceStatus                Get deviceStatus data
+ *  @param driverBraking               Get driverBraking data
+ *  @param eCallInfo                   Get eCallInfo data
+ *  @param electronicParkBrakeStatus   Get electronicParkBrakeStatus data
+ *  @param emergencyEvent              Get emergencyEvent data
+ *  @param engineOilLife               Get engineOilLife data
+ *  @param engineTorque                Get engineTorque data
+ *  @param externalTemperature         Get externalTemperature data
+ *  @param fuelLevel                   Get fuelLevel data
+ *  @param fuelLevelState              Get fuelLevelState data
+ *  @param fuelRange                   Get fuelRange data
+ *  @param gps                         Get gps data
+ *  @param headLampStatus              Get headLampStatus data
+ *  @param instantFuelConsumption      Get instantFuelConsumption data
+ *  @param myKey                       Get myKey data
+ *  @param odometer                    Get odometer data
+ *  @param prndl                       Get prndl data
+ *  @param rpm                         Get rpm data
+ *  @param speed                       Get speed data
+ *  @param steeringWheelAngle          Get steeringWheelAngle data
+ *  @param tirePressure                Get tirePressure data
+ *  @param turnSignal                  Get turnSignal data
+ *  @param vin                         Get vin data
+ *  @param wiperStatus                 Get wiperStatus data
+ *  @param emergencyEventTrigger       Get emergencyEventTrigger data
+ *  @return                            A SDLGetVehicleData object
+ */
+- (instancetype)initWithAccelerationPedalPosition:(BOOL)accelerationPedalPosition airbagStatus:(BOOL)airbagStatus beltStatus:(BOOL)beltStatus bodyInformation:(BOOL)bodyInformation cloudAppVehicleID:(BOOL)cloudAppVehicleID clusterModeStatus:(BOOL)clusterModeStatus deviceStatus:(BOOL)deviceStatus driverBraking:(BOOL)driverBraking eCallInfo:(BOOL)eCallInfo electronicParkBrakeStatus:(BOOL)electronicParkBrakeStatus emergencyEvent:(BOOL)emergencyEvent engineOilLife:(BOOL)engineOilLife engineTorque:(BOOL)engineTorque externalTemperature:(BOOL)externalTemperature fuelLevel:(BOOL)fuelLevel fuelLevelState:(BOOL)fuelLevelState fuelRange:(BOOL)fuelRange gps:(BOOL)gps headLampStatus:(BOOL)headLampStatus instantFuelConsumption:(BOOL)instantFuelConsumption myKey:(BOOL)myKey odometer:(BOOL)odometer prndl:(BOOL)prndl rpm:(BOOL)rpm speed:(BOOL)speed steeringWheelAngle:(BOOL)steeringWheelAngle tirePressure:(BOOL)tirePressure turnSignal:(BOOL)turnSignal vin:(BOOL)vin wiperStatus:(BOOL)wiperStatus emergencyEventTrigger:(BOOL)emergencyEventTrigger;
 
 /**
  * A boolean value. If true, requests GPS data.
@@ -291,6 +329,11 @@ NS_ASSUME_NONNULL_BEGIN
   Added in SmartDeviceLink 6.0
  */
 - (nullable NSNumber<SDLBool> *)getOEMCustomVehicleData:(NSString *)vehicleDataName;
+
+/**
+ Additional signal Information related to an emergency event triggers.
+ */
+@property (nullable, strong, nonatomic) NSNumber<SDLBool> *emergencyEventTrigger;
 
 @end
 

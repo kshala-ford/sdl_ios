@@ -10,6 +10,8 @@
 #import "SDLAudioControlData.h"
 #import "SDLLightControlData.h"
 #import "SDLHMISettingsControlData.h"
+#import "SDLPttbControlData.h"
+#import "SDLObsshControlData.h"
 #import "NSMutableDictionary+Store.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -76,6 +78,18 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (instancetype)initWithPTTBControlData:(SDLPttbControlData *)pttbControlData {
+    self = [self init];
+    if(!self){
+        return nil;
+    }
+
+    self.moduleType = SDLModuleTypePttb;
+    self.pttbControlData = pttbControlData;
+
+    return self;
+}
+
 - (instancetype)initWithSeatControlData:(SDLSeatControlData *)seatControlData {
     self = [self init];
     if(!self){
@@ -84,6 +98,30 @@ NS_ASSUME_NONNULL_BEGIN
 
     self.moduleType = SDLModuleTypeSeat;
     self.seatControlData = seatControlData;
+
+    return self;
+}
+
+- (instancetype)initWithPttbControlData:(SDLPttbControlData *)pttbControlData {
+    self = [self init];
+    if(!self){
+        return nil;
+    }
+
+    self.moduleType = SDLModuleTypeSeat;
+    self.pttbControlData = pttbControlData;
+
+    return self;
+}
+
+- (instancetype)initWithObsshControlData:(SDLObsshControlData *)obsshControlData {
+    self = [self init];
+    if(!self){
+        return nil;
+    }
+
+    self.moduleType = SDLModuleTypeObssh;
+    self.obsshControlData = obsshControlData;
 
     return self;
 }
@@ -152,6 +190,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable SDLHMISettingsControlData *)hmiSettingsControlData {
     return [self.store sdl_objectForName:SDLRPCParameterNameHmiSettingsControlData ofClass:SDLHMISettingsControlData.class error:nil];
+}
+
+- (void)setPttbControlData:(nullable SDLPttbControlData *)pttbControlData {
+    [self.store sdl_setObject:pttbControlData forName:SDLRPCParameterNamePttbControlData];
+}
+
+- (nullable SDLPttbControlData *)pttbControlData {
+    return [self.store sdl_objectForName:SDLRPCParameterNamePttbControlData ofClass:SDLPttbControlData.class error:nil];
+}
+
+- (void)setObsshControlData:(nullable SDLObsshControlData *)obsshControlData {
+    [self.store sdl_setObject:obsshControlData forName:SDLRPCParameterNameObsshControlData];
+}
+
+- (nullable SDLObsshControlData *)obsshControlData {
+    return [self.store sdl_objectForName:SDLRPCParameterNameObsshControlData ofClass:SDLObsshControlData.class error:nil];
 }
 
 @end
