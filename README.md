@@ -19,3 +19,11 @@ Change List:
 [Add XEVO Markeplace Support](https://github.ford.com/FordMobile/sdl_ios/pull/9)
 
 [Add SYNC 4 Property](https://github.ford.com/FordMobile/sdl_ag/pull/26)
+
+[Add Power to the Box](https://github.ford.com/FordMobile/sdl_ios/pull/21)
+
+[Add Emergency Event Trigger](https://github.ford.com/FordMobile/sdl_ios/pull/24)
+
+[Add On Board Scale Smart Hitch](https://github.ford.com/FordMobile/sdl_ios/pull/27)
+
+[Add On Board Scale Smart Hitch](https://github.ford.com/FordMobile/sdl_ios/pull/27)
