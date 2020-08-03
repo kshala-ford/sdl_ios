@@ -25,5 +25,3 @@ Change List:
 [Add Emergency Event Trigger](https://github.ford.com/FordMobile/sdl_ios/pull/24)
 
 [Add On Board Scale Smart Hitch](https://github.ford.com/FordMobile/sdl_ios/pull/27)
-
-[Add On Board Scale Smart Hitch](https://github.ford.com/FordMobile/sdl_ios/pull/27)
