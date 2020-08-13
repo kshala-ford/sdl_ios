@@ -118,6 +118,9 @@ NS_ASSUME_NONNULL_BEGIN
     return self.lifecycleManager.rpcOperationQueue.operations;
 }
 
+- (SDLNotificationDispatcher *)notificationDispatcher {
+    return self.lifecycleManager.notificationDispatcher;
+}
 
 #pragma mark SDLConnectionManager Protocol
 

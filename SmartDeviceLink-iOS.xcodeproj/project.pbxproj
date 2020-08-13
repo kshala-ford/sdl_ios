@@ -1635,6 +1635,9 @@
 		DAC5726C1D11B4840004288B /* SDLTouchManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DAC5725F1D10BD690004288B /* SDLTouchManagerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E4139D1D1F6017770005B6EA /* SDLLifecycleConfigurationUpdate.h in Headers */ = {isa = PBXBuildFile; fileRef = E4139D1B1F6017770005B6EA /* SDLLifecycleConfigurationUpdate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E4139D1E1F6017770005B6EA /* SDLLifecycleConfigurationUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4139D1C1F6017770005B6EA /* SDLLifecycleConfigurationUpdate.m */; };
+		E446809A23C6054B00E10AF7 /* SDLAudioIOManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E446809723C6054B00E10AF7 /* SDLAudioIOManager.m */; };
+		E484740C24E540C000AEC224 /* SDLAudioIOManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E446809623C6054B00E10AF7 /* SDLAudioIOManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E484740D24E540C000AEC224 /* SDLAudioIOManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E446809823C6054B00E10AF7 /* SDLAudioIOManagerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E9C32B911AB20BA200F283AF /* SDLIAPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = E9C32B891AB20BA200F283AF /* SDLIAPSession.h */; };
 		E9C32B921AB20BA200F283AF /* SDLIAPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C32B8A1AB20BA200F283AF /* SDLIAPSession.m */; };
 		E9C32B961AB20BA200F283AF /* SDLTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = E9C32B8E1AB20BA200F283AF /* SDLTimer.h */; };
@@ -3422,6 +3425,9 @@
 		DAC572651D10C5640004288B /* CGPoint_Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPoint_Util.h; sourceTree = "<group>"; };
 		E4139D1B1F6017770005B6EA /* SDLLifecycleConfigurationUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLLifecycleConfigurationUpdate.h; sourceTree = "<group>"; };
 		E4139D1C1F6017770005B6EA /* SDLLifecycleConfigurationUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLLifecycleConfigurationUpdate.m; sourceTree = "<group>"; };
+		E446809623C6054B00E10AF7 /* SDLAudioIOManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDLAudioIOManager.h; path = SmartDeviceLink/SDLAudioIOManager.h; sourceTree = SOURCE_ROOT; };
+		E446809723C6054B00E10AF7 /* SDLAudioIOManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDLAudioIOManager.m; path = SmartDeviceLink/SDLAudioIOManager.m; sourceTree = SOURCE_ROOT; };
+		E446809823C6054B00E10AF7 /* SDLAudioIOManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDLAudioIOManagerDelegate.h; path = SmartDeviceLink/SDLAudioIOManagerDelegate.h; sourceTree = SOURCE_ROOT; };
 		E9C32B891AB20BA200F283AF /* SDLIAPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLIAPSession.h; sourceTree = "<group>"; };
 		E9C32B8A1AB20BA200F283AF /* SDLIAPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLIAPSession.m; sourceTree = "<group>"; };
 		E9C32B8E1AB20BA200F283AF /* SDLTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLTimer.h; sourceTree = "<group>"; };
@@ -4270,6 +4276,9 @@
 		5D23C9441FCF59F400002CA5 /* AudioManager */ = {
 			isa = PBXGroup;
 			children = (
+				E446809623C6054B00E10AF7 /* SDLAudioIOManager.h */,
+				E446809723C6054B00E10AF7 /* SDLAudioIOManager.m */,
+				E446809823C6054B00E10AF7 /* SDLAudioIOManagerDelegate.h */,
 				5D9FC29C1FD8813900ACA5C2 /* SDLAudioStreamManager.h */,
 				5D9FC29D1FD8813900ACA5C2 /* SDLAudioStreamManager.m */,
 				5D9FC29A1FD8812E00ACA5C2 /* SDLAudioStreamManagerDelegate.h */,
@@ -6713,6 +6722,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E484740C24E540C000AEC224 /* SDLAudioIOManager.h in Headers */,
+				E484740D24E540C000AEC224 /* SDLAudioIOManagerDelegate.h in Headers */,
 				106412C824A13F160069A97A /* SDLPermissionManager.h in Headers */,
 				106412C6249FB80B0069A97A /* SDLPermissionElement.h in Headers */,
 				9F425AD222DD980200BE3245 /* SDLWindowCapability.h in Headers */,
@@ -7406,6 +7417,7 @@
 					5D61FA251A84237100846EE7 = {
 						CreatedOnToolsVersion = 6.1.1;
 						LastSwiftMigration = 1020;
+						ProvisioningStyle = Manual;
 					};
 					8829567D207CF68800EF056C = {
 						LastSwiftMigration = 0930;
@@ -7937,6 +7949,7 @@
 				5D61FCEB1A84238C00846EE7 /* SDLLayoutMode.m in Sources */,
 				5D61FC2E1A84238C00846EE7 /* SDLAddCommand.m in Sources */,
 				5D1665C51CF8CA2700CC4CA1 /* SDLListFilesOperation.m in Sources */,
+				E446809A23C6054B00E10AF7 /* SDLAudioIOManager.m in Sources */,
 				8B9376D81F3349FC009605C4 /* SDLMetadataTags.m in Sources */,
 				5D61FE021A84238C00846EE7 /* SDLVehicleDataNotificationStatus.m in Sources */,
 				5D61FDD81A84238C00846EE7 /* SDLTouchType.m in Sources */,
@@ -8840,6 +8853,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -8866,6 +8880,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				VERSION_INFO_SUFFIX = custom;
 			};
 			name = Debug;
 		};
@@ -8889,6 +8904,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -8910,6 +8926,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				VERSION_INFO_SUFFIX = custom;
 			};
 			name = Release;
 		};
@@ -8919,7 +8936,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NCVC2MHU7M;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -8944,6 +8962,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.smartdevicelink.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -8955,7 +8975,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NCVC2MHU7M;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -8976,6 +8997,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.smartdevicelink.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

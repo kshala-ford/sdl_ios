@@ -105,6 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - SDLNavigationLockScreenManager Notifications
 - (void)sdl_willPresentLockScreenViewController:(NSNotification *)notification {
+    self.lockScreenBeingDismissed = NO;
     self.lockScreenPresenting = YES;
 }
 
@@ -113,6 +114,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)sdl_willDismissLockScreenViewController:(NSNotification *)notification {
+    self.lockScreenPresenting = NO;
     self.lockScreenBeingDismissed = YES;
 }
 

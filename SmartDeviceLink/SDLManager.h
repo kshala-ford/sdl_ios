@@ -11,6 +11,7 @@
 @class SDLFileManager;
 @class SDLLifecycleConfiguration;
 @class SDLLockScreenConfiguration;
+@class SDLNotificationDispatcher;
 @class SDLPermissionManager;
 @class SDLProxy;
 @class SDLPutFile;
@@ -102,6 +103,7 @@ typedef void (^SDLManagerReadyBlock)(BOOL success, NSError *_Nullable error);
  */
 @property (copy, nonatomic, readonly) NSArray<__kindof NSOperation *> *pendingRPCTransactions;
 
+@property (strong, nonatomic, readonly) SDLNotificationDispatcher *notificationDispatcher;
 
 #pragma mark Lifecycle
 
