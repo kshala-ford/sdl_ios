@@ -25,3 +25,10 @@ Change List:
 [Add Emergency Event Trigger](https://github.ford.com/FordMobile/sdl_ios/pull/24)
 
 [Add On Board Scale Smart Hitch](https://github.ford.com/FordMobile/sdl_ios/pull/27)
+
+Merge SDL:
+
+```swift
+git remote set-url origin https://github.com/smartdevicelink/sdl_ios.git
+git fetch
+```
