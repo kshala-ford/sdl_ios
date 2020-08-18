@@ -31,7 +31,9 @@ Merge SDL:
 ```swift
 git remote set-url origin https://github.com/smartdevicelink/sdl_ios.git
 git fetch
-...merge...
+git checkout master
+...merge...resolve conflicts...
 git remote set-url origin git@github.ford.com:FordMobile/sdl_ios.git
 git remote -v
+...commit...push...
 ```
