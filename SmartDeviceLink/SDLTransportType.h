@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (EAAccessory *_Nullable)accessory;
 
 - (void)connect;
-- (void)disconnect;
+- (void)disconnectWithCompletionHandler:(void (^)(void))disconnectCompletionHandler;
 - (void)sendData:(NSData *)dataToSend;
 
 @end

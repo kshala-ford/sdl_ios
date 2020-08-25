@@ -7,7 +7,7 @@
 //
 //  ACVL_Modified_SDL_File
 
-#import "SDLProtocolListener.h"
+#import "SDLProtocolDelegate.h"
 #import "SDLStreamingProtocolDelegate.h"
 
 @class SDLControlFramePayloadRPCStartServiceAck;
@@ -35,7 +35,7 @@ extern SDLSecondaryTransportState *const SDLSecondaryTransportStateReconnecting;
  manager with appropriate SDLProtocol instance. When the secondary transport is
  disconnected, this manager retries connection with a regular interval.
  */
-@interface SDLSecondaryTransportManager : NSObject <SDLProtocolListener>
+@interface SDLSecondaryTransportManager : NSObject <SDLProtocolDelegate>
 
 /// Create a new secondary transport manager.
 /// @param streamingProtocolDelegate a delegate to handle updates on protocol instances
@@ -48,11 +48,13 @@ extern SDLSecondaryTransportState *const SDLSecondaryTransportStateReconnecting;
 /// @param primaryProtocol The protocol that runs on the main (primary) transport
 - (void)startWithPrimaryProtocol:(SDLProtocol *)primaryProtocol;
 
-/// Stop the manager.
-- (void)stop;
+/// Stop the manager
+/// @param completionHandler Handler called when the manager has shutdown
+- (void)stopWithCompletionHandler:(void (^)(void))completionHandler;
 
 /// Destroys the secondary transport.
-- (BOOL)disconnectSecondaryTransport;
+/// @param completionHandler Handler called when the session has been destroyed
+- (void)disconnectSecondaryTransportWithCompletionHandler:(void (^)(void))completionHandler;
 
 @end
 

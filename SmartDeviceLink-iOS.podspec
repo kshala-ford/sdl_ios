@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "SmartDeviceLink-iOS"
-s.version      = "6.6.0"
+s.version      = "6.7.0"
 s.summary      = "Connect your app with cars!"
 s.homepage     = "https://github.com/smartdevicelink/SmartDeviceLink-iOS"
 s.license      = { :type => "New BSD", :file => "LICENSE" }
@@ -12,12 +12,9 @@ s.source       = { :git => "https://github.com/smartdevicelink/sdl_ios.git", :ta
 s.requires_arc = true
 s.resource_bundles = { 'SmartDeviceLink' => ['SmartDeviceLink/Assets/**/*'] }
 
-s.default_subspecs = 'Default'
+s.source_files = 'SmartDeviceLink/*.{h,m}'
 
-s.subspec 'Default' do |ss|
-ss.source_files = 'SmartDeviceLink/*.{h,m}'
-
-ss.public_header_files = [
+s.public_header_files = [
 'SmartDeviceLink/NSNumber+NumberType.h',
 'SmartDeviceLink/SDLAddCommand.h',
 'SmartDeviceLink/SDLAddCommandResponse.h',
@@ -42,8 +39,8 @@ ss.public_header_files = [
 'SmartDeviceLink/SDLArtwork.h',
 'SmartDeviceLink/SDLAudioControlData.h',
 'SmartDeviceLink/SDLAudioControlCapabilities.h',
-'SmartDeviceLink/SDLAudioFile.h',
 'SmartDeviceLink/SDLAudioPassThruCapabilities.h',
+'SmartDeviceLink/SDLAudioFile.h',
 'SmartDeviceLink/SDLAudioStreamingState.h',
 'SmartDeviceLink/SDLAudioStreamingIndicator.h',
 'SmartDeviceLink/SDLAudioStreamManager.h',
@@ -104,12 +101,12 @@ ss.public_header_files = [
 'SmartDeviceLink/SDLDialNumberResponse.h',
 'SmartDeviceLink/SDLDIDResult.h',
 'SmartDeviceLink/SDLDimension.h',
+'SmartDeviceLink/SDLDirection.h',
 'SmartDeviceLink/SDLDisplayCapability.h',
 'SmartDeviceLink/SDLDisplayCapabilities.h',
 'SmartDeviceLink/SDLDisplayMode.h',
 'SmartDeviceLink/SDLDisplayType.h',
 'SmartDeviceLink/SDLDistanceUnit.h',
-'SmartDeviceLink/SDLDirection.h',
 'SmartDeviceLink/SDLDriverDistractionState.h',
 'SmartDeviceLink/SDLECallConfirmationStatus.h',
 'SmartDeviceLink/SDLECallInfo.h',
@@ -138,11 +135,11 @@ ss.public_header_files = [
 'SmartDeviceLink/SDLFuelType.h',
 'SmartDeviceLink/SDLFunctionID.h',
 'SmartDeviceLink/SDLGenericResponse.h',
-'SmartDeviceLink/SDLGetCloudAppProperties.h',
-'SmartDeviceLink/SDLGetCloudAppPropertiesResponse.h',
 'SmartDeviceLink/SDLGetAppServiceData.h',
 'SmartDeviceLink/SDLGetAppServiceDataResponse.h',
 'SmartDeviceLink/SDLGetDTCs.h',
+'SmartDeviceLink/SDLGetCloudAppProperties.h',
+'SmartDeviceLink/SDLGetCloudAppPropertiesResponse.h',
 'SmartDeviceLink/SDLGetDTCsResponse.h',
 'SmartDeviceLink/SDLGetFile.h',
 'SmartDeviceLink/SDLGetFileResponse.h',
@@ -208,15 +205,15 @@ ss.public_header_files = [
 'SmartDeviceLink/SDLLogTargetAppleSystemLog.h',
 'SmartDeviceLink/SDLLogTargetFile.h',
 'SmartDeviceLink/SDLLogTargetOSLog.h',
+'SmartDeviceLink/SDLMacros.h',
+'SmartDeviceLink/SDLMaintenanceModeStatus.h',
+'SmartDeviceLink/SDLManager.h',
+'SmartDeviceLink/SDLManagerDelegate.h',
 'SmartDeviceLink/SDLMassageCushionFirmness.h',
 'SmartDeviceLink/SDLMassageModeData.h',
 'SmartDeviceLink/SDLMassageCushion.h',
 'SmartDeviceLink/SDLMassageMode.h',
 'SmartDeviceLink/SDLMassageZone.h',
-'SmartDeviceLink/SDLMacros.h',
-'SmartDeviceLink/SDLMaintenanceModeStatus.h',
-'SmartDeviceLink/SDLManager.h',
-'SmartDeviceLink/SDLManagerDelegate.h',
 'SmartDeviceLink/SDLMediaClockFormat.h',
 'SmartDeviceLink/SDLMediaServiceData.h',
 'SmartDeviceLink/SDLMediaServiceManifest.h',
@@ -274,6 +271,7 @@ ss.public_header_files = [
 'SmartDeviceLink/SDLPerformInteraction.h',
 'SmartDeviceLink/SDLPerformInteractionResponse.h',
 'SmartDeviceLink/SDLPermissionConstants.h',
+'SmartDeviceLink/SDLPermissionElement.h',
 'SmartDeviceLink/SDLPermissionItem.h',
 'SmartDeviceLink/SDLPermissionManager.h',
 'SmartDeviceLink/SDLPermissionStatus.h',
@@ -323,6 +321,7 @@ ss.public_header_files = [
 'SmartDeviceLink/SDLRPCMessageType.h',
 'SmartDeviceLink/SDLRPCNotification.h',
 'SmartDeviceLink/SDLRPCNotificationNotification.h',
+'SmartDeviceLink/SDLRPCPermissionStatus.h',
 'SmartDeviceLink/SDLRPCRequest.h',
 'SmartDeviceLink/SDLRPCRequestNotification.h',
 'SmartDeviceLink/SDLRPCResponse.h',
@@ -340,7 +339,6 @@ ss.public_header_files = [
 'SmartDeviceLink/SDLSeatLocationCapability.h',
 'SmartDeviceLink/SDLSeatMemoryAction.h',
 'SmartDeviceLink/SDLSeatMemoryActionType.h',
-'SmartDeviceLink/SDLSupportedSeat.h',
 'SmartDeviceLink/SDLSecurityType.h',
 'SmartDeviceLink/SDLSendHapticData.h',
 'SmartDeviceLink/SDLSendHapticDataResponse.h',
@@ -392,6 +390,7 @@ ss.public_header_files = [
 'SmartDeviceLink/SDLSubscribeVehicleDataResponse.h',
 'SmartDeviceLink/SDLSubscribeWaypoints.h',
 'SmartDeviceLink/SDLSubscribeWaypointsResponse.h',
+'SmartDeviceLink/SDLSupportedSeat.h',
 'SmartDeviceLink/SDLSyncMsgVersion.h',
 'SmartDeviceLink/SDLMsgVersion.h',
 'SmartDeviceLink/SDLSyncPData.h',
@@ -470,6 +469,5 @@ ss.public_header_files = [
 'SmartDeviceLink/SDLWindowTypeCapabilities.h',
 'SmartDeviceLink/SmartDeviceLink.h',
 ]
-end
 
 end
