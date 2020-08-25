@@ -19,3 +19,21 @@ Change List:
 [Add XEVO Markeplace Support](https://github.ford.com/FordMobile/sdl_ios/pull/9)
 
 [Add SYNC 4 Property](https://github.ford.com/FordMobile/sdl_ag/pull/26)
+
+[Add Power to the Box](https://github.ford.com/FordMobile/sdl_ios/pull/21)
+
+[Add Emergency Event Trigger](https://github.ford.com/FordMobile/sdl_ios/pull/24)
+
+[Add On Board Scale Smart Hitch](https://github.ford.com/FordMobile/sdl_ios/pull/27)
+
+Merge SDL:
+
+```swift
+git remote set-url origin https://github.com/smartdevicelink/sdl_ios.git
+git fetch
+git checkout master
+...merge...resolve conflicts...
+git remote set-url origin git@github.ford.com:FordMobile/sdl_ios.git
+git remote -v
+...commit...push...
+```
