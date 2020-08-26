@@ -198,6 +198,7 @@ NS_ASSUME_NONNULL_BEGIN
   */
 - (void)startVideoWithProtocol:(SDLProtocol *)protocol __deprecated_msg("Use startWithProtocol: instead");
 
+- (void)setBackgroundingString:(NSString *)string __deprecated_msg("This method is depreaced.");
 
 @end
 

@@ -220,6 +220,10 @@ NS_ASSUME_NONNULL_BEGIN
     self.videoStarted = YES;
 }
 
+- (void)setBackgroundingString:(NSString *)string {
+    
+}
+
 
 #pragma mark - Getters
 
