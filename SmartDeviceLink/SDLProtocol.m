@@ -554,13 +554,28 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)protocol:(SDLProtocol *)protocol didReceiveStartServiceNAK:(SDLProtocolMessage *)startServiceNAK {
     [self sdl_logControlNAKPayload:startServiceNAK];
+    
+    dispatch_group_t serviceNakTask = dispatch_group_create();
+    dispatch_group_enter(serviceNakTask);
+    
+    if (startServiceNAK.header.encrypted) {
+        dispatch_group_enter(serviceNakTask);
+        [self.securityManager stop];
+        [self.securityManager initializeWithAppId:self.appId completionHandler:^(NSError * _Nullable error) {
+            dispatch_group_leave(serviceNakTask);
+        }];
+    }
+    
+    dispatch_group_leave(serviceNakTask);
 
+    dispatch_group_notify(serviceNakTask, [SDLGlobals sharedGlobals].sdlProcessingQueue, ^{
     NSArray<id<SDLProtocolDelegate>> *listeners = [self sdl_getProtocolListeners];
     for (id<SDLProtocolDelegate> listener in listeners) {
         if ([listener respondsToSelector:@selector(protocol:didReceiveStartServiceNAK:)]) {
             [listener protocol:protocol didReceiveStartServiceNAK:startServiceNAK];
         }
     }
+    });
 }
 
 - (void)protocol:(SDLProtocol *)protocol didReceiveEndServiceACK:(SDLProtocolMessage *)endServiceACK {
