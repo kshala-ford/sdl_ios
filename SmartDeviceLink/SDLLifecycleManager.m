@@ -112,7 +112,6 @@ NSString *const BackgroundTaskTransportName = @"com.sdl.transport.backgroundTask
 @property (copy, nonatomic) dispatch_queue_t lifecycleQueue;
 @property (assign, nonatomic) int32_t lastCorrelationId;
 @property (copy, nonatomic) SDLBackgroundTaskManager *backgroundTaskManager;
-@property (copy, nonatomic) SDLEncryptionLifecycleManager *encryptionLifecycleManager;
 @property (assign, nonatomic) BOOL marketplaceApp;
 @property (strong, nonatomic) SDLLanguage currentVRLanguage;
 
@@ -133,7 +132,7 @@ NSString *const Sync4String = @"SYNC 4";
 #pragma mark Lifecycle
 
 - (instancetype)init {
-    return [self initWithConfiguration:[SDLConfiguration configurationWithLifecycle:[SDLLifecycleConfiguration defaultConfigurationWithAppName:@"SDL APP" fullAppId:@"001"] lockScreen:[SDLLockScreenConfiguration disabledConfiguration] logging:[SDLLogConfiguration defaultConfiguration] fileManager:[SDLFileManagerConfiguration defaultConfiguration] encryption:nil] delegate:nil marketplaceApp:NO];
+    return [self initWithConfiguration:[[SDLConfiguration alloc] initWithLifecycle:[SDLLifecycleConfiguration defaultConfigurationWithAppName:@"SDL APP" fullAppId:@"001"] lockScreen:[SDLLockScreenConfiguration enabledConfiguration] logging:[SDLLogConfiguration defaultConfiguration] fileManager:[SDLFileManagerConfiguration defaultConfiguration] encryption:nil] delegate:nil marketplaceApp:NO];
 }
 
 - (instancetype)initWithConfiguration:(SDLConfiguration *)configuration delegate:(nullable id<SDLManagerDelegate>)delegate marketplaceApp:(BOOL)marketplaceApp {
@@ -270,42 +269,32 @@ NSString *const Sync4String = @"SYNC 4";
 }
 
 - (void)didEnterStateStarted {
-    // Start a background task so a session can be established even when the app is backgrounded.
-    [self.backgroundTaskManager startBackgroundTask];
+     // Start a background task so a session can be established even when the app is backgrounded.
+      [self.backgroundTaskManager startBackgroundTask];
 
-    // Start up the internal protocol, transport, and other internal managers
-    self.secondaryTransportManager = nil;
-//    if (self.configuration.lifecycleConfig.tcpDebugMode) {
-//        self.proxy = [SDLProxy tcpProxyWithListener:self.notificationDispatcher
-//                                       tcpIPAddress:self.configuration.lifecycleConfig.tcpDebugIPAddress
-//                                            tcpPort:@(self.configuration.lifecycleConfig.tcpDebugPort).stringValue
-//                          secondaryTransportManager:self.secondaryTransportManager
-//                         encryptionLifecycleManager:self.encryptionLifecycleManager];
-//    } else if (self.configuration.lifecycleConfig.allowedSecondaryTransports == SDLSecondaryTransportsNone) {
-//        self.proxy = [SDLProxy iapProxyWithListener:self.notificationDispatcher secondaryTransportManager:nil encryptionLifecycleManager:self.encryptionLifecycleManager marketplaceApp:self.marketplaceApp];
-    SDLLifecycleConfiguration *lifecycleConfig = self.configuration.lifecycleConfig;
-    id<SDLTransportType> newTransport = nil;
+      // Start up the internal protocol, transport, and other internal managers
+      self.secondaryTransportManager = nil;
+      SDLLifecycleConfiguration *lifecycleConfig = self.configuration.lifecycleConfig;
+      id<SDLTransportType> newTransport = nil;
 
-    if (lifecycleConfig.tcpDebugMode) {
-        newTransport = [[SDLTCPTransport alloc] initWithHostName:lifecycleConfig.tcpDebugIPAddress portNumber:@(lifecycleConfig.tcpDebugPort).stringValue];
-    } else {
-        newTransport = [[SDLIAPTransport alloc] init];
+      if (lifecycleConfig.tcpDebugMode) {
+          newTransport = [[SDLTCPTransport alloc] initWithHostName:lifecycleConfig.tcpDebugIPAddress portNumber:@(lifecycleConfig.tcpDebugPort).stringValue];
+      } else {
+          newTransport = [[SDLIAPTransport alloc] initAsMarketplaceApp:self.marketplaceApp];
 
-        if (self.configuration.lifecycleConfig.allowedSecondaryTransports != SDLSecondaryTransportsNone
-            && [self.class sdl_isStreamingConfiguration:self.configuration]) {
-            // Reuse the queue to run the secondary transport manager's state machine
-            self.secondaryTransportManager = [[SDLSecondaryTransportManager alloc] initWithStreamingProtocolDelegate:(id<SDLStreamingProtocolDelegate>)self.streamManager serialQueue:self.lifecycleQueue marketplaceApp:self.marketplaceApp];
-            self.streamManager.secondaryTransportManager = self.secondaryTransportManager;
-        }
+          if (self.configuration.lifecycleConfig.allowedSecondaryTransports != SDLSecondaryTransportsNone
+              && [self.class sdl_isStreamingConfiguration:self.configuration]) {
+              // Reuse the queue to run the secondary transport manager's state machine
+              self.secondaryTransportManager = [[SDLSecondaryTransportManager alloc] initWithStreamingProtocolDelegate:(id<SDLStreamingProtocolDelegate>)self.streamManager serialQueue:self.lifecycleQueue marketplaceApp:self.marketplaceApp];
+              self.streamManager.secondaryTransportManager = self.secondaryTransportManager;
+          }
+      }
 
-        self.proxy = [SDLProxy iapProxyWithListener:self.notificationDispatcher secondaryTransportManager:self.secondaryTransportManager encryptionLifecycleManager:self.encryptionLifecycleManager marketplaceApp:self.marketplaceApp];
-    }
+      SDLProtocol *newProtocol = [[SDLProtocol alloc] initWithTransport:newTransport encryptionManager:self.encryptionLifecycleManager];
+      self.protocolHandler = [[SDLLifecycleProtocolHandler alloc] initWithProtocol:newProtocol notificationDispatcher:self.notificationDispatcher configuration:self.configuration];
+      [self.protocolHandler start];
 
-    SDLProtocol *newProtocol = [[SDLProtocol alloc] initWithTransport:newTransport encryptionManager:self.encryptionLifecycleManager];
-    self.protocolHandler = [[SDLLifecycleProtocolHandler alloc] initWithProtocol:newProtocol notificationDispatcher:self.notificationDispatcher configuration:self.configuration];
-    [self.protocolHandler start];
-
-    [self.secondaryTransportManager startWithPrimaryProtocol:self.protocolHandler.protocol]; // Will not run if secondaryTransportManager is nil
+      [self.secondaryTransportManager startWithPrimaryProtocol:self.protocolHandler.protocol]; // Will not run if secondaryTransportManager is nil
 }
 
 - (void)didEnterStateStopped {
@@ -399,7 +388,7 @@ NSString *const Sync4String = @"SYNC 4";
         return;
     }
     
-    NSString *syncName = (NSString *)self.proxy.transport.accessory.name;
+    NSString *syncName = @"Zork";
     NSString *syncLogMessage = [@"SYNC Module Name: " stringByAppendingString:[syncName debugDescription]];
     [SDLACVLLogging logMessage:syncLogMessage];
 
