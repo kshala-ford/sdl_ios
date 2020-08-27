@@ -504,11 +504,9 @@ struct TransportProtocolUpdated {
     SDLLogD(@"Starting Secondary Transport: iAP");
 
     SDLIAPTransport *transport = [[SDLIAPTransport alloc] initAsMarketplaceApp:self.marketplaceApp];
-    SDLProtocol *protocol = [[SDLProtocol alloc] init];
+    SDLProtocol *protocol = [[SDLProtocol alloc] initWithTransport:transport encryptionManager:self.primaryProtocol.encryptionLifecycleManager];
     transport.delegate = protocol;
     protocol.transport = transport;
-    SDLIAPTransport *transport = [[SDLIAPTransport alloc] init];
-    SDLProtocol *protocol = [[SDLProtocol alloc] initWithTransport:transport encryptionManager:self.primaryProtocol.encryptionLifecycleManager];
     protocol.securityManager = self.primaryProtocol.securityManager;
     self.secondaryProtocol = protocol;
     self.secondaryTransport = transport;

@@ -133,8 +133,7 @@ NSString *const Sync4String = @"SYNC 4";
 #pragma mark Lifecycle
 
 - (instancetype)init {
-    return [self initWithConfiguration:[SDLConfiguration configurationWithLifecycle:[SDLLifecycleConfiguration defaultConfigurationWithAppName:@"SDL APP" fullAppId:@"001"] lockScreen:[SDLLockScreenConfiguration disabledConfiguration] logging:[SDLLogConfiguration defaultConfiguration] fileManager:[SDLFileManagerConfiguration defaultConfiguration]] delegate:nil marketplaceApp:NO];
-    return [self initWithConfiguration:[[SDLConfiguration alloc] initWithLifecycle:[SDLLifecycleConfiguration defaultConfigurationWithAppName:@"SDL APP" fullAppId:@"001"] lockScreen:[SDLLockScreenConfiguration enabledConfiguration] logging:[SDLLogConfiguration defaultConfiguration] fileManager:[SDLFileManagerConfiguration defaultConfiguration] encryption:nil] delegate:nil];
+    return [self initWithConfiguration:[SDLConfiguration configurationWithLifecycle:[SDLLifecycleConfiguration defaultConfigurationWithAppName:@"SDL APP" fullAppId:@"001"] lockScreen:[SDLLockScreenConfiguration disabledConfiguration] logging:[SDLLogConfiguration defaultConfiguration] fileManager:[SDLFileManagerConfiguration defaultConfiguration] encryption:nil] delegate:nil marketplaceApp:NO];
 }
 
 - (instancetype)initWithConfiguration:(SDLConfiguration *)configuration delegate:(nullable id<SDLManagerDelegate>)delegate marketplaceApp:(BOOL)marketplaceApp {
@@ -276,14 +275,14 @@ NSString *const Sync4String = @"SYNC 4";
 
     // Start up the internal protocol, transport, and other internal managers
     self.secondaryTransportManager = nil;
-    if (self.configuration.lifecycleConfig.tcpDebugMode) {
-        self.proxy = [SDLProxy tcpProxyWithListener:self.notificationDispatcher
-                                       tcpIPAddress:self.configuration.lifecycleConfig.tcpDebugIPAddress
-                                            tcpPort:@(self.configuration.lifecycleConfig.tcpDebugPort).stringValue
-                          secondaryTransportManager:self.secondaryTransportManager
-                         encryptionLifecycleManager:self.encryptionLifecycleManager];
-    } else if (self.configuration.lifecycleConfig.allowedSecondaryTransports == SDLSecondaryTransportsNone) {
-        self.proxy = [SDLProxy iapProxyWithListener:self.notificationDispatcher secondaryTransportManager:nil encryptionLifecycleManager:self.encryptionLifecycleManager marketplaceApp:self.marketplaceApp];
+//    if (self.configuration.lifecycleConfig.tcpDebugMode) {
+//        self.proxy = [SDLProxy tcpProxyWithListener:self.notificationDispatcher
+//                                       tcpIPAddress:self.configuration.lifecycleConfig.tcpDebugIPAddress
+//                                            tcpPort:@(self.configuration.lifecycleConfig.tcpDebugPort).stringValue
+//                          secondaryTransportManager:self.secondaryTransportManager
+//                         encryptionLifecycleManager:self.encryptionLifecycleManager];
+//    } else if (self.configuration.lifecycleConfig.allowedSecondaryTransports == SDLSecondaryTransportsNone) {
+//        self.proxy = [SDLProxy iapProxyWithListener:self.notificationDispatcher secondaryTransportManager:nil encryptionLifecycleManager:self.encryptionLifecycleManager marketplaceApp:self.marketplaceApp];
     SDLLifecycleConfiguration *lifecycleConfig = self.configuration.lifecycleConfig;
     id<SDLTransportType> newTransport = nil;
 
