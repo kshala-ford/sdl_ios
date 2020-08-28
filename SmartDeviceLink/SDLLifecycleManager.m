@@ -388,7 +388,7 @@ NSString *const Sync4String = @"SYNC 4";
         return;
     }
     
-    NSString *syncName = @"Zork";
+    NSString *syncName = (NSString *)self.protocolHandler.protocol.transport.accessory.name;
     NSString *syncLogMessage = [@"SYNC Module Name: " stringByAppendingString:[syncName debugDescription]];
     [SDLACVLLogging logMessage:syncLogMessage];
 
