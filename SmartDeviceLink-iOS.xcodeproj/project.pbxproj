@@ -1631,6 +1631,8 @@
 		ABB9E0F0250AC138002575D1 /* SDLTrailerCheckTestStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB9E0EE250AC138002575D1 /* SDLTrailerCheckTestStatus.m */; };
 		ABB9E0F3250AD24B002575D1 /* SDLTrailerCheckModuleType.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB9E0F1250AD24B002575D1 /* SDLTrailerCheckModuleType.h */; };
 		ABB9E0F4250AD24B002575D1 /* SDLTrailerCheckModuleType.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB9E0F2250AD24B002575D1 /* SDLTrailerCheckModuleType.m */; };
+		ABB9E0F7250BC6BE002575D1 /* SDLTlcControlCapabilities.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB9E0F5250BC6BE002575D1 /* SDLTlcControlCapabilities.h */; };
+		ABB9E0F8250BC6BE002575D1 /* SDLTlcControlCapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB9E0F6250BC6BE002575D1 /* SDLTlcControlCapabilities.m */; };
 		DA0C46AD1DCD35080001F2A8 /* SDLRPCParameterNames.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0C46AC1DCD35080001F2A8 /* SDLRPCParameterNames.m */; };
 		DA0C46AF1DCD41E30001F2A8 /* SDLMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0C46AE1DCD41E30001F2A8 /* SDLMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA318C1F1DD0F06C00C035AC /* NSMutableDictionary+Store.h in Headers */ = {isa = PBXBuildFile; fileRef = DA318C1D1DD0F06C00C035AC /* NSMutableDictionary+Store.h */; };
@@ -3477,6 +3479,8 @@
 		ABB9E0EE250AC138002575D1 /* SDLTrailerCheckTestStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLTrailerCheckTestStatus.m; sourceTree = "<group>"; };
 		ABB9E0F1250AD24B002575D1 /* SDLTrailerCheckModuleType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLTrailerCheckModuleType.h; sourceTree = "<group>"; };
 		ABB9E0F2250AD24B002575D1 /* SDLTrailerCheckModuleType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLTrailerCheckModuleType.m; sourceTree = "<group>"; };
+		ABB9E0F5250BC6BE002575D1 /* SDLTlcControlCapabilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLTlcControlCapabilities.h; sourceTree = "<group>"; };
+		ABB9E0F6250BC6BE002575D1 /* SDLTlcControlCapabilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLTlcControlCapabilities.m; sourceTree = "<group>"; };
 		BB3C600D221AEF37007DD4CA /* NSMutableDictionary+StoreSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+StoreSpec.m"; path = "DevAPISpecs/NSMutableDictionary+StoreSpec.m"; sourceTree = "<group>"; };
 		DA0C46AC1DCD35080001F2A8 /* SDLRPCParameterNames.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLRPCParameterNames.m; sourceTree = "<group>"; };
 		DA0C46AE1DCD41E30001F2A8 /* SDLMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLMacros.h; sourceTree = "<group>"; };
@@ -5195,6 +5199,8 @@
 				9F425AD122DD980200BE3245 /* SDLWindowCapability.m */,
 				9F425AD422DD981E00BE3245 /* SDLWindowTypeCapabilities.h */,
 				9F425AD522DD981E00BE3245 /* SDLWindowTypeCapabilities.m */,
+				ABB9E0F5250BC6BE002575D1 /* SDLTlcControlCapabilities.h */,
+				ABB9E0F6250BC6BE002575D1 /* SDLTlcControlCapabilities.m */,
 			);
 			name = Structs;
 			sourceTree = "<group>";
@@ -7353,6 +7359,7 @@
 				11FE533E249281490091C252 /* SDLACVLLogging.h in Headers */,
 				1E5AD0881F20B9AA0029B8AF /* SDLGetInteriorVehicleData.h in Headers */,
 				1E5AD04C1F1F79640029B8AF /* SDLDefrostZone.h in Headers */,
+				ABB9E0F7250BC6BE002575D1 /* SDLTlcControlCapabilities.h in Headers */,
 				1E5AD0601F207AB10029B8AF /* SDLRadioState.h in Headers */,
 				1E5AD0801F20B73E0029B8AF /* SDLButtonPress.h in Headers */,
 				106187BA24AA76550045C4EC /* SDLRPCPermissionStatus.h in Headers */,
@@ -8289,6 +8296,7 @@
 				5D61FD4F1A84238C00846EE7 /* SDLProtocolReceivedMessageRouter.m in Sources */,
 				5D0A7375203F0C730001595D /* SDLTextAndGraphicManager.m in Sources */,
 				1E5AD0451F1F5A1F0029B8AF /* SDLRadioControlCapabilities.m in Sources */,
+				ABB9E0F8250BC6BE002575D1 /* SDLTlcControlCapabilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
