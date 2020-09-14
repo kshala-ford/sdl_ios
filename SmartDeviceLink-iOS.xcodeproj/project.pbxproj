@@ -5159,6 +5159,8 @@
 				5D61FBDD1A84238C00846EE7 /* SDLTextField.m */,
 				5D61FBE21A84238C00846EE7 /* SDLTireStatus.h */,
 				5D61FBE31A84238C00846EE7 /* SDLTireStatus.m */,
+				ABB9E0F5250BC6BE002575D1 /* SDLTlcControlCapabilities.h */,
+				ABB9E0F6250BC6BE002575D1 /* SDLTlcControlCapabilities.m */,
 				5D61FBE41A84238C00846EE7 /* SDLTouchCoord.h */,
 				5D61FBE51A84238C00846EE7 /* SDLTouchCoord.m */,
 				5D61FBE61A84238C00846EE7 /* SDLTouchEvent.h */,
@@ -5199,8 +5201,6 @@
 				9F425AD122DD980200BE3245 /* SDLWindowCapability.m */,
 				9F425AD422DD981E00BE3245 /* SDLWindowTypeCapabilities.h */,
 				9F425AD522DD981E00BE3245 /* SDLWindowTypeCapabilities.m */,
-				ABB9E0F5250BC6BE002575D1 /* SDLTlcControlCapabilities.h */,
-				ABB9E0F6250BC6BE002575D1 /* SDLTlcControlCapabilities.m */,
 			);
 			name = Structs;
 			sourceTree = "<group>";
