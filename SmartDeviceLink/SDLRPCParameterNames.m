@@ -690,6 +690,7 @@ SDLRPCParameterName const SDLRPCParameterNameSystemCapabilityType = @"systemCapa
 SDLRPCParameterName const SDLRPCParameterNameSystemContext = @"systemContext";
 SDLRPCParameterName const SDLRPCParameterNameSystemFile = @"systemFile";
 SDLRPCParameterName const SDLRPCParameterNameSystemSoftwareVersion = @"systemSoftwareVersion";
+SDLRPCParameterName const SDLRPCParameterNameTlcControlCapabilities = @"tlcControlCapabilities";
 SDLRPCParameterName const SDLRPCParameterNameTrackPlaybackDuration = @"trackPlaybackDuration";
 SDLRPCParameterName const SDLRPCParameterNameTrackPlaybackProgress = @"trackPlaybackProgress";
 SDLRPCParameterName const SDLRPCParameterNameTrafficAnnouncementIdentification = @"TA";
