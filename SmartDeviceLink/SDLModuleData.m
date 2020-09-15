@@ -127,6 +127,18 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (instancetype)initWithTlcControlData:(SDLTlcControlData *)tlcControlData {
+    self = [self init];
+    if(!self){
+        return nil;
+    }
+
+    self.moduleType = SDLModuleTypeTlc;
+    self.tlcControlData = tlcControlData;
+
+    return self;
+}
+
 - (void)setModuleType:(SDLModuleType)moduleType {
     [self.store sdl_setObject:moduleType forName:SDLRPCParameterNameModuleType];
 }
@@ -207,6 +219,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable SDLObsshControlData *)obsshControlData {
     return [self.store sdl_objectForName:SDLRPCParameterNameObsshControlData ofClass:SDLObsshControlData.class error:nil];
+}
+
+- (void)setTlcControlData:(nullable SDLTlcControlData *)tlcControlData {
+    [self.store sdl_setObject:tlcControlData forName:SDLRPCParameterNameTlcControlCapabilities];
+}
+
+- (nullable SDLTlcControlData *)tlcControlData {
+    return [self.store sdl_objectForName:SDLRPCParameterNameTlcControlCapabilities ofClass:SDLTlcControlData.class error:nil];
 }
 
 @end

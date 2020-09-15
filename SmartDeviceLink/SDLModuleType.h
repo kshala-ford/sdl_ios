@@ -49,3 +49,8 @@ extern SDLModuleType const SDLModuleTypePttb;
  * A SDLModuleType with the value of *OBSSH*
  */
 extern SDLModuleType const SDLModuleTypeObssh;
+
+/**
+ * A SDLModuleType with the value of *TLC*
+ */
+extern SDLModuleType const SDLModuleTypeTlc;
