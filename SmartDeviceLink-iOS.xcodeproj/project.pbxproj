@@ -106,6 +106,7 @@
 		1098F03824A39699004F53CC /* SDLPermissionElementSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1098F03724A39699004F53CC /* SDLPermissionElementSpec.m */; };
 		115463B72511293F001EC370 /* SDLTlcControlCapabilities.m in Headers */ = {isa = PBXBuildFile; fileRef = ABB9E0F6250BC6BE002575D1 /* SDLTlcControlCapabilities.m */; };
 		115463B82511293F001EC370 /* SDLTlcControlData.m in Headers */ = {isa = PBXBuildFile; fileRef = AB33682E250FFB7B0065DE91 /* SDLTlcControlData.m */; };
+		1194014E25113264001E1543 /* SDLTrailerCheckUserInput.h in Headers */ = {isa = PBXBuildFile; fileRef = AB6E55F9250A889600EF4348 /* SDLTrailerCheckUserInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		11FE533E249281490091C252 /* SDLACVLLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 11FE533C249281490091C252 /* SDLACVLLogging.h */; };
 		11FE533F249281490091C252 /* SDLACVLLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 11FE533D249281490091C252 /* SDLACVLLogging.m */; };
 		162E82CA1A9BDE8A00906325 /* SDLAmbientLightStatusSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 162E81E21A9BDE8A00906325 /* SDLAmbientLightStatusSpec.m */; };
@@ -6907,6 +6908,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1194014E25113264001E1543 /* SDLTrailerCheckUserInput.h in Headers */,
 				ABB9E0EF250AC138002575D1 /* SDLTrailerCheckTestStatus.h in Headers */,
 				ABB9E0EB250ABC82002575D1 /* SDLTrailerCheckPreconditionStatus.h in Headers */,
 				ABB9E0F7250BC6BE002575D1 /* SDLTlcControlCapabilities.h in Headers */,
