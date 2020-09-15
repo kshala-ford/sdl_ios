@@ -726,6 +726,7 @@ extern SDLRPCParameterName const SDLRPCParameterNameTextFields;
 extern SDLRPCParameterName const SDLRPCParameterNameTextMessageAvailable;
 extern SDLRPCParameterName const SDLRPCParameterNameTextSupported;
 extern SDLRPCParameterName const SDLRPCParameterNameThoroughfare;
+extern SDLRPCParameterName const SDLRPCParameterNameTlcControlData;
 extern SDLRPCParameterName const SDLRPCParameterNameTime;
 extern SDLRPCParameterName const SDLRPCParameterNameTimeIssued;
 extern SDLRPCParameterName const SDLRPCParameterNameTimeout;

@@ -733,6 +733,7 @@ SDLRPCParameterName const SDLRPCParameterNameTimezoneHourOffset = @"tz_hour";
 SDLRPCParameterName const SDLRPCParameterNameTimezoneMinuteOffset = @"tz_minute";
 SDLRPCParameterName const SDLRPCParameterNameTirePressure = @"tirePressure";
 SDLRPCParameterName const SDLRPCParameterNameTitle = @"title";
+SDLRPCParameterName const SDLRPCParameterNameTlcControlData = @"tlcControlData";
 SDLRPCParameterName const SDLRPCParameterNameTotalDistance = @"totalDistance";
 SDLRPCParameterName const SDLRPCParameterNameTouchEventAvailable = @"touchEventAvailable";
 SDLRPCParameterName const SDLRPCParameterNameTPMS = @"tpms";

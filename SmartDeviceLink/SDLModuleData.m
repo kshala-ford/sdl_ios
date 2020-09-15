@@ -13,6 +13,7 @@
 #import "SDLHMISettingsControlData.h"
 #import "SDLPttbControlData.h"
 #import "SDLObsshControlData.h"
+#import "SDLTlcControlData.h"
 #import "NSMutableDictionary+Store.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -222,11 +223,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setTlcControlData:(nullable SDLTlcControlData *)tlcControlData {
-    [self.store sdl_setObject:tlcControlData forName:SDLRPCParameterNameTlcControlCapabilities];
+    [self.store sdl_setObject:tlcControlData forName:SDLRPCParameterNameTlcControlData];
 }
 
 - (nullable SDLTlcControlData *)tlcControlData {
-    return [self.store sdl_objectForName:SDLRPCParameterNameTlcControlCapabilities ofClass:SDLTlcControlData.class error:nil];
+    return [self.store sdl_objectForName:SDLRPCParameterNameTlcControlData ofClass:SDLTlcControlData.class error:nil];
 }
 
 @end

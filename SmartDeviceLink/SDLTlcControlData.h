@@ -10,7 +10,6 @@
 #import "SDLTrailerCheckUserInput.h"
 #import "SDLTrailerCheckPreconditionStatus.h"
 #import "SDLTrailerCheckTestStatus.h"
-#import "SDLRPCStruct.h"
 #import "SDLRPCMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN
