@@ -1627,6 +1627,7 @@
 		9FE2471522D77AD500F8D2FC /* SDLWindowType.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FE2471322D77AD500F8D2FC /* SDLWindowType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9FE2471622D77AD500F8D2FC /* SDLWindowType.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE2471422D77AD500F8D2FC /* SDLWindowType.m */; };
 		9FE2471922D77AED00F8D2FC /* SDLPredefinedWindows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FE2471722D77AED00F8D2FC /* SDLPredefinedWindows.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AB0F73A92513AAE000EC8DE1 /* SDLTlcControlDataSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0F73A82513AAE000EC8DE1 /* SDLTlcControlDataSpec.m */; };
 		AB33682F250FFB7B0065DE91 /* SDLTlcControlData.h in Headers */ = {isa = PBXBuildFile; fileRef = AB33682D250FFB7B0065DE91 /* SDLTlcControlData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB336830250FFB7B0065DE91 /* SDLTlcControlData.m in Sources */ = {isa = PBXBuildFile; fileRef = AB33682E250FFB7B0065DE91 /* SDLTlcControlData.m */; };
 		AB336836251268570065DE91 /* SDLTlcUserInputSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = AB336835251268570065DE91 /* SDLTlcUserInputSpec.m */; };
@@ -3477,6 +3478,7 @@
 		9FE2471322D77AD500F8D2FC /* SDLWindowType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLWindowType.h; sourceTree = "<group>"; };
 		9FE2471422D77AD500F8D2FC /* SDLWindowType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLWindowType.m; sourceTree = "<group>"; };
 		9FE2471722D77AED00F8D2FC /* SDLPredefinedWindows.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLPredefinedWindows.h; sourceTree = "<group>"; };
+		AB0F73A82513AAE000EC8DE1 /* SDLTlcControlDataSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLTlcControlDataSpec.m; sourceTree = "<group>"; };
 		AB33682D250FFB7B0065DE91 /* SDLTlcControlData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLTlcControlData.h; sourceTree = "<group>"; };
 		AB33682E250FFB7B0065DE91 /* SDLTlcControlData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLTlcControlData.m; sourceTree = "<group>"; };
 		AB336835251268570065DE91 /* SDLTlcUserInputSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDLTlcUserInputSpec.m; sourceTree = "<group>"; };
@@ -4140,6 +4142,7 @@
 				000DD56D22EF01FC005AB7A7 /* SDLSeatLocationSpec.m */,
 				9FA0CFFF22DF06A0009CF344 /* SDLWindowCapabilitySpec.m */,
 				9FA0D00222DF06B9009CF344 /* SDLWindowTypeCapabilitiesSpec.m */,
+				AB0F73A82513AAE000EC8DE1 /* SDLTlcControlDataSpec.m */,
 			);
 			path = StructSpecs;
 			sourceTree = "<group>";
@@ -8333,6 +8336,7 @@
 				162E83901A9BDE8B00906325 /* SDLTireStatusSpec.m in Sources */,
 				000DD57622EF0971005AB7A7 /* SDLReleaseInteriorVehicleDataModuleResponseSpec.m in Sources */,
 				162E82E01A9BDE8B00906325 /* SDLHMILevelSpec.m in Sources */,
+				AB0F73A92513AAE000EC8DE1 /* SDLTlcControlDataSpec.m in Sources */,
 				88F65133220C6DC300CAF321 /* SDLWeatherAlertSpec.m in Sources */,
 				5DC09EDA1F2F7FEC00F4AB1D /* SDLControlFramePayloadNakSpec.m in Sources */,
 				5D76751622D920FD00E8D71A /* SDLMenuConfigurationSpec.m in Sources */,
