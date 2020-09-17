@@ -26,6 +26,7 @@
 #import "SDLTimer.h"
 
 static const float StartSessionTime = 10.0;
+static const NSUInteger StartSessionMaxRetry = 3;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) SDLNotificationDispatcher *notificationDispatcher;
 
 @property (strong, nonatomic) SDLTimer *rpcStartServiceTimeoutTimer;
+@property (assign, nonatomic) NSUInteger rpcStartServiceRetryCounter;
 @property (copy, nonatomic) NSString *appId;
 
 @end
@@ -49,6 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 
     _appId = configuration.lifecycleConfig.fullAppId ? configuration.lifecycleConfig.fullAppId : configuration.lifecycleConfig.appId;
     _protocol.appId = _appId;
+    
+    _rpcStartServiceRetryCounter = 0;
 
     [_protocol.protocolDelegateTable addObject:self];
 
@@ -75,15 +79,33 @@ NS_ASSUME_NONNULL_BEGIN
     SDLLogD(@"Transport opened, sending an RPC Start Service, and starting timer for RPC Start Service ACK to be received.");
     [self.notificationDispatcher postNotificationName:SDLTransportDidConnect infoObject:nil];
 
+    [self sdl_sendStartServiceRPC];
+}
+
+- (void)sdl_sendStartServiceRPC {
     SDLControlFramePayloadRPCStartService *startServicePayload = [[SDLControlFramePayloadRPCStartService alloc] initWithVersion:SDLMaxProxyProtocolVersion];
     [self.protocol startServiceWithType:SDLServiceTypeRPC payload:startServicePayload.data];
-
+    
+    self.rpcStartServiceRetryCounter = 0;
+    
     if (self.rpcStartServiceTimeoutTimer == nil) {
         self.rpcStartServiceTimeoutTimer = [[SDLTimer alloc] initWithDuration:StartSessionTime repeat:NO];
         __weak typeof(self) weakSelf = self;
         self.rpcStartServiceTimeoutTimer.elapsedBlock = ^{
-            SDLLogE(@"Start session timed out after %f seconds, closing the connection.", StartSessionTime);
-            [weakSelf.protocol stopWithCompletionHandler:^{}];
+            typeof(weakSelf) strongSelf = weakSelf;
+            if (!strongSelf) return;
+            
+            if (strongSelf.rpcStartServiceRetryCounter >= StartSessionMaxRetry) {
+                SDLLogE(@"Start session timed out after %f seconds, closing the connection.", StartSessionTime);
+                strongSelf.rpcStartServiceRetryCounter = 0;
+                [strongSelf.protocol stopWithCompletionHandler:^{}];
+            } else {
+                SDLLogW(@"Start session timed out. Retry.");
+                strongSelf.rpcStartServiceRetryCounter++;
+                dispatch_async([[SDLGlobals sharedGlobals] sdlProcessingQueue], ^{
+                    [strongSelf sdl_sendStartServiceRPC];
+                });
+            }
         };
     }
     [self.rpcStartServiceTimeoutTimer start];
@@ -110,6 +132,7 @@ NS_ASSUME_NONNULL_BEGIN
     SDLLogD(@"Start Service (ACK) SessionId: %d for serviceType %d", startServiceACK.header.sessionID, startServiceACK.header.serviceType);
 
     if (startServiceACK.header.serviceType == SDLServiceTypeRPC) {
+        self.rpcStartServiceRetryCounter = 0;
         [self.rpcStartServiceTimeoutTimer cancel];
         [self.notificationDispatcher postNotificationName:SDLRPCServiceDidConnect infoObject:nil];
     }
@@ -121,6 +144,7 @@ NS_ASSUME_NONNULL_BEGIN
     SDLLogD(@"Start Service (NAK): SessionId: %d for serviceType %d", startServiceNAK.header.sessionID, startServiceNAK.header.serviceType);
 
     if (startServiceNAK.header.serviceType == SDLServiceTypeRPC) {
+        self.rpcStartServiceRetryCounter = 0;
         [self.rpcStartServiceTimeoutTimer cancel];
         [self.notificationDispatcher postNotificationName:SDLRPCServiceConnectionDidError infoObject:nil];
     }

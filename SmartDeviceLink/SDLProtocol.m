@@ -783,10 +783,12 @@ NS_ASSUME_NONNULL_BEGIN
     serverMessageHeader.messageID = messageId;
 
     // For a control service packet, we need a binary header with a function ID corresponding to what type of packet we're sending.
+    uint8_t errorCode = 9; // ERROR_HANDSHAKE_FAILED     0x09    9     In case of all other handshake errors
     SDLRPCPayload *serverTLSPayload = [[SDLRPCPayload alloc] init];
     serverTLSPayload.functionID = 0x02; // TLS Error message
     serverTLSPayload.rpcType = 0x02;
     serverTLSPayload.correlationID = 0x00;
+    serverTLSPayload.binaryData = [NSData dataWithBytes:&errorCode length:1];
 
     NSData *binaryData = serverTLSPayload.data;
 
