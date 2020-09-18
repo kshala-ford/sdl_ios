@@ -175,6 +175,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nullable, strong, nonatomic) SDLObsshControlData *obsshControlData;
 
+/**
+ The Tlc control data
+
+ Optional
+ */
+@property (nullable, strong, nonatomic) SDLTlcControlData *tlcControlData;
+
 @end
 
 NS_ASSUME_NONNULL_END

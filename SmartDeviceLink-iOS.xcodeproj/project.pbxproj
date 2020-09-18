@@ -4123,6 +4123,7 @@
 				9FA0CFFC22DF0687009CF344 /* SDLTemplateConfigurationSpec.m */,
 				162E82AD1A9BDE8A00906325 /* SDLTextFieldSpec.m */,
 				162E82AE1A9BDE8A00906325 /* SDLTireStatusSpec.m */,
+				AB0F73A82513AAE000EC8DE1 /* SDLTlcControlDataSpec.m */,
 				162E82AF1A9BDE8A00906325 /* SDLTouchCoordSpec.m */,
 				162E82B01A9BDE8A00906325 /* SDLTouchEventCapabilitiesSpec.m */,
 				162E82B11A9BDE8A00906325 /* SDLTouchEventSpec.m */,
@@ -4142,7 +4143,6 @@
 				000DD56D22EF01FC005AB7A7 /* SDLSeatLocationSpec.m */,
 				9FA0CFFF22DF06A0009CF344 /* SDLWindowCapabilitySpec.m */,
 				9FA0D00222DF06B9009CF344 /* SDLWindowTypeCapabilitiesSpec.m */,
-				AB0F73A82513AAE000EC8DE1 /* SDLTlcControlDataSpec.m */,
 			);
 			path = StructSpecs;
 			sourceTree = "<group>";
@@ -5176,6 +5176,8 @@
 				5D61FBE31A84238C00846EE7 /* SDLTireStatus.m */,
 				ABB9E0F5250BC6BE002575D1 /* SDLTlcControlCapabilities.h */,
 				ABB9E0F6250BC6BE002575D1 /* SDLTlcControlCapabilities.m */,
+				AB33682D250FFB7B0065DE91 /* SDLTlcControlData.h */,
+				AB33682E250FFB7B0065DE91 /* SDLTlcControlData.m */,
 				5D61FBE41A84238C00846EE7 /* SDLTouchCoord.h */,
 				5D61FBE51A84238C00846EE7 /* SDLTouchCoord.m */,
 				5D61FBE61A84238C00846EE7 /* SDLTouchEvent.h */,
@@ -5216,8 +5218,6 @@
 				9F425AD122DD980200BE3245 /* SDLWindowCapability.m */,
 				9F425AD422DD981E00BE3245 /* SDLWindowTypeCapabilities.h */,
 				9F425AD522DD981E00BE3245 /* SDLWindowTypeCapabilities.m */,
-				AB33682D250FFB7B0065DE91 /* SDLTlcControlData.h */,
-				AB33682E250FFB7B0065DE91 /* SDLTlcControlData.m */,
 			);
 			name = Structs;
 			sourceTree = "<group>";
