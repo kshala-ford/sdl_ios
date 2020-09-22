@@ -459,13 +459,7 @@ typedef NS_ENUM(NSInteger, SDLAudioIOManagerState) {
     [self sdl_initiateAbortInputStreamTimer];
     
     // send the request out to the head unit
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    SDLLogV(@"Sending request %@", [performAudioInput serializeAsDictionary:0]);
     [self.sdlManager sendRequest:performAudioInput withResponseHandler:^(__kindof SDLRPCRequest * _Nullable request, __kindof SDLRPCResponse * _Nullable response, NSError * _Nullable error) {
-        SDLLogV(@"Response received %@", [response serializeAsDictionary:0]);
-#pragma clang diagnostic pop
-        
         if (error) {
             SDLLogW(@"Audio IO manager: Error in response %@", error);
         }
@@ -655,10 +649,6 @@ typedef NS_ENUM(NSInteger, SDLAudioIOManagerState) {
     response.success = @NO;
     
     // WORKAROUND this will notify the RPC dispatcher
-    #pragma clang diagnostic push
-    #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    SDLLogV(@"Simulate a audio input response with aborted code: %@", [response serializeAsDictionary:0]);
-    #pragma clang diagnostic pop
     SDLRPCResponseNotification *notification = [[SDLRPCResponseNotification alloc] initWithName:SDLDidReceivePerformAudioPassThruResponse object:self.sdlManager.notificationDispatcher rpcResponse:response];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
     
