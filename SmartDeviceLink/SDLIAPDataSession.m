@@ -83,6 +83,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)destroySessionWithCompletionHandler:(void (^)(void))disconnectCompletionHandler {
     SDLLogD(@"Destroying the data session");
 
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.eaSession != nil) {
+            [[self.eaSession inputStream] close];
+            [[self.eaSession outputStream] close];
+        }
+    });
+    
     if (self.ioStreamThread == nil) {
         SDLLogV(@"No data session established");
         [super cleanupClosedSession];
@@ -117,6 +124,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @return Whether or not the session's I/O streams were closed successfully.
 - (BOOL)sdl_isIOThreadCancelled {
     NSAssert(![NSThread.currentThread.name isEqualToString:IOStreamThreadName], @"%@ must not be called from the ioStreamThread!", NSStringFromSelector(_cmd));
+    
+    if (self.ioStreamThread == nil || self.ioStreamThread.isFinished) {
+        return YES;
+    }
 
     long lWait = dispatch_semaphore_wait(self.ioStreamThreadCancelledSemaphore, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(IOStreamThreadCanceledSemaphoreWaitSecs * NSEC_PER_SEC)));
     if (lWait == 0) {
@@ -242,8 +253,11 @@ NS_ASSUME_NONNULL_BEGIN
     // When both streams are open, session initialization is complete. Let the delegate know.
     if (self.isInputStreamOpen && self.isOutputStreamOpen) {
         SDLLogV(@"Data session I/O streams opened for protocol: %@", self.protocolString);
-        if (self.delegate == nil) { return; }
-        [self.delegate dataSessionDidConnect];
+        // dispatch to the main thread/queue and avoid the IO thread from being stuck elsewhere.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.delegate == nil) { return; }
+            [self.delegate dataSessionDidConnect];
+        });
     }
 }
 
@@ -290,8 +304,8 @@ NS_ASSUME_NONNULL_BEGIN
         SDLLogBytes(dataIn, SDLLogBytesDirectionReceive);
 
         if (bytesRead > 0) {
-            if (self.delegate == nil) { return; }
-            [self.delegate dataSessionDidReceiveData:dataIn];
+                if (self.delegate == nil) { return; }
+                [self.delegate dataSessionDidReceiveData:dataIn];
         } else {
             break;
         }
@@ -343,7 +357,11 @@ NS_ASSUME_NONNULL_BEGIN
 
         while (self.ioStreamThread != nil && !self.ioStreamThread.cancelled) {
             // Enqueued data will be written to and read from the streams in the runloop
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.25f]];
+            BOOL result = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.25f]];
+            if (!result) {
+                SDLLogE(@"The run loop returned immediately although two streams supposed to be scheduled.\nInput stream: %@\nOutput stream: %@\nAccessory: %@", self.eaSession.inputStream, self.eaSession.outputStream, self.accessory);
+                break;
+            }
         }
 
         SDLLogD(@"Closing the accessory event loop on thread: %@", NSThread.currentThread.name);

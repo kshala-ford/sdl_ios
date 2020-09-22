@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)dealloc {
-    SDLLogV(@"Destroying the manager");
+    SDLLogV(@"Destroying the background task manager");
     [self endBackgroundTask];
 }
 

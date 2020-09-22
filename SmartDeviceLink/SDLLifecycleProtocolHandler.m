@@ -25,7 +25,7 @@
 #import "SDLRPCMessageType.h"
 #import "SDLTimer.h"
 
-static const float StartSessionTime = 10.0;
+static const float StartSessionTime = 30.0;
 static const NSUInteger StartSessionMaxRetry = 3;
 
 NS_ASSUME_NONNULL_BEGIN

@@ -102,7 +102,7 @@ int const CreateSessionRetries = 3;
     SDLLogD(@"Accessory Connected (%@), Opening in %0.03fs", notification.userInfo[EAAccessoryKey], retryDelay);
 
     self.retryCounter = 0;
-    [self performSelector:@selector(sdl_connect:) withObject:nil afterDelay:retryDelay];
+    [self sdl_connect:newAccessory];
 }
 
 /**
@@ -437,8 +437,8 @@ int const CreateSessionRetries = 3;
  *  @return A random number of seconds.
  */
 - (double)sdl_retryDelay {
-    const double MinRetrySeconds = 1.0;
-    const double MaxRetrySeconds = 2.0;
+    const double MinRetrySeconds = 1.5;
+    const double MaxRetrySeconds = 9.5;
     double RetryRangeSeconds = MaxRetrySeconds - MinRetrySeconds;
 
     static double appDelaySeconds = 0;

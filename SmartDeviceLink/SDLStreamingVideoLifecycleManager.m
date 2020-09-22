@@ -69,6 +69,7 @@ typedef void(^SDLVideoCapabilityResponseHandler)(SDLVideoStreamingCapability *_N
 @property (strong, nonatomic, readwrite) SDLStateMachine *appStateMachine;
 @property (copy, nonatomic, nullable) NSArray<SDLPermissionItem *> *permissionItems;
 @property (assign, nonatomic) BOOL videoStreamPermissionGranted;
+@property (assign, nonatomic) BOOL sdlLifecycleStateReady;
 
 @property (strong, nonatomic, readwrite, nullable) SDLVideoStreamingFormat *videoFormat;
 
@@ -145,6 +146,7 @@ typedef void(^SDLVideoCapabilityResponseHandler)(SDLVideoStreamingCapability *_N
     _videoStreamingState = SDLVideoStreamingStateNotStreamable;
     _permissionItems = nil;
     _videoStreamPermissionGranted = NO;
+    _sdlLifecycleStateReady = NO;
 
     NSMutableArray<NSString *> *tempMakeArray = [NSMutableArray array];
 #pragma clang diagnostic push
@@ -177,6 +179,7 @@ typedef void(^SDLVideoCapabilityResponseHandler)(SDLVideoStreamingCapability *_N
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sdl_didReceiveRegisterAppInterfaceResponse:) name:SDLDidReceiveRegisterAppInterfaceResponse object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sdl_hmiStatusDidChange:) name:SDLDidChangeHMIStatusNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sdl_permissionsChange:) name:SDLDidChangePermissionsNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sdl_sdlDidBecomeReady:) name:SDLDidBecomeReady object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sdl_appStateDidUpdate:) name:UIApplicationDidBecomeActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sdl_appStateDidUpdate:) name:UIApplicationWillResignActiveNotification object:nil];
@@ -205,9 +208,7 @@ typedef void(^SDLVideoCapabilityResponseHandler)(SDLVideoStreamingCapability *_N
 
     // attempt to start streaming since we may already have necessary conditions met
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    if (self.isHmiStateVideoStreamCapable && self.videoStreamPermissionGranted) {
-        [self sdl_startVideoSession];
-    } else {
+    if (![self sdl_startVideoSession]) {
         [self sdl_stopVideoSession];
     }
     });
@@ -631,6 +632,9 @@ typedef void(^SDLVideoCapabilityResponseHandler)(SDLVideoStreamingCapability *_N
     if (![notification.response isKindOfClass:[SDLRegisterAppInterfaceResponse class]]) {
         return;
     }
+    
+    // if an app registered, the SDL manager is not ready. we can reset the flag
+    _sdlLifecycleStateReady = NO;
 
     SDLLogD(@"Received Register App Interface");
     SDLRegisterAppInterfaceResponse *registerResponse = (SDLRegisterAppInterfaceResponse *)notification.response;
@@ -687,10 +691,8 @@ typedef void(^SDLVideoCapabilityResponseHandler)(SDLVideoStreamingCapability *_N
         return;
     }
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    if (self.isHmiStateVideoStreamCapable && self.videoStreamPermissionGranted) {
-        [self sdl_startVideoSession];
-    } else {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    if (![self sdl_startVideoSession]) {
         [self sdl_stopVideoSession];
     }
     });
@@ -715,9 +717,17 @@ typedef void(^SDLVideoCapabilityResponseHandler)(SDLVideoStreamingCapability *_N
     self.videoStreamPermissionGranted = touchPermissionGranted;
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    if (self.isHmiStateVideoStreamCapable && self.videoStreamPermissionGranted) {
-        [self sdl_startVideoSession];
-    } else {
+    if (![self sdl_startVideoSession]) {
+        [self sdl_stopVideoSession];
+    }
+    });
+}
+
+- (void)sdl_sdlDidBecomeReady:(NSNotification *)notification {
+    self.sdlLifecycleStateReady = YES;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    if (![self sdl_startVideoSession]) {
         [self sdl_stopVideoSession];
     }
     });
@@ -741,30 +751,48 @@ typedef void(^SDLVideoCapabilityResponseHandler)(SDLVideoStreamingCapability *_N
 
 #pragma mark - Streaming session helpers
 
-- (void)sdl_startVideoSession {
+// returns no if the video session should be stopped
+- (BOOL)sdl_startVideoSession {
     SDLLogV(@"Attempting to start video session");
     if (self.protocol == nil) {
         SDLLogW(@"No transport established with head unit. Video start service request will not be sent.");
-        return;
+        return NO;
+    }
+    
+    if (!self.isStreamingSupported) {
+        SDLLogW(@"Streaming is not supported. Video start service request will not be sent.");
+        return NO;
+    }
+    
+    if (!self.sdlLifecycleStateReady) {
+        SDLLogV(@"SDL manager lifecycle not ready yet. Video start service request will not be sent.");
+        return NO;
     }
 
     if (!self.isHmiStateVideoStreamCapable) {
-        SDLLogV(@"SDL Core is not ready to stream video. Video start service request will not be sent.");
-        return;
+        SDLLogV(@"App HMI state is not ready yet. Video start service request will not be sent.");
+        return NO;
+    }
+    
+    if (!self.videoStreamPermissionGranted) {
+        SDLLogV(@"App has no permission yet. Video start service request will not be sent.");
+        return NO;
     }
 
-    if (!self.isStreamingSupported) {
-        SDLLogV(@"Streaming is not supported. Video start service request will not be sent.");
-        return;
-    }
-
-    if ([self.videoStreamStateMachine isCurrentState:SDLVideoStreamManagerStateStopped] && self.isHmiStateVideoStreamCapable) {
-        [self.videoStreamStateMachine transitionToState:SDLVideoStreamManagerStateStarting];
+    if ([self.videoStreamStateMachine isCurrentState:SDLVideoStreamManagerStateStopped]) {       
+        if ([self.hmiLevel isEqualToEnum:SDLHMILevelFull]) {
+            [self.videoStreamStateMachine transitionToState:SDLVideoStreamManagerStateStarting];
+            return YES;
+        } else if ([self.hmiLevel isEqualToEnum:SDLHMILevelLimited]) {
+            SDLLogV(@"Starting video stream only possible in FULL. Current level is LIMITED");
+            return NO;
+        } else {
+            SDLLogW(@"Illegal HMI state: %@", self.hmiLevel);
+            return NO;
+        }
     } else {
-        SDLLogE(@"Unable to send video start service request\n"
-                "Video State must be in state STOPPED: %@\n"
-                "HMI state must be LIMITED or FULL: %@\n",
-                self.videoStreamStateMachine.currentState, self.hmiLevel);
+        SDLLogV(@"Ignoring start request. Current Streaming State: %@", self.videoStreamStateMachine.currentState);
+        return YES;
     }
 }
 
@@ -780,7 +808,7 @@ typedef void(^SDLVideoCapabilityResponseHandler)(SDLVideoStreamingCapability *_N
     } else if ([self.videoStreamStateMachine.currentState isEqualToEnum:SDLVideoStreamManagerStateStarting]) {
         [self.videoStreamStateMachine transitionToState:SDLVideoStreamManagerStateStopped];
     } else {
-        SDLLogW(@"No video is currently streaming. Will not send an end video service request.");
+        SDLLogV(@"No video is currently streaming. Ignore call.");
     }
 }
 
