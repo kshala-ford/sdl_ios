@@ -93,6 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf) return;
 
         // Attempt to cancel the ioStreamThread. Once the thread realizes it has been cancelled, it will cleanup the I/O streams. Make sure to wake up the run loop in case there is no current I/O event running on the ioThread.
         [strongSelf.ioStreamThread cancel];
@@ -102,6 +103,8 @@ NS_ASSUME_NONNULL_BEGIN
         BOOL cancelledSuccessfully = [strongSelf sdl_isIOThreadCancelled];
         if (!cancelledSuccessfully) {
             SDLLogE(@"The I/O streams were not shut down successfully. We might not be able to create a new session with an accessory during the same app session. If this happens, only force quitting and restarting the app will allow new sessions.");
+        } else {
+            strongSelf.ioStreamThread = nil;
         }
 
         [strongSelf.sendDataQueue removeAllObjects];
@@ -141,8 +144,15 @@ NS_ASSUME_NONNULL_BEGIN
  *  Sends any queued data to Core on the output stream for the session.
  */
 - (void)sdl_dequeueAndWriteToOutputStream {
+    SDLLogV(@"Dequeuing and writing to output stream");
+    
     if ([self.ioStreamThread isCancelled]) {
         SDLLogW(@"Attempted to send data on I/O thread but the thread is cancelled.");
+        return;
+    }
+    
+    if (self.sendDataQueue.count == 0) {
+        SDLLogV(@"Attempted to dequeue data but data queue is empty");
         return;
     }
 

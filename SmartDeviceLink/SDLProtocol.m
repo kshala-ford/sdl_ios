@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSMutableData *receiveBuffer;
 @property (nullable, strong, nonatomic) SDLProtocolReceivedMessageRouter *messageRouter;
 @property (strong, nonatomic) NSMutableDictionary<SDLServiceTypeBox *, SDLProtocolHeader *> *serviceHeaders;
+/* Dictionary storing StartService and StopService headers for service types. Used to identify if the request was encrypted. */
+@property (strong, nonatomic) NSMutableDictionary<SDLServiceTypeBox *, SDLProtocolHeader *> *requestingServiceHeaders;
 @property (assign, nonatomic) int32_t hashId;
 
 // Readonly public properties
@@ -70,6 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
     _prioritizedCollection = [[SDLPrioritizedObjectCollection alloc] init];
     _protocolDelegateTable = [NSHashTable weakObjectsHashTable];
     _serviceHeaders = [[NSMutableDictionary alloc] init];
+    _requestingServiceHeaders = [[NSMutableDictionary alloc] init];
     _messageRouter = [[SDLProtocolReceivedMessageRouter alloc] init];
     _messageRouter.delegate = self;
 
@@ -102,6 +105,18 @@ NS_ASSUME_NONNULL_BEGIN
 
     SDLLogD(@"Storing SessionID %i of serviceType %i", header.sessionID, serviceType);
     self.serviceHeaders[@(serviceType)] = [header copy];
+    return YES;
+}
+
+- (BOOL)removeHeaderForServiceType:(SDLServiceType)serviceType {
+    SDLProtocolHeader *header = self.serviceHeaders[@(serviceType)];
+    if (header == nil) {
+        SDLLogW(@"Warning: Tried to remove header for serviceType %i, but no header is saved for that service type.", serviceType);
+        return NO;
+    }
+    
+    SDLLogD(@"Removing session ID %i of serviceType %i", header.sessionID, serviceType);
+    [self.serviceHeaders removeObjectForKey:@(serviceType)];
     return YES;
 }
 
@@ -166,11 +181,12 @@ NS_ASSUME_NONNULL_BEGIN
     // No encryption, just build and send the message synchronously
     SDLProtocolMessage *message = [self sdl_createStartServiceMessageWithType:serviceType encrypted:NO payload:payload];
     SDLLogD(@"Sending start service: %@", message);
+    self.requestingServiceHeaders[@(serviceType)] = message.header;
     [self sdl_sendDataToTransport:message.data onService:serviceType];
 }
 
 - (void)startSecureServiceWithType:(SDLServiceType)serviceType payload:(nullable NSData *)payload tlsInitializationHandler:(void (^)(BOOL success, NSError *error))tlsInitializationHandler {
-    SDLLogD(@"Attempting to start TLS for service type: %hhu", serviceType);
+    SDLLogD(@"Attempting to initialize TLS for service type: %hhu", serviceType);
     [self sdl_initializeTLSEncryptionWithCompletionHandler:^(BOOL success, NSError *error) {
         if (!success) {
             // We can't start the service because we don't have encryption, return the error
@@ -181,6 +197,7 @@ NS_ASSUME_NONNULL_BEGIN
         // TLS initialization succeeded. Build and send the message.
         SDLProtocolMessage *message = [self sdl_createStartServiceMessageWithType:serviceType encrypted:YES payload:nil];
         SDLLogD(@"TLS initialized, sending start service for message: %@", message);
+        self.requestingServiceHeaders[@(serviceType)] = message.header;
         [self sdl_sendDataToTransport:message.data onService:serviceType];
     }];
 }
@@ -250,6 +267,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     SDLProtocolMessage *message = [SDLProtocolMessage messageWithHeader:header andPayload:payload];
     SDLLogD(@"Sending end service: %@", message);
+    self.requestingServiceHeaders[@(serviceType)] = message.header;
     [self sdl_sendDataToTransport:message.data onService:serviceType];
 }
 
@@ -540,8 +558,10 @@ NS_ASSUME_NONNULL_BEGIN
         }
     }
 
+    // remove header from requesting dictionary
+    self.requestingServiceHeaders[@(startServiceACK.header.serviceType)] = nil;
     // Store the header of this service away for future use
-    self.serviceHeaders[@(startServiceACK.header.serviceType)] = [startServiceACK.header copy];
+    [self storeHeader:[startServiceACK.header copy] forServiceType:startServiceACK.header.serviceType];
 
     // Pass along to all the listeners
     NSArray<id<SDLProtocolDelegate>> *listeners = [self sdl_getProtocolListeners];
@@ -554,12 +574,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)protocol:(SDLProtocol *)protocol didReceiveStartServiceNAK:(SDLProtocolMessage *)startServiceNAK {
     [self sdl_logControlNAKPayload:startServiceNAK];
+
+    SDLProtocolHeader *requestHeader = self.requestingServiceHeaders[@(startServiceNAK.header.serviceType)];
+    self.requestingServiceHeaders[@(startServiceNAK.header.serviceType)] = nil;
     
     dispatch_group_t serviceNakTask = dispatch_group_create();
     dispatch_group_enter(serviceNakTask);
     
-    if (startServiceNAK.header.encrypted) {
+    if (requestHeader.encrypted) {
+        SDLLogD(@"Starting a protected service failed with NAK. Security manager must be reset to dispose the internal SSL connection");
         dispatch_group_enter(serviceNakTask);
+        
         [self.securityManager stop];
         [self.securityManager initializeWithAppId:self.appId completionHandler:^(NSError * _Nullable error) {
             dispatch_group_leave(serviceNakTask);
@@ -581,7 +606,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)protocol:(SDLProtocol *)protocol didReceiveEndServiceACK:(SDLProtocolMessage *)endServiceACK {
     SDLLogD(@"End service ACK: %@", endServiceACK);
     // Remove the session id
-    [self.serviceHeaders removeObjectForKey:@(endServiceACK.header.serviceType)];
+    self.requestingServiceHeaders[@(endServiceACK.header.serviceType)] = nil;
+    [self removeHeaderForServiceType:endServiceACK.header.serviceType];
 
     NSArray<id<SDLProtocolDelegate>> *listeners = [self sdl_getProtocolListeners];
     for (id<SDLProtocolDelegate> listener in listeners) {
@@ -593,6 +619,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)protocol:(SDLProtocol *)protocol didReceiveEndServiceNAK:(SDLProtocolMessage *)endServiceNAK {
     [self sdl_logControlNAKPayload:endServiceNAK];
+    
+    //SDLProtocolHeader *requestHeader = self.requestingServiceHeaders[@(endServiceNAK.header.serviceType)];
+    self.requestingServiceHeaders[@(endServiceNAK.header.serviceType)] = nil;
 
     NSArray<id<SDLProtocolDelegate>> *listeners = [self sdl_getProtocolListeners];
     for (id<SDLProtocolDelegate> listener in listeners) {
@@ -736,7 +765,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     // If the handshake went bad and the security library ain't happy, send over the failure to the module. This should result in an ACK with encryption off.
     SDLProtocolMessage *serverSecurityMessage = nil;
-    if (serverHandshakeData == nil) {
+    if (serverHandshakeData == nil || serverHandshakeData.length == 0) {
         SDLLogE(@"Error running TLS handshake procedure. Sending error to module. Error: %@", handshakeError);
 
         serverSecurityMessage = [self.class sdl_serverSecurityFailedMessageWithClientMessageHeader:clientHandshakeMessage.header messageId:++_messageID];

@@ -575,9 +575,19 @@ typedef void(^SDLVideoCapabilityResponseHandler)(SDLVideoStreamingCapability *_N
     SDLControlFramePayloadNak *nakPayload = [[SDLControlFramePayloadNak alloc] initWithData:startServiceNAK.payload];
     SDLLogE(@"Request to start video service NAKed on transport %@, with payload: %@", protocol.transport, nakPayload);
 
-    // If we have no payload rejected params, we don't know what to do to retry, so we'll just stop and maybe cry
+    // If we have no payload rejected params but the state is still starting, simply retry after one second forever
     if (nakPayload.rejectedParams.count == 0) {
-        [self.videoStreamStateMachine transitionToState:SDLVideoStreamManagerStateStopped];
+        if ([self.videoStreamStateMachine.currentState isEqualToEnum:SDLVideoStreamManagerStateStarting]) {
+            __weak typeof(self) weakSelf = self;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), SDLGlobals.sharedGlobals.sdlProcessingQueue, ^{
+                typeof(self) strongSelf = weakSelf;
+                if (!strongSelf) return;
+                // the status may have changed since the NAK was received so check the state machine again.
+                if ([strongSelf.videoStreamStateMachine.currentState isEqualToEnum:SDLVideoStreamManagerStateStarting]) {
+                    [strongSelf sdl_sendVideoStartService];
+                }
+            });
+        }
         return;
     }
 
@@ -677,7 +687,7 @@ typedef void(^SDLVideoCapabilityResponseHandler)(SDLVideoStreamingCapability *_N
         return;
     }
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     if (self.isHmiStateVideoStreamCapable && self.videoStreamPermissionGranted) {
         [self sdl_startVideoSession];
     } else {
@@ -767,7 +777,7 @@ typedef void(^SDLVideoCapabilityResponseHandler)(SDLVideoStreamingCapability *_N
 
     if (self.isVideoConnected || self.isVideoSuspended) {
         [self.videoStreamStateMachine transitionToState:SDLVideoStreamManagerStateShuttingDown];
-    } else if ([self.videoStreamStateMachine.currentState isEqualToEnum: SDLVideoStreamManagerStateStarting]) {
+    } else if ([self.videoStreamStateMachine.currentState isEqualToEnum:SDLVideoStreamManagerStateStarting]) {
         [self.videoStreamStateMachine transitionToState:SDLVideoStreamManagerStateStopped];
     } else {
         SDLLogW(@"No video is currently streaming. Will not send an end video service request.");

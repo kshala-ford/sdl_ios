@@ -46,6 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSArray<NSString *> *secureMakes;
 @property (copy, nonatomic, nullable) NSString *connectedVehicleMake;
 @property (assign, nonatomic, readwrite, getter=isAudioEncrypted) BOOL audioEncrypted;
+@property (assign, nonatomic, readwrite, getter=isVideoConnected) BOOL videoConnected;
 
 @property (nonatomic, copy, nullable) void (^audioServiceEndedCompletionHandler)(void);
 @end
@@ -164,6 +165,8 @@ NS_ASSUME_NONNULL_BEGIN
         self.audioServiceEndedCompletionHandler();
         self.audioServiceEndedCompletionHandler = nil;
     }
+    
+    self.videoConnected = NO;
 }
 
 - (void)didEnterStateAudioStreamStarting {
@@ -194,6 +197,11 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark Start Service ACK/NAK
 
 - (void)protocol:(SDLProtocol *)protocol didReceiveStartServiceACK:(SDLProtocolMessage *)startServiceACK {
+    if (startServiceACK.header.serviceType == SDLServiceTypeVideo) {
+        self.videoConnected = YES;
+        [self sdl_startAudioSession];
+    }
+    
     if (startServiceACK.header.serviceType != SDLServiceTypeAudio) { return; }
 
     self.audioEncrypted = startServiceACK.header.encrypted;
@@ -209,16 +217,28 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)protocol:(SDLProtocol *)protocol didReceiveStartServiceNAK:(SDLProtocolMessage *)startServiceNAK {
+    if (startServiceNAK.header.serviceType == SDLServiceTypeVideo) { self.videoConnected = NO; }
     if (startServiceNAK.header.serviceType != SDLServiceTypeAudio) { return; }
     
     SDLLogE(@"Request to start audio service NAKed on transport %@, with payload: %@", protocol.transport, startServiceNAK.payload);
 
-    [self.audioStreamStateMachine transitionToState:SDLAudioStreamManagerStateStopped];
+    if ([self.audioStreamStateMachine.currentState isEqualToEnum:SDLAudioStreamManagerStateStarting]) {
+        __weak typeof(self) weakSelf = self;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), SDLGlobals.sharedGlobals.sdlProcessingQueue, ^{
+            typeof(self) strongSelf = weakSelf;
+            if (!strongSelf) return;
+            // the status may have changed since the NAK was received so check the state machine again.
+            if ([strongSelf.audioStreamStateMachine.currentState isEqualToEnum:SDLAudioStreamManagerStateStarting]) {
+                [strongSelf didEnterStateAudioStreamStarting];
+            }
+        });
+    }
 }
 
 #pragma mark End Service ACK/NAK
 
 - (void)protocol:(SDLProtocol *)protocol didReceiveEndServiceACK:(SDLProtocolMessage *)endServiceACK {
+    if (endServiceACK.header.serviceType == SDLServiceTypeVideo) { self.videoConnected = NO; }
     if (endServiceACK.header.serviceType != SDLServiceTypeAudio) { return; }
     SDLLogD(@"Request to end audio service ACKed on transport %@", protocol.transport);
 
@@ -247,6 +267,8 @@ NS_ASSUME_NONNULL_BEGIN
     SDLRegisterAppInterfaceResponse *registerResponse = (SDLRegisterAppInterfaceResponse*)notification.response;
 
     self.connectedVehicleMake = registerResponse.vehicleType.make;
+    
+    self.videoConnected = NO;
 }
 
 - (void)sdl_hmiLevelDidChange:(SDLRPCNotificationNotification *)notification {
@@ -280,12 +302,20 @@ NS_ASSUME_NONNULL_BEGIN
     if (!self.protocol) {
         return;
     }
+    
+    if (!self.isHmiStateAudioStreamCapable) {
+        return;
+    }
 
     if (!self.isStreamingSupported) {
         return;
     }
+    
+    if (!self.isVideoConnected) {
+        return;
+    }
 
-    if ([self.audioStreamStateMachine isCurrentState:SDLAudioStreamManagerStateStopped] && self.isHmiStateAudioStreamCapable) {
+    if ([self.audioStreamStateMachine isCurrentState:SDLAudioStreamManagerStateStopped]) {
         [self.audioStreamStateMachine transitionToState:SDLAudioStreamManagerStateStarting];
     }
 }
