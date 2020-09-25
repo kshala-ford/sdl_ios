@@ -28,7 +28,7 @@ Constructs a newly allocated SDLTlcControlData object with given parameters
  *
  * Optional, SDLTrailerCheckUserInput
  */
-@property (nullable, strong, nonatomic, readonly) SDLTrailerCheckUserInput userInput;
+@property (nullable, strong, nonatomic, readwrite) SDLTrailerCheckUserInput userInput;
 
 /**
  * read-only

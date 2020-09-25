@@ -13,7 +13,6 @@
 #import "NSMutableDictionary+Store.h"
 
 @interface SDLTlcControlData()
-@property (nullable, strong, nonatomic, readwrite) SDLTrailerCheckUserInput userInput;
 @property (nullable, strong, nonatomic, readwrite) SDLTrailerCheckPreconditionStatus preconditionStatus;
 @property (nullable, strong, nonatomic, readwrite) SDLTrailerCheckTestStatus testStatus;
 @end
