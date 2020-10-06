@@ -21,8 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation SDLIAPSession
 
-sessionCreated = NO;
-
 #pragma mark - Lifecycle
 
 - (instancetype)initWithAccessory:(nullable EAAccessory *)accessory forProtocol:(NSString *)protocol {
@@ -54,11 +52,6 @@ sessionCreated = NO;
 
 - (BOOL)createSession {
     SDLLogD(@"Opening EASession with accessory: %@", self.accessory.name);
-    if (sessionCreated) {
-        SDLLogD(@"Session Already Created - Blocking: %@", self.accessory.name);
-        return NO;
-    }
-    sessionCreated = YES;
     self.eaSession = [[EASession alloc] initWithAccessory:self.accessory forProtocol:self.protocolString];
     return (self.eaSession != nil);
 }

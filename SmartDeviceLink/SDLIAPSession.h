@@ -8,8 +8,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern BOOL sessionCreated;
-
 @interface SDLIAPSession : NSObject <NSStreamDelegate>
 
 /**

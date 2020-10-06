@@ -6,6 +6,8 @@
 //  Copyright © 2019 smartdevicelink. All rights reserved.
 //
 
+#import <UIKit/UIDevice.h>
+
 #import "SDLIAPDataSession.h"
 
 #import "SDLGlobals.h"
@@ -102,6 +104,8 @@ NS_ASSUME_NONNULL_BEGIN
         BOOL cancelledSuccessfully = [strongSelf sdl_isIOThreadCancelled];
         if (!cancelledSuccessfully) {
             SDLLogE(@"The I/O streams were not shut down successfully. We might not be able to create a new session with an accessory during the same app session. If this happens, only force quitting and restarting the app will allow new sessions.");
+        } else {
+            strongSelf.ioStreamThread = nil;
         }
 
         [strongSelf.sendDataQueue removeAllObjects];
@@ -331,9 +335,20 @@ NS_ASSUME_NONNULL_BEGIN
 
         SDLLogD(@"Starting the accessory event loop on thread: %@", NSThread.currentThread.name);
 
+        BOOL runModeFailedOnce = NO;
+
         while (self.ioStreamThread != nil && !self.ioStreamThread.cancelled) {
+            SDLLogD(@"In the Looper!");
             // Enqueued data will be written to and read from the streams in the runloop
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.25f]];
+            BOOL result = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.25f]];
+            if (!result && !runModeFailedOnce) {
+                // log error once on any iOS version but only break if on iOS 14 or up.
+                runModeFailedOnce = YES;
+                SDLLogE(@"The run loop returned immediately although two streams supposed to be scheduled.\nInput stream: %@\nOutput stream: %@\nAccessory: %@", self.eaSession.inputStream, self.eaSession.outputStream, self.accessory);
+                if (SDL_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"14")) {
+                    break;
+                }
+            }
         }
 
         SDLLogD(@"Closing the accessory event loop on thread: %@", NSThread.currentThread.name);
