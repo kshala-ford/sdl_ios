@@ -22,11 +22,7 @@ describe(@"Getter/Setter Tests", ^ {
         SDLTlcControlData *testStruct = [[SDLTlcControlData alloc] init];
 
         testStruct.userInput = SDLTrailerCheckUserInputStartTest;
-        testStruct.preconditionStatus = SDLTrailerCheckPreconditionStatusNotStationary;
-        testStruct.testStatus = SDLTrailerCheckTestStatusTestCompleted;
 
-        expect(testStruct.userInput).to(equal(SDLTrailerCheckUserInputStartTest));
-        expect(testStruct.preconditionStatus).to(equal(SDLTrailerCheckPreconditionStatusNotStationary));
         expect(testStruct.testStatus).to(equal(SDLTrailerCheckTestStatusTestCompleted));
     });
 
