@@ -552,6 +552,7 @@
 		5D1FF29C21304515000EB9B4 /* PerformInteractionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF29121304513000EB9B4 /* PerformInteractionManager.m */; };
 		5D1FF29D21304515000EB9B4 /* RPCPermissionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF29221304513000EB9B4 /* RPCPermissionsManager.m */; };
 		5D1FF29E21304515000EB9B4 /* MenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF29421304513000EB9B4 /* MenuManager.m */; };
+		5D1FF29F21304515000EB9B4 /* ProxyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF29621304514000EB9B4 /* ProxyManager.m */; };
 		5D1FF2A021304515000EB9B4 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF29721304514000EB9B4 /* AudioManager.m */; };
 		5D1FF2A121304515000EB9B4 /* VehicleDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF29921304514000EB9B4 /* VehicleDataManager.m */; };
 		5D1FF2A221304515000EB9B4 /* ButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF29B21304515000EB9B4 /* ButtonManager.m */; };
@@ -2365,12 +2366,14 @@
 		5D1FF29321304513000EB9B4 /* PerformInteractionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PerformInteractionManager.h; path = "Example Apps/Example ObjC/PerformInteractionManager.h"; sourceTree = SOURCE_ROOT; };
 		5D1FF29421304513000EB9B4 /* MenuManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuManager.m; path = "Example Apps/Example ObjC/MenuManager.m"; sourceTree = SOURCE_ROOT; };
 		5D1FF29521304514000EB9B4 /* ButtonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ButtonManager.h; path = "Example Apps/Example ObjC/ButtonManager.h"; sourceTree = SOURCE_ROOT; };
+		5D1FF29621304514000EB9B4 /* ProxyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProxyManager.m; path = "Example Apps/Example ObjC/ProxyManager.m"; sourceTree = SOURCE_ROOT; };
 		5D1FF29721304514000EB9B4 /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioManager.m; path = "Example Apps/Example ObjC/AudioManager.m"; sourceTree = SOURCE_ROOT; };
 		5D1FF29821304514000EB9B4 /* RPCPermissionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RPCPermissionsManager.h; path = "Example Apps/Example ObjC/RPCPermissionsManager.h"; sourceTree = SOURCE_ROOT; };
 		5D1FF29921304514000EB9B4 /* VehicleDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VehicleDataManager.m; path = "Example Apps/Example ObjC/VehicleDataManager.m"; sourceTree = SOURCE_ROOT; };
 		5D1FF29B21304515000EB9B4 /* ButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ButtonManager.m; path = "Example Apps/Example ObjC/ButtonManager.m"; sourceTree = SOURCE_ROOT; };
 		5D1FF2A321304530000EB9B4 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Preferences.h; path = "Example Apps/Example ObjC/Preferences.h"; sourceTree = SOURCE_ROOT; };
 		5D1FF2A421304531000EB9B4 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Preferences.m; path = "Example Apps/Example ObjC/Preferences.m"; sourceTree = SOURCE_ROOT; };
+		5D1FF29A21304514000EB9B4 /* ProxyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProxyManager.h; path = "Example Apps/Example ObjC/ProxyManager.h"; sourceTree = SOURCE_ROOT; };
 		5D1FF2A521304531000EB9B4 /* TextValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextValidator.h; path = "Example Apps/Example ObjC/TextValidator.h"; sourceTree = SOURCE_ROOT; };
 		5D1FF2A621304531000EB9B4 /* TextValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextValidator.m; path = "Example Apps/Example ObjC/TextValidator.m"; sourceTree = SOURCE_ROOT; };
 		5D1FF2AA21304567000EB9B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Example Apps/Example ObjC/Base.lproj/ConnectionTCPTableViewController.storyboard"; sourceTree = SOURCE_ROOT; };
@@ -4618,6 +4621,8 @@
 				5D1FF29421304513000EB9B4 /* MenuManager.m */,
 				5D1FF29321304513000EB9B4 /* PerformInteractionManager.h */,
 				5D1FF29121304513000EB9B4 /* PerformInteractionManager.m */,
+				5D1FF29A21304514000EB9B4 /* ProxyManager.h */,
+				5D1FF29621304514000EB9B4 /* ProxyManager.m */,
 				5D1FF29821304514000EB9B4 /* RPCPermissionsManager.h */,
 				5D1FF29221304513000EB9B4 /* RPCPermissionsManager.m */,
 				889E7BB0249D0877002E4BE1 /* SubscribeButtonManager.h */,
@@ -7703,6 +7708,7 @@
 				5D1FF2A721304531000EB9B4 /* Preferences.m in Sources */,
 				5D1FF2CC2130464E000EB9B4 /* main.m in Sources */,
 				889E7BB2249D0877002E4BE1 /* SubscribeButtonManager.m in Sources */,
+				5D1FF29F21304515000EB9B4 /* ProxyManager.m in Sources */,
 				5D1FF2C021304598000EB9B4 /* ConnectionTransitionContext.m in Sources */,
 				5D1FF2A221304515000EB9B4 /* ButtonManager.m in Sources */,
 				5D1FF2A021304515000EB9B4 /* AudioManager.m in Sources */,
