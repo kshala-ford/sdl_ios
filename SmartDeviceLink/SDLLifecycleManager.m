@@ -220,7 +220,7 @@ NSString *const Sync4String = @"SYNC 4";
 - (void)sdl_accessoryDisconnected:(NSNotification *)notification {
     if (SDL_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"14")) {
         EAAccessory *accessory = [notification.userInfo objectForKey:EAAccessoryKey];
-        SDLLogD(@"Accessory with serial number: %@, and connectionID: %lu disconnecting.", accessory.serialNumber, (unsigned long)accessory.connectionID);
+        SDLLogD(@"LifecylceManager - Accessory with serial number: %@, and connectionID: %lu disconnecting.", accessory.serialNumber, (unsigned long)accessory.connectionID);
         if (self.backgroundTaskManager != nil) {
             [self.backgroundTaskManager endBackgroundTask];
         }
