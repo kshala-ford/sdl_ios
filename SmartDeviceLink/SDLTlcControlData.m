@@ -31,7 +31,7 @@
     return self;
 }
 
-- (void)setUserInputStatus:(SDLTrailerCheckUserInput)userInput {
+- (void)setUserInput:(SDLTrailerCheckUserInput)userInput {
     [self.store sdl_setObject:userInput forName:SDLRPCParameterNameUserInput];
 }
 

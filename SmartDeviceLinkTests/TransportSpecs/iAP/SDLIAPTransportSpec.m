@@ -42,7 +42,7 @@ describe(@"SDLIAPTransport", ^{
     __block EAAccessory *mockAccessory = nil;
 
     beforeEach(^{
-        transport = [[SDLIAPTransport alloc] init];
+        transport = [[SDLIAPTransport alloc] initAsMarketplaceApp:false];
         mockTransportDelegate = OCMProtocolMock(@protocol(SDLTransportDelegate));
         transport.delegate = mockTransportDelegate;
         mockAccessory = [EAAccessory.class sdlCoreMock];

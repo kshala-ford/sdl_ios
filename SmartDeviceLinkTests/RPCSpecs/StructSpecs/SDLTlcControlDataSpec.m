@@ -23,13 +23,12 @@ describe(@"Getter/Setter Tests", ^ {
 
         testStruct.userInput = SDLTrailerCheckUserInputStartTest;
 
-        expect(testStruct.testStatus).to(equal(SDLTrailerCheckTestStatusTestCompleted));
+        expect(testStruct.userInput).to(equal(SDLTrailerCheckUserInputStartTest));
     });
 
     it(@"Should set and get correctly", ^ {
         SDLTlcControlData *testStruct = [[SDLTlcControlData alloc] initWithUserInput:SDLTrailerCheckUserInputStartTest preconditionStatus:SDLTrailerCheckPreconditionStatusNotStationary testStatus:SDLTrailerCheckTestStatusTestCompleted];
 
-        expect(testStruct.userInput).to(equal(SDLTrailerCheckUserInputStartTest));
         expect(testStruct.preconditionStatus).to(equal(SDLTrailerCheckPreconditionStatusNotStationary));
         expect(testStruct.testStatus).to(equal(SDLTrailerCheckTestStatusTestCompleted));
     });
