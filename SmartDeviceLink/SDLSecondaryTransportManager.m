@@ -164,6 +164,12 @@ struct TransportProtocolUpdated {
     return self;
 }
 
+- (void)endBackgroundTask {
+    if (self.backgroundTaskManager != nil) {
+        [self.backgroundTaskManager endBackgroundTask];
+    }
+}
+
 - (void)startWithPrimaryProtocol:(SDLProtocol *)primaryProtocol {
     SDLLogD(@"SDLSecondaryTransportManager start");
 
