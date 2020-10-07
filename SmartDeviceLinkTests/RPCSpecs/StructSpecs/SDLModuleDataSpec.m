@@ -19,6 +19,7 @@
 #import "SDLHMISettingsControlData.h"
 #import "SDLPttbControlData.h"
 #import "SDLObsshControlData.h"
+#import "SDLTlcControlData.h"
 #import "SDLRPCParameterNames.h"
 
 QuickSpecBegin(SDLModuleDataSpec)
@@ -32,6 +33,7 @@ describe(@"Initialization tests", ^{
     __block SDLSeatControlData *someSeatData = [[SDLSeatControlData alloc] init];
     __block SDLPttbControlData *somePttbData = [[SDLPttbControlData alloc] init];
     __block SDLObsshControlData *someObsshData = [[SDLObsshControlData alloc] init];
+    __block SDLTlcControlData *someTlcData = [[SDLTlcControlData alloc] init];
     __block NSString *someModuleId = @"123";
     
     it(@"should properly initialize init", ^{
@@ -46,6 +48,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.lightControlData).to(beNil());
         expect(testStruct.pttbControlData).to(beNil());
         expect(testStruct.obsshControlData).to(beNil());
+        expect(testStruct.tlcControlData).to(beNil());
         expect(testStruct.moduleId).to(beNil());
     });
     
@@ -60,6 +63,7 @@ describe(@"Initialization tests", ^{
                                        SDLRPCParameterNameHmiSettingsControlData:someHMISettingsData,
                                        SDLRPCParameterNamePttbControlData:somePttbData,
                                        SDLRPCParameterNameObsshControlData:someObsshData,
+                                       SDLRPCParameterNameTlcControlData:someTlcData,
                                        SDLRPCParameterNameModuleId:someModuleId} mutableCopy];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -75,6 +79,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.lightControlData).to(equal(someLightData));
         expect(testStruct.pttbControlData).to(equal(somePttbData));
         expect(testStruct.obsshControlData).to(equal(someObsshData));
+        expect(testStruct.tlcControlData).to(equal(someTlcData));
         expect(testStruct.moduleId).to(equal(someModuleId));
     });
 
@@ -89,6 +94,7 @@ describe(@"Initialization tests", ^{
         testStruct.hmiSettingsControlData = someHMISettingsData;
         testStruct.pttbControlData = somePttbData;
         testStruct.obsshControlData = someObsshData;
+        testStruct.tlcControlData = someTlcData;
         testStruct.moduleId = someModuleId;
         
         expect(testStruct.moduleType).to(equal(SDLModuleTypeRadio));
@@ -100,6 +106,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.lightControlData).to(equal(someLightData));
         expect(testStruct.pttbControlData).to(equal(somePttbData));
         expect(testStruct.obsshControlData).to(equal(someObsshData));
+        expect(testStruct.tlcControlData).to(equal(someTlcData));
         expect(testStruct.moduleId).to(equal(someModuleId));
     });
 
@@ -111,6 +118,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.climateControlData).to(beNil());
         expect(testStruct.seatControlData).to(beNil());
         expect(testStruct.obsshControlData).to(beNil());
+        expect(testStruct.tlcControlData).to(beNil());
         expect(testStruct.moduleId).to(beNil());
     });
 
@@ -122,6 +130,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.radioControlData).to(beNil());
         expect(testStruct.seatControlData).to(beNil());
         expect(testStruct.obsshControlData).to(beNil());
+        expect(testStruct.tlcControlData).to(beNil());
         expect(testStruct.moduleId).to(beNil());
     });
 
@@ -133,6 +142,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.radioControlData).to(beNil());
         expect(testStruct.climateControlData).to(beNil());
         expect(testStruct.obsshControlData).to(beNil());
+        expect(testStruct.tlcControlData).to(beNil());
         expect(testStruct.moduleId).to(beNil());
     });
 
@@ -146,6 +156,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.lightControlData).to(beNil());
         expect(testStruct.hmiSettingsControlData).to(equal(someHMISettingsData));
         expect(testStruct.obsshControlData).to(beNil());
+        expect(testStruct.tlcControlData).to(beNil());
         expect(testStruct.moduleId).to(beNil());
     });
 
@@ -159,6 +170,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.lightControlData).to(equal(someLightData));
         expect(testStruct.hmiSettingsControlData).to(beNil());
         expect(testStruct.obsshControlData).to(beNil());
+        expect(testStruct.tlcControlData).to(beNil());
         expect(testStruct.moduleId).to(beNil());
     });
 
@@ -172,6 +184,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.lightControlData).to(beNil());
         expect(testStruct.hmiSettingsControlData).to(beNil());
         expect(testStruct.obsshControlData).to(beNil());
+        expect(testStruct.tlcControlData).to(beNil());
         expect(testStruct.moduleId).to(beNil());
     });
 
@@ -186,6 +199,37 @@ describe(@"Initialization tests", ^{
         expect(testStruct.hmiSettingsControlData).to(beNil());
         expect(testStruct.pttbControlData).to(equal(somePttbData));
         expect(testStruct.obsshControlData).to(beNil());
+        expect(testStruct.tlcControlData).to(beNil());
+        expect(testStruct.moduleId).to(beNil());
+    });
+         
+    it(@"Should get correctly when initialized with ObsshControlData", ^ {
+        SDLModuleData* testStruct = [[SDLModuleData alloc] initWithObsshControlData:someObsshData];
+
+        expect(testStruct.moduleType).to(equal(SDLModuleTypeObssh));
+        expect(testStruct.climateControlData).to(beNil());
+        expect(testStruct.radioControlData).to(beNil());
+        expect(testStruct.audioControlData).to(beNil());
+        expect(testStruct.lightControlData).to(beNil());
+        expect(testStruct.hmiSettingsControlData).to(beNil());
+        expect(testStruct.pttbControlData).to(beNil());
+        expect(testStruct.obsshControlData).to(equal(someObsshData));
+        expect(testStruct.tlcControlData).to(beNil());
+        expect(testStruct.moduleId).to(beNil());
+    });
+         
+    it(@"Should get correctly when initialized with TlcControlData", ^ {
+        SDLModuleData* testStruct = [[SDLModuleData alloc] initWithTlcControlData:someTlcData];
+
+        expect(testStruct.moduleType).to(equal(SDLModuleTypeTlc));
+        expect(testStruct.climateControlData).to(beNil());
+        expect(testStruct.radioControlData).to(beNil());
+        expect(testStruct.audioControlData).to(beNil());
+        expect(testStruct.lightControlData).to(beNil());
+        expect(testStruct.hmiSettingsControlData).to(beNil());
+        expect(testStruct.pttbControlData).to(beNil());
+        expect(testStruct.obsshControlData).to(beNil());
+        expect(testStruct.tlcControlData).to(equal(someTlcData));
         expect(testStruct.moduleId).to(beNil());
     });
 });

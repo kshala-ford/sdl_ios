@@ -129,7 +129,7 @@ describe(@"a lifecycle manager", ^{
         testConfig.lifecycleConfig.language = SDLLanguageEnUs;
         testConfig.lifecycleConfig.minimumProtocolVersion = [SDLVersion versionWithMajor:2 minor:0 patch:0];
         testConfig.lifecycleConfig.minimumRPCVersion = [SDLVersion versionWithMajor:2 minor:0 patch:0];
-        testManager = [[SDLLifecycleManager alloc] initWithConfiguration:testConfig delegate:OCMProtocolMock(@protocol(SDLManagerDelegate))];
+        testManager = [[SDLLifecycleManager alloc] initWithConfiguration:testConfig delegate:OCMProtocolMock(@protocol(SDLManagerDelegate)) marketplaceApp:false];
         testManager.lockScreenManager = lockScreenManagerMock;
         testManager.fileManager = fileManagerMock;
         testManager.permissionManager = permissionManagerMock;
@@ -804,7 +804,7 @@ describe(@"a lifecycle manager", ^{
             beforeEach(^{
                 lifecycleConfig.allowedSecondaryTransports = SDLSecondaryTransportsNone;
                 SDLConfiguration *config = [[SDLConfiguration alloc] initWithLifecycle:lifecycleConfig lockScreen:nil logging:nil fileManager:nil];
-                testManager = [[SDLLifecycleManager alloc] initWithConfiguration:config delegate:nil];
+                testManager = [[SDLLifecycleManager alloc] initWithConfiguration:config delegate:nil marketplaceApp:false];
                 [testManager.lifecycleStateMachine setToState:SDLLifecycleStateStarted fromOldState:nil callEnterTransition:YES];
             });
 
@@ -818,7 +818,7 @@ describe(@"a lifecycle manager", ^{
                  lifecycleConfig.allowedSecondaryTransports = SDLSecondaryTransportsTCP;
                  lifecycleConfig.appType = SDLAppHMITypeSocial;
                  SDLConfiguration *config = [[SDLConfiguration alloc] initWithLifecycle:lifecycleConfig lockScreen:nil logging:nil fileManager:nil];
-                 testManager = [[SDLLifecycleManager alloc] initWithConfiguration:config delegate:nil];
+                 testManager = [[SDLLifecycleManager alloc] initWithConfiguration:config delegate:nil marketplaceApp:false];
                  [testManager.lifecycleStateMachine setToState:SDLLifecycleStateStarted fromOldState:nil callEnterTransition:YES];
             });
 
@@ -832,7 +832,7 @@ describe(@"a lifecycle manager", ^{
                 lifecycleConfig.allowedSecondaryTransports = SDLSecondaryTransportsTCP;
                 lifecycleConfig.appType = SDLAppHMITypeProjection;
                 SDLConfiguration *config = [[SDLConfiguration alloc] initWithLifecycle:lifecycleConfig lockScreen:nil logging:nil streamingMedia:SDLStreamingMediaConfiguration.insecureConfiguration fileManager:nil];
-                testManager = [[SDLLifecycleManager alloc] initWithConfiguration:config delegate:nil];
+                testManager = [[SDLLifecycleManager alloc] initWithConfiguration:config delegate:nil marketplaceApp:false];
 
                 [testManager.lifecycleStateMachine setToState:SDLLifecycleStateStarted fromOldState:nil callEnterTransition:YES];
             });

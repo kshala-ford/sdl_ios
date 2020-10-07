@@ -145,7 +145,7 @@ describe(@"the secondary transport manager ", ^{
         // "strict" mock. If one of the delegate methods is called without prior expectation, it will throw an exception
         testStreamingProtocolDelegate = OCMStrictProtocolMock(@protocol(SDLStreamingProtocolDelegate));
         testStateMachineQueue = dispatch_queue_create("com.sdl.testsecondarytransportmanager", DISPATCH_QUEUE_SERIAL);
-        manager = [[SDLSecondaryTransportManager alloc] initWithStreamingProtocolDelegate:testStreamingProtocolDelegate serialQueue:testStateMachineQueue];
+        manager = [[SDLSecondaryTransportManager alloc] initWithStreamingProtocolDelegate:testStreamingProtocolDelegate serialQueue:testStateMachineQueue marketplaceApp:false];
 
         manager.currentApplicationState = UIApplicationStateActive;
     });
@@ -176,7 +176,7 @@ describe(@"the secondary transport manager ", ^{
 
     describe(@"when started", ^{
         beforeEach(^{
-            testPrimaryTransport = [[SDLIAPTransport alloc] init];
+            testPrimaryTransport = [[SDLIAPTransport alloc] initAsMarketplaceApp:false];
             testPrimaryProtocol = [[SDLProtocol alloc] initWithTransport:testPrimaryTransport encryptionManager:nil];
         });
 
@@ -204,7 +204,7 @@ describe(@"the secondary transport manager ", ^{
     describe(@"In Started state", ^{
         beforeEach(^{
             // In the tests, we assume primary transport is iAP
-            testPrimaryTransport = [[SDLIAPTransport alloc] init];
+            testPrimaryTransport = [[SDLIAPTransport alloc] initAsMarketplaceApp:false];
             testPrimaryProtocol = [[SDLProtocol alloc] initWithTransport:testPrimaryTransport encryptionManager:nil];
 
             dispatch_sync(testStateMachineQueue, ^{
@@ -532,7 +532,7 @@ describe(@"the secondary transport manager ", ^{
 
         describe(@"if secondary transport is TCP", ^{
             beforeEach(^{
-                testPrimaryTransport = [[SDLIAPTransport alloc] init];
+                testPrimaryTransport = [[SDLIAPTransport alloc] initAsMarketplaceApp:false];
                 testPrimaryProtocol = [[SDLProtocol alloc] initWithTransport:testPrimaryTransport encryptionManager:nil];
                 testPrimaryProtocol.transport = testPrimaryTransport;
 
@@ -601,7 +601,7 @@ describe(@"the secondary transport manager ", ^{
 
         describe(@"when stopped", ^{
             beforeEach(^{
-                testPrimaryTransport = [[SDLIAPTransport alloc] init];
+                testPrimaryTransport = [[SDLIAPTransport alloc] initAsMarketplaceApp:false];
                 testPrimaryProtocol = [[SDLProtocol alloc] initWithTransport:testPrimaryTransport encryptionManager:nil];
                 testPrimaryProtocol.transport = testPrimaryTransport;
 
@@ -632,7 +632,7 @@ describe(@"the secondary transport manager ", ^{
             secondaryProtocol = [[SDLProtocol alloc] initWithTransport:[[SDLTCPTransport alloc] init] encryptionManager:nil];
             testSecondaryProtocolMock = OCMPartialMock(secondaryProtocol);
 
-            testPrimaryTransport = [[SDLIAPTransport alloc] init];
+            testPrimaryTransport = [[SDLIAPTransport alloc] initAsMarketplaceApp:false];
             testPrimaryProtocol = [[SDLProtocol alloc] initWithTransport:testPrimaryTransport encryptionManager:nil];
             dispatch_sync(testStateMachineQueue, ^{
                 [manager startWithPrimaryProtocol:testPrimaryProtocol];
@@ -852,7 +852,7 @@ describe(@"the secondary transport manager ", ^{
             secondaryProtocol = [[SDLProtocol alloc] initWithTransport:[[SDLTCPTransport alloc] init] encryptionManager:nil];
             testSecondaryProtocolMock = OCMPartialMock(secondaryProtocol);
 
-            testPrimaryTransport = [[SDLIAPTransport alloc] init];
+            testPrimaryTransport = [[SDLIAPTransport alloc] initAsMarketplaceApp:false];
             testPrimaryProtocol = [[SDLProtocol alloc] initWithTransport:testPrimaryTransport encryptionManager:nil];
             testPrimaryProtocol.transport = testPrimaryTransport;
             dispatch_sync(testStateMachineQueue, ^{
@@ -989,7 +989,7 @@ describe(@"the secondary transport manager ", ^{
 
     describe(@"In Reconnecting state", ^{
         beforeEach(^{
-            testPrimaryTransport = [[SDLIAPTransport alloc] init];
+            testPrimaryTransport = [[SDLIAPTransport alloc] initAsMarketplaceApp:false];
             testPrimaryProtocol = [[SDLProtocol alloc] initWithTransport:testPrimaryTransport encryptionManager:nil];
             testPrimaryProtocol.transport = testPrimaryTransport;
             dispatch_sync(testStateMachineQueue, ^{
@@ -1104,7 +1104,7 @@ describe(@"the secondary transport manager ", ^{
 
         beforeEach(^{
             // In the tests, we assume primary transport is iAP
-            testPrimaryTransport = [[SDLIAPTransport alloc] init];
+            testPrimaryTransport = [[SDLIAPTransport alloc] initAsMarketplaceApp:false];
             testPrimaryProtocol = [[SDLProtocol alloc] initWithTransport:testPrimaryTransport encryptionManager:nil];
             testPrimaryProtocol.transport = testPrimaryTransport;
 
@@ -1254,7 +1254,7 @@ describe(@"the secondary transport manager ", ^{
         __block id testSecondaryProtocolMock = nil;
 
         beforeEach(^{
-            testPrimaryTransport = [[SDLIAPTransport alloc] init];
+            testPrimaryTransport = [[SDLIAPTransport alloc] initAsMarketplaceApp:false];
             testPrimaryProtocol = [[SDLProtocol alloc] initWithTransport:testPrimaryTransport encryptionManager:nil];
             secondaryProtocol = [[SDLProtocol alloc] initWithTransport:testPrimaryTransport encryptionManager:nil];
             testSecondaryProtocolMock = OCMPartialMock(secondaryProtocol);
@@ -1315,7 +1315,7 @@ describe(@"the secondary transport manager ", ^{
             secondaryProtocol = [[SDLProtocol alloc] initWithTransport:testPrimaryTransport encryptionManager:nil];
             testSecondaryProtocolMock = OCMPartialMock(secondaryProtocol);
             testPrimaryProtocol = [[SDLProtocol alloc] initWithTransport:testPrimaryTransport encryptionManager:nil];
-            testPrimaryTransport = [[SDLIAPTransport alloc] init];
+            testPrimaryTransport = [[SDLIAPTransport alloc] initAsMarketplaceApp:false];
 
             dispatch_sync(testStateMachineQueue, ^{
                 [manager startWithPrimaryProtocol:testPrimaryProtocol];
