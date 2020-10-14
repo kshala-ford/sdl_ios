@@ -18,6 +18,7 @@
 #import "SDLSeatControlCapabilities.h"
 #import "SDLPttbControlCapabilities.h"
 #import "SDLObsshControlCapabilities.h"
+#import "SDLTlcControlCapabilities.h"
 #import "SDLButtonCapabilities.h"
 #import "SDLRPCParameterNames.h"
 
@@ -32,6 +33,7 @@ __block SDLLightControlCapabilities* someLightControlCapabilities = [[SDLLightCo
 __block SDLHMISettingsControlCapabilities* someHMISettingsControlCapabilities = [[SDLHMISettingsControlCapabilities alloc] init];
 __block SDLObsshControlCapabilities* someObsshControlCapabilities = [[SDLObsshControlCapabilities alloc] init];
 __block SDLPttbControlCapabilities *somePttbControlCapabilities = [[SDLPttbControlCapabilities alloc] init];
+__block SDLTlcControlCapabilities *someTlcControlCapabilities = [[SDLTlcControlCapabilities alloc] init];
 
 describe(@"Initialization tests", ^{
     it(@"should properly initialize init", ^{
@@ -46,6 +48,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.lightControlCapabilities).to(beNil());
         expect(testStruct.pttbControlCapabilities).to(beNil());
         expect(testStruct.obsshControlCapabilities).to(beNil());
+        expect(testStruct.tlcControlCapabilities).to(beNil());
     });
     
     it(@"should properly initialize initWithDictionary", ^{
@@ -57,7 +60,8 @@ describe(@"Initialization tests", ^{
                                        SDLRPCParameterNameObsshControlCapabilities:someObsshControlCapabilities,
                                        SDLRPCParameterNameLightControlCapabilities:someLightControlCapabilities,
                                        SDLRPCParameterNameHmiSettingsControlCapabilities:someHMISettingsControlCapabilities,
-                                       SDLRPCParameterNamePttbControlCapabilities:somePttbControlCapabilities
+                                       SDLRPCParameterNamePttbControlCapabilities:somePttbControlCapabilities,
+                                       SDLRPCParameterNameTlcControlCapabilities:someTlcControlCapabilities,
                                        };
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -73,6 +77,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.lightControlCapabilities).to(equal([@[someLightControlCapabilities] copy]));
         expect(testStruct.pttbControlCapabilities).to(equal([@[somePttbControlCapabilities] copy]));
         expect(testStruct.obsshControlCapabilities).to(equal([@[someObsshControlCapabilities] copy]));
+        expect(testStruct.tlcControlCapabilities).to(equal([@[someTlcControlCapabilities] copy]));
     });
     
     it(@"Should set and get correctly", ^{
@@ -87,6 +92,7 @@ describe(@"Initialization tests", ^{
         testStruct.lightControlCapabilities = [@[someLightControlCapabilities] copy];
         testStruct.pttbControlCapabilities = [@[somePttbControlCapabilities] copy];
         testStruct.obsshControlCapabilities = [@[someObsshControlCapabilities] copy];
+        testStruct.tlcControlCapabilities = [@[someTlcControlCapabilities] copy];
 
         expect(testStruct.seatControlCapabilities).to(equal([@[someSeatControlCapabilities] copy]));
         expect(testStruct.climateControlCapabilities).to(equal(([@[someClimateControlCapabilities] copy])));
@@ -97,6 +103,7 @@ describe(@"Initialization tests", ^{
         expect(testStruct.lightControlCapabilities).to(equal([@[someLightControlCapabilities] copy]));
         expect(testStruct.pttbControlCapabilities).to(equal([@[somePttbControlCapabilities] copy]));
         expect(testStruct.obsshControlCapabilities).to(equal([@[someObsshControlCapabilities] copy]));
+        expect(testStruct.tlcControlCapabilities).to(equal([@[someTlcControlCapabilities] copy]));
     });
 
     it(@"Should get correctly when initialized with climateControlCapabilities and other RemoteControlCapabilities parameters", ^ {
@@ -126,7 +133,8 @@ describe(@"Initialization tests", ^{
     });
 
         it(@"Should get correctly when initialized with climateControlCapabilities and other RemoteControlCapabilities parameters", ^ {
-                SDLRemoteControlCapabilities* testStruct = [[SDLRemoteControlCapabilities alloc] initWithClimateControlCapabilities:[@[someClimateControlCapabilities] copy] radioControlCapabilities:[@[someRadioControlCapabilities] copy] buttonCapabilities:[@[someButtonControlCapabilities]  copy] seatControlCapabilities:[@[someSeatControlCapabilities] copy] audioControlCapabilities:[@[someAudioControlCapabilities] copy] hmiSettingsControlCapabilities:[@[someHMISettingsControlCapabilities] copy] lightControlCapabilities:[@[someLightControlCapabilities] copy] obsshControlCapabilities:[@[someObsshControlCapabilities] copy] pttbControlCapabilities:[@[somePttbControlCapabilities] copy]];
+                SDLRemoteControlCapabilities* testStruct = [[SDLRemoteControlCapabilities alloc] initWithClimateControlCapabilities:[@[someClimateControlCapabilities] copy] radioControlCapabilities:[@[someRadioControlCapabilities] copy] buttonCapabilities:[@[someButtonControlCapabilities]  copy] seatControlCapabilities:[@[someSeatControlCapabilities] copy] audioControlCapabilities:[@[someAudioControlCapabilities] copy] hmiSettingsControlCapabilities:[@[someHMISettingsControlCapabilities] copy] lightControlCapabilities:[@[someLightControlCapabilities] copy] obsshControlCapabilities:[@[someObsshControlCapabilities] copy] pttbControlCapabilities:[@[somePttbControlCapabilities] copy]
+                    tlcControlCapabilities:[@[someTlcControlCapabilities] copy]];
 
                 expect(testStruct.climateControlCapabilities).to(equal(([@[someClimateControlCapabilities] copy])));
                 expect(testStruct.radioControlCapabilities).to(equal([@[someRadioControlCapabilities] copy]));
@@ -136,6 +144,7 @@ describe(@"Initialization tests", ^{
                 expect(testStruct.lightControlCapabilities).to(equal([@[someLightControlCapabilities] copy]));
                 expect(testStruct.obsshControlCapabilities).to(equal([@[someObsshControlCapabilities] copy]));
                 expect(testStruct.pttbControlCapabilities).to(equal([@[somePttbControlCapabilities] copy]));
+                expect(testStruct.tlcControlCapabilities).to(equal([@[someTlcControlCapabilities] copy]));
         });
 });
 

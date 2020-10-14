@@ -22,9 +22,8 @@ describe(@"Individual Enum Value Tests", ^ {
         expect(SDLEmergencyEventTriggerTypeThresholdExceeded).to(equal(@"THRESHOLD_EXCEEDED"));
         expect(SDLEmergencyEventTriggerTypeThresholdOneExceeded).to(equal(@"THRESHOLD_1_EXCEEDED"));
         expect(SDLEmergencyEventTriggerTypeThresholdTwoExceeded).to(equal(@"THRESHOLD_2_EXCEEDED"));
-        expect(SDLEmergencyEventTriggerTypeNotUsed).to(equal(@"ROLLOVER"));
         expect(SDLEmergencyEventTriggerTypeNotUsed).to(equal(@"NOT_USED"));
-        expect(SDLEmergencyEventTriggerTypeInvalid).to(equal(@"FAULT"));
+        expect(SDLEmergencyEventTriggerTypeInvalid).to(equal(@"INVALID"));
     });
 });
 

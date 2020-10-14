@@ -410,6 +410,9 @@ NSString *const Sync4String = @"SYNC 4";
     }
     
     NSString *syncName = (NSString *)self.protocolHandler.protocol.transport.accessory.name;
+    if (syncName == nil) {
+        syncName = @"NIL_SYNC_NAME";
+    }
     NSString *syncLogMessage = [@"SYNC Module Name: " stringByAppendingString:[syncName debugDescription]];
     [SDLACVLLogging logMessage:syncLogMessage];
 
