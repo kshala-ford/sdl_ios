@@ -18,7 +18,8 @@
 #import "SDLMutableDataQueue.h"
 
 NSString *const IOStreamThreadName = @"com.smartdevicelink.iostream";
-NSTimeInterval const IOStreamThreadCanceledSemaphoreWaitSecs = 1.0;
+NSTimeInterval IOStreamThreadCanceledSemaphoreWaitSecs = 1.0;
+NSTimeInterval IOStreamThreadRetryWaitSecs = 1.0;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -45,7 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
     _delegate = delegate;
     _sendDataQueue = [[SDLMutableDataQueue alloc] init];
     _ioStreamThreadCancelledSemaphore = dispatch_semaphore_create(0);
-
     return self;
 }
 
@@ -104,6 +104,8 @@ NS_ASSUME_NONNULL_BEGIN
         BOOL cancelledSuccessfully = [strongSelf sdl_isIOThreadCancelled];
         if (!cancelledSuccessfully) {
             SDLLogE(@"The I/O streams were not shut down successfully. We might not be able to create a new session with an accessory during the same app session. If this happens, only force quitting and restarting the app will allow new sessions.");
+            [strongSelf performSelector:@selector(sdl_retryThreadCancel) withObject:nil afterDelay:IOStreamThreadRetryWaitSecs];
+            [strongSelf sdl_retryThreadCancel];
         } else {
             strongSelf.ioStreamThread = nil;
         }
@@ -127,6 +129,34 @@ NS_ASSUME_NONNULL_BEGIN
 
     SDLLogE(@"Failed to cancel ioStreamThread within %.1f seconds", IOStreamThreadCanceledSemaphoreWaitSecs);
     return NO;
+}
+
+- (void)sdl_retryThreadCancel {
+    if (self.ioStreamThread == nil) {
+        SDLLogV(@"No data session established during Retry");
+        [super cleanupClosedSession];
+    }
+    SDLLogE(@"Will retry thread cancel in %.1f seconds", IOStreamThreadRetryWaitSecs);
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+        // Attempt to cancel the ioStreamThread. Once the thread realizes it has been cancelled, it will cleanup the I/O streams. Make sure to wake up the run loop in case there is no current I/O event running on the ioThread.
+        [strongSelf.ioStreamThread cancel];
+        [strongSelf performSelector:@selector(sdl_doNothing) onThread:self.ioStreamThread withObject:nil waitUntilDone:NO];
+        
+        // Block the thread until the semaphore has been released by the ioStreamThread (or a timeout has occured).
+        BOOL cancelledSuccessfully = [strongSelf sdl_isIOThreadCancelled];
+        if (!cancelledSuccessfully) {
+            SDLLogE(@"The I/O streams were not shut down successfully.  Will try again.");
+            [strongSelf performSelector:@selector(sdl_retryThreadCancel) withObject:nil afterDelay:IOStreamThreadRetryWaitSecs];
+            [strongSelf sdl_retryThreadCancel];
+        } else {
+            strongSelf.ioStreamThread = nil;
+        }
+        
+        [strongSelf.sendDataQueue removeAllObjects];
+    });
 }
 
 /// Helper method for waking up the ioStreamThread.
