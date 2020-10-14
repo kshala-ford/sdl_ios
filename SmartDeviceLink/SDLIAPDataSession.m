@@ -18,8 +18,8 @@
 #import "SDLMutableDataQueue.h"
 
 NSString *const IOStreamThreadName = @"com.smartdevicelink.iostream";
-NSTimeInterval IOStreamThreadCanceledSemaphoreWaitSecs = 1.0;
-NSTimeInterval IOStreamThreadRetryWaitSecs = 1.0;
+NSTimeInterval const IOStreamThreadCanceledSemaphoreWaitSecs = 1.0;
+NSTimeInterval const IOStreamThreadRetryWaitSecs = 10.0;
 
 NS_ASSUME_NONNULL_BEGIN
 
