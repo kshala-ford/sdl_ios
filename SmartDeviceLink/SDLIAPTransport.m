@@ -101,7 +101,7 @@ NSString *const protocolStrings = @"UISupportedExternalAccessoryProtocols";
  */
 - (void)sdl_accessoryConnected:(NSNotification *)notification {
     EAAccessory *newAccessory = notification.userInfo[EAAccessoryKey];
-    double timeNow = NSTimeIntervalSince1970;
+    double timeNow = [[NSDate date] timeIntervalSince1970];
     double timeSinceLastConnectionAttempt = timeNow - _eaAccessoryConnectedTime;
     if (timeSinceLastConnectionAttempt < TimeRequiredBetweenConnectionAttempts) {
         SDLLogD(@"Accessory Connecting too soon after previous attempt");
