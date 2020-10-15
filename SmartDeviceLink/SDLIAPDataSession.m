@@ -85,13 +85,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)destroySessionWithCompletionHandler:(void (^)(void))disconnectCompletionHandler {
     SDLLogD(@"Destroying the data session");
 
+    [self sdl_forceCloseEaSession];
+
     if (self.ioStreamThread == nil) {
         SDLLogV(@"No data session established");
         [super cleanupClosedSession];
         return disconnectCompletionHandler();
     }
-
-    [self sdl_forceCloseEaSession];
 
     // Tell the ioStreamThread to shutdown the I/O streams. The I/O streams must be opened and closed on the same thread; if they are not, random crashes can occur. Dispatch this task to the main queue to ensure that this task is performed on the Main Thread. We are using the Main Thread for ease since we don't want to create a separate thread just to wait on closing the I/O streams. Using the Main Thread ensures that semaphore wait is not called from ioStreamThread, which would block the ioStreamThread and prevent shutdown.
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -117,17 +117,16 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)sdl_forceCloseEaSession {
-    if (self.eaSession != nil) {
-        [[self.eaSession inputStream] close];
-        [[self.eaSession inputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        [[self.eaSession inputStream] setDelegate:nil];
-        [[self.eaSession outputStream] close];
-        [[self.eaSession outputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        [[self.eaSession outputStream] setDelegate:nil];
-        [self.ioStreamThread cancel];
-        self.ioStreamThread = nil;
-        [self cleanupClosedSession];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.eaSession != nil) {
+            [[self.eaSession inputStream] close];
+            [[self.eaSession inputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+            [[self.eaSession inputStream] setDelegate:nil];
+            [[self.eaSession outputStream] close];
+            [[self.eaSession outputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+            [[self.eaSession outputStream] setDelegate:nil];
+        }
+    });
 }
 
 /// Wait for the ioStreamThread to destroy the I/O streams. Make sure this method is not called on the ioStreamThread, as it will block the thread until the timeout occurs.
