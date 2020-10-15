@@ -119,8 +119,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)sdl_forceCloseEaSession {
     if (self.eaSession != nil) {
         [[self.eaSession inputStream] close];
+        [[self.eaSession inputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         [[self.eaSession inputStream] setDelegate:nil];
         [[self.eaSession outputStream] close];
+        [[self.eaSession outputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         [[self.eaSession outputStream] setDelegate:nil];
         [self.ioStreamThread cancel];
         self.ioStreamThread = nil;
