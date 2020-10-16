@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)destroySessionWithCompletionHandler:(void (^)(void))disconnectCompletionHandler {
     SDLLogD(@"Destroying the data session");
 
-    [self sdl_forceCloseEaSession];
+    [self sdl_closeEaSession];
 
     if (self.ioStreamThread == nil) {
         SDLLogV(@"No data session established");
@@ -116,15 +116,11 @@ NS_ASSUME_NONNULL_BEGIN
     });
 }
 
-- (void)sdl_forceCloseEaSession {
+- (void)sdl_closeEaSession {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.eaSession != nil) {
             [[self.eaSession inputStream] close];
-            [[self.eaSession inputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-            [[self.eaSession inputStream] setDelegate:nil];
             [[self.eaSession outputStream] close];
-            [[self.eaSession outputStream] removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-            [[self.eaSession outputStream] setDelegate:nil];
         }
     });
 }
