@@ -16,6 +16,7 @@
 #import "SDLIAPSession.h"
 #import "SDLLogMacros.h"
 #import "SDLMutableDataQueue.h"
+#import "SDLLifecycleManager.h"
 
 NSString *const IOStreamThreadName = @"com.smartdevicelink.iostream";
 NSTimeInterval const IOStreamThreadCanceledSemaphoreWaitSecs = 1.0;
@@ -118,11 +119,15 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)sdl_closeEaSession {
+    SDLLogD(@"sdl_closeEaSession Called");
     dispatch_async(dispatch_get_main_queue(), ^{
+        SDLLogD(@"Closing SDL EASession");
         if (self.eaSession != nil) {
             [[self.eaSession inputStream] close];
             [[self.eaSession outputStream] close];
         }
+        NSNotification *sdlEASessionClosed = [[NSNotification alloc] initWithName:SDLEASessionCompleteNotification object:nil userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:sdlEASessionClosed];
     });
 }
 

@@ -83,6 +83,7 @@ SDLLifecycleState *const SDLLifecycleStateUnregistering = @"Unregistering";
 SDLLifecycleState *const SDLLifecycleStateReady = @"Ready";
 
 NSString *const BackgroundTaskTransportName = @"com.sdl.transport.backgroundTask";
+NSString *const SDLEASessionCompleteNotification = @"com.sdl.eaSessionCompleteNotification";
 
 #pragma mark - Protected Class Interfaces
 @interface SDLStreamingMediaManager ()
@@ -210,7 +211,7 @@ NSString *const Sync4String = @"SYNC 4";
     if (SDL_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"14")) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(sdl_accessoryDisconnected:)
-                                                     name:EAAccessoryDidDisconnectNotification
+                                                     name:SDLEASessionCompleteNotification
                                                    object:nil];
     }
     
