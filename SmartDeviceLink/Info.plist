@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ACVL Fork Version</key>
-	<string>1</string>
+	<string>2</string>
 	<key>Configuration</key>
 	<string>$(CONFIGURATION)</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -19,7 +19,7 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>6.7.0.alpha</string>
+	<string>6.7.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
