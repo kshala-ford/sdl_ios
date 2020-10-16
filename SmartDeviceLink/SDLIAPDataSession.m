@@ -129,7 +129,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)sdl_closeEaSession {
+    SDLLogD(@"SDL Closing EASession");
     dispatch_async(dispatch_get_main_queue(), ^{
+        SDLLogD(@"SDL Close EASession Dispatched");
         if (self.eaSession != nil) {
             [[self.eaSession inputStream] close];
             [[self.eaSession outputStream] close];
