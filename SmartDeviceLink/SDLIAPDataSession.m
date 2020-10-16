@@ -107,7 +107,6 @@ NS_ASSUME_NONNULL_BEGIN
         if (!cancelledSuccessfully) {
             SDLLogE(@"The I/O streams were not shut down successfully. We might not be able to create a new session with an accessory during the same app session. If this happens, only force quitting and restarting the app will allow new sessions.");
             [self performSelector:@selector(sdl_retryThreadCancel) withObject:nil afterDelay:IOStreamThreadRetryWaitSecs];
-            [self sdl_retryThreadCancel];
         } else {
             self.ioStreamThread = nil;
         }
@@ -119,12 +118,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)sdl_closeEaSession {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.eaSession != nil) {
-            [[self.eaSession inputStream] close];
-            [[self.eaSession outputStream] close];
-        }
-    });
+    if (self.eaSession != nil) {
+        [[self.eaSession inputStream] close];
+        [[self.eaSession outputStream] close];
+    }
 }
 
 /// Wait for the ioStreamThread to destroy the I/O streams. Make sure this method is not called on the ioStreamThread, as it will block the thread until the timeout occurs.
