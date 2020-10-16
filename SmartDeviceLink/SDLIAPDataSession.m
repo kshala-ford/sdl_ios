@@ -53,7 +53,6 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-
 #pragma mark Start
 
 - (void)startSession {
@@ -106,6 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self sdl_cancelStreamThreadWithCompletionHandler:disconnectCompletionHandler];
     });
 }
+
 - (void)sdl_cancelStreamThreadWithCompletionHandler:(void (^)(void))disconnectCompletionHandler {
     // Attempt to cancel the ioStreamThread. Once the thread realizes it has been cancelled, it will cleanup the I/O streams. Make sure to wake up the run loop in case there is no current I/O event running on the ioThread.
     [self.ioStreamThread cancel];
