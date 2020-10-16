@@ -118,10 +118,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)sdl_closeEaSession {
-    if (self.eaSession != nil) {
-        [[self.eaSession inputStream] close];
-        [[self.eaSession outputStream] close];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.eaSession != nil) {
+            [[self.eaSession inputStream] close];
+            [[self.eaSession outputStream] close];
+        }
+    });
 }
 
 /// Wait for the ioStreamThread to destroy the I/O streams. Make sure this method is not called on the ioStreamThread, as it will block the thread until the timeout occurs.
