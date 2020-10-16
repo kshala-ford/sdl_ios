@@ -20,6 +20,8 @@
 NSString *const IOStreamThreadName = @"com.smartdevicelink.iostream";
 NSTimeInterval const IOStreamThreadCanceledSemaphoreWaitSecs = 1.0;
 NSTimeInterval const IOStreamThreadRetryWaitSecs = 10.0;
+int const IOSStreamCancelRetryCountMax = 10;
+int IOSStreamCancelRetryCount = 0;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -141,6 +143,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)sdl_retryThreadCancel {
+    if (IOSStreamCancelRetryCount >= IOSStreamCancelRetryCountMax) {
+        return;
+    }
+    IOSStreamCancelRetryCount += 1;
     if (self.ioStreamThread == nil) {
         SDLLogV(@"No data session established during Retry");
         [super cleanupClosedSession];
