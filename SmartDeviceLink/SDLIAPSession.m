@@ -53,6 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)createSession {
     SDLLogD(@"Opening EASession with accessory: %@", self.accessory.name);
     self.eaSession = [[EASession alloc] initWithAccessory:self.accessory forProtocol:self.protocolString];
+    SDLLogD(@"Opening EASession Protocol String : %@", self.eaSession.protocolString);
     return (self.eaSession != nil);
 }
 
