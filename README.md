@@ -26,6 +26,10 @@ Change List:
 
 [Add On Board Scale Smart Hitch](https://github.ford.com/FordMobile/sdl_ios/pull/27)
 
+[Add Trailer Light Check](https://github.ford.com/FordMobile/sdl_ios/pull/51)
+
+[Update session close process]Ihttps://github.ford.com/FordMobile/sdl_ios/pull/52)
+
 Merge SDL:
 
 ```swift
