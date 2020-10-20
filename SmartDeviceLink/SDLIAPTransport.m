@@ -19,6 +19,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+double const TimeRequiredBetweenConnectionAttempts = 4.0; // Prevent Redundant EASessions
 int const CreateSessionRetries = 3;
 
 NSString *const FordProtocolString = @"com.ford.sync.ownerapp";
@@ -30,6 +31,8 @@ NSString *const protocolStrings = @"UISupportedExternalAccessoryProtocols";
 @property (nullable, strong, nonatomic) SDLIAPControlSession *controlSession;
 @property (nullable, strong, nonatomic) SDLIAPDataSession *dataSession;
 @property (assign, nonatomic) int retryCounter;
+@property (assign, nonatomic) double eaAccessoryConnectedTime;
+@property (assign, nonatomic) BOOL connectionAttemptAllowed;
 @property (assign, nonatomic) BOOL sessionSetupInProgress;
 @property (assign, nonatomic) BOOL transportDestroyed;
 @property (assign, nonatomic) BOOL accessoryConnectDuringActiveSession;
@@ -54,7 +57,7 @@ NSString *const protocolStrings = @"UISupportedExternalAccessoryProtocols";
     _retryCounter = 0;
     _accessoryConnectDuringActiveSession = NO;
     _marketplaceApp = marketplaceApp;
-
+    _eaAccessoryConnectedTime = 0.0;
     // Get notifications if an accessory connects in future
     [self sdl_startEventListening];
 
@@ -98,7 +101,13 @@ NSString *const protocolStrings = @"UISupportedExternalAccessoryProtocols";
  */
 - (void)sdl_accessoryConnected:(NSNotification *)notification {
     EAAccessory *newAccessory = notification.userInfo[EAAccessoryKey];
-
+    double timeNow = [[NSDate date] timeIntervalSince1970];
+    double timeSinceLastConnectionAttempt = timeNow - _eaAccessoryConnectedTime;
+    if (timeSinceLastConnectionAttempt < TimeRequiredBetweenConnectionAttempts) {
+        SDLLogD(@"Accessory Connecting too soon after previous attempt");
+        return;
+    }
+    _eaAccessoryConnectedTime = timeNow;
     if ([self sdl_isDataSessionActive:self.dataSession newAccessory:newAccessory]) {
         self.accessoryConnectDuringActiveSession = YES;
         return;
@@ -186,11 +195,9 @@ NSString *const protocolStrings = @"UISupportedExternalAccessoryProtocols";
 - (void)sdl_destroyTransport {
     self.retryCounter = 0;
     self.sessionSetupInProgress = NO;
-    self.transportDestroyed = YES;
-    __weak typeof(self) weakSelf = self;
     [self disconnectWithCompletionHandler:^{
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf.delegate onTransportDisconnected];
+        self.transportDestroyed = YES;
+        [self.delegate onTransportDisconnected];
     }];
 }
 
@@ -228,7 +235,6 @@ NSString *const protocolStrings = @"UISupportedExternalAccessoryProtocols";
 
     self.retryCounter = 0;
     self.sessionSetupInProgress = NO;
-    self.transportDestroyed = YES;
 
     [self sdl_closeSessionsWithCompletionHandler:disconnectCompletionHandler];
 }

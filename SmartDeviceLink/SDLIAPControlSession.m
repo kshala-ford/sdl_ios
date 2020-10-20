@@ -104,6 +104,9 @@ int const ProtocolIndexTimeoutSeconds = 10;
 - (void)sdl_stopAndDestroySession {
     NSAssert(NSThread.isMainThread, @"%@ must only be called on the main thread", NSStringFromSelector(_cmd));
 
+    SDLLogD(@"SDL Closing EASession : %@", self.eaSession.accessory.name);
+    SDLLogD(@"SDL Closing EASession : %@", self.eaSession.protocolString);
+    
     [super stopStream:self.eaSession.outputStream];
     [super stopStream:self.eaSession.inputStream];
     [super cleanupClosedSession];

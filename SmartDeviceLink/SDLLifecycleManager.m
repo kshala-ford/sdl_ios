@@ -83,6 +83,7 @@ SDLLifecycleState *const SDLLifecycleStateUnregistering = @"Unregistering";
 SDLLifecycleState *const SDLLifecycleStateReady = @"Ready";
 
 NSString *const BackgroundTaskTransportName = @"com.sdl.transport.backgroundTask";
+NSString *const SDLEASessionCompleteNotification = @"com.sdl.eaSessionCompleteNotification";
 
 #pragma mark - Protected Class Interfaces
 @interface SDLStreamingMediaManager ()
@@ -206,9 +207,30 @@ NSString *const Sync4String = @"SYNC 4";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remoteHardwareDidUnregister:) name:SDLDidReceiveAppUnregisteredNotification object:_notificationDispatcher];
 
     _backgroundTaskManager = [[SDLBackgroundTaskManager alloc] initWithBackgroundTaskName:BackgroundTaskTransportName];
-
+    
+    if (SDL_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"14")) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(sdl_accessoryDisconnected:)
+                                                     name:SDLEASessionCompleteNotification
+                                                   object:nil];
+    }
+    
     return self;
 }
+
+- (void)sdl_accessoryDisconnected:(NSNotification *)notification {
+    if (SDL_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"14")) {
+        EAAccessory *accessory = [notification.userInfo objectForKey:EAAccessoryKey];
+        SDLLogD(@"LifecylceManager - Accessory with serial number: %@, and connectionID: %lu disconnecting.", accessory.serialNumber, (unsigned long)accessory.connectionID);
+        if (self.backgroundTaskManager != nil) {
+            [self.backgroundTaskManager endBackgroundTask];
+        }
+        if (self.secondaryTransportManager != nil) {
+            [_secondaryTransportManager endBackgroundTask];
+        }
+    }
+}
+
 
 - (void)startWithReadyHandler:(SDLManagerReadyBlock)readyHandler {
     [self sdl_runOnProcessingQueue:^{
