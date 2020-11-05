@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <SmartDeviceLink/SDLResult.h>
+#import "SDLResult.h"
 
 @class SDLAudioIOManager;
 @class SDLAudioPassThruCapabilities;
